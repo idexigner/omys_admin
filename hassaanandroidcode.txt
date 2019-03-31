@@ -1,0 +1,2446 @@
+import React, {Component} from 'react';
+import {ImageBackground,Platform, StyleSheet, Text, View, TextInput, Image, TouchableOpacity, Picker, ScrollView} from 'react-native';
+// import Icon from 'react-native-vector-icons/Ionicons'
+import { Button, Header,FormLabel, FormInput, FormValidationMessage,Card, Input,CheckBox,Divider } from 'react-native-elements';
+import Api from '../../ApiEndpoint';
+import ImagePicker from 'react-native-image-picker';
+// import RNFetchBlob from 'react-native-fetch-blob';
+import RNFetchBlob from "rn-fetch-blob";
+
+
+const options = {
+  title: 'Select Avatar',
+  takePhotoButtonTitle: 'Take a photo',
+  chooseFromLibraryButtonTitle: 'Choose from gallery'
+  // customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+  // storageOptions: {
+  //   skipBackup: true,
+  //   path: 'images',
+  // },
+};
+
+export default class Survey extends Component {
+
+    constructor(props){
+        super(props);
+
+        this.state = {
+          AcademicQualifications: [AcademicQualification],
+          ProfessionalQualifications: [ProfessionalQualification],
+          data: null,
+          imageSource: null,
+
+          AQ: [],
+          PQ: [],
+
+          date: 'DD',
+          month: 'MM',
+          year: 'YY',
+
+
+
+
+          genderRadioGrp: {
+            male: false,
+            female: false,
+          },
+
+          statusRadioGrp: {
+            single: false,
+            married: false,
+            divorced: false,
+            widow: false,
+            widower: false
+          },
+
+          occupationRadioGrp: {
+            student: false,
+            business: false,
+            houseWife: false,
+            retired: false,
+            unemployed: false,
+            govtEmployee: false,
+            semiGovtEmployee: false,
+            selfEmployeed: false,
+            pvtService: false,
+            other: false,
+          },
+
+          fh_occupationRadioGrp: {
+            student: false,
+            business: false,
+            houseWife: false,
+            retired: false,
+            unemployed: false,
+            govtEmployee: false,
+            semiGovtEmployee: false,
+            selfEmployeed: false,
+            pvtService: false,
+            other: false,
+          },
+
+          m_occupationRadioGrp: {
+            student: false,
+            business: false,
+            houseWife: false,
+            retired: false,
+            unemployed: false,
+            govtEmployee: false,
+            semiGovtEmployee: false,
+            selfEmployeed: false,
+            pvtService: false,
+            other: false,
+          },
+
+          bloodRadioGrp: {
+            Aplus: false,
+            Aneg: false,
+            ABplus: false,
+            ABneg: false,
+            Bplus: false,
+            Bneg: false,
+            Oplus: false,
+            Oneg: false,
+          },
+
+          leftEduRadioGrp: {
+            financialCrisis: false,
+            earlyMarriage: false,
+            lostInterest: false,
+            gotJob: false,
+            startedBusiness: false,
+            joinedFamilyBusiness: false,
+          },
+
+          omysMemberRadioGrp: {
+            yes: false,
+            no: false
+          },
+
+          fh_omysMemberRadioGrp: {
+            yes: false,
+            no: false
+          },
+
+          addSkillsCheckGrp: {
+            publicSpeaker: false,
+            graphicDesigner: false,
+            webDesigner: false,
+            programmer: false,
+            animator: false,
+            mobileRepairing: false,
+            mechanic: false,
+            electrician: false,
+            carpenter: false,
+            plumber: false,
+            acTechnician: false,
+            electronicRepairing: false
+          },
+
+
+
+
+
+          name: '',
+          dob: '',
+          gender: '',
+          cnic: '',
+          khundi: '',
+          group: '',
+          age: '',
+          omj_card: '',
+          birth_place: '',
+          omys_card: '',
+          email: '',
+          contact: '',
+          whatsapp: '',
+          address: '',
+          status: '',
+          occupation: '',
+          fh_name: '',
+          fh_cnic: '',
+          fh_contact: '',
+          fh_occupation: '',
+          m_name: '',
+          m_cnic: '',
+          m_contact: '',
+          m_occupation: '',
+          bloodGrp: '',
+          leftEdu: '',
+          omysMember: '',
+          fh_omysMember: '',
+          addSkills: [],
+
+          
+          insName: '',
+          presClass: '',
+          lastAch: '',
+          futInt: '',
+
+          cmpName: '',
+          offAdd: '',
+          currDesg: '',
+          ebLastAch: '',
+          ebfutInt: '',
+
+          hobbies: '',
+          profAch: '',
+          persAch: '',
+          sportsInt: '',
+
+          imgName: 1000 + Math.random() * (10000 - 1000)
+
+        }
+
+        this.add = this.add.bind(this);
+        this.add2 = this.add2.bind(this);
+    }
+
+    add() {
+      const AcademicQualifications = this.state.AcademicQualifications.concat(AcademicQualification);
+      this.setState({ AcademicQualifications });
+    }
+    add2() {
+      const ProfessionalQualifications = this.state.ProfessionalQualifications.concat(ProfessionalQualification);
+      this.setState({ ProfessionalQualifications });
+    }
+
+
+
+
+
+    //RADIO GROUPS
+
+    genderRadioGrp(opt, event) {
+      let radioGrp = this.state.genderRadioGrp;
+      for(var key in radioGrp){
+        radioGrp[key]=false
+      }
+      radioGrp[opt]=true;
+
+      this.setState({
+        genderRadioGrp: radioGrp,
+        gender: opt
+      })
+    }
+
+    statusRadioGrp(opt, event) {
+      let radioGrp = this.state.statusRadioGrp;
+      for(var key in radioGrp){
+        radioGrp[key]=false
+      }
+      radioGrp[opt]=true;
+
+      this.setState({
+        statusRadioGrp: radioGrp,
+        status: opt
+      })
+    }
+
+    occupationRadioGrp(opt, event) {
+      let radioGrp = this.state.occupationRadioGrp;
+      for(var key in radioGrp){
+        radioGrp[key]=false
+      }
+      radioGrp[opt]=true;
+
+      this.setState({
+        occupationRadioGrp: radioGrp,
+        occupation: opt
+      })
+    }
+
+    fh_occupationRadioGrp(opt, event) {
+      let radioGrp = this.state.fh_occupationRadioGrp;
+      for(var key in radioGrp){
+        radioGrp[key]=false
+      }
+      radioGrp[opt]=true;
+
+      this.setState({
+        fh_occupationRadioGrp: radioGrp,
+        fh_occupation: opt
+      })
+    }
+
+    m_occupationRadioGrp(opt, event) {
+      let radioGrp = this.state.m_occupationRadioGrp;
+      for(var key in radioGrp){
+        radioGrp[key]=false
+      }
+      radioGrp[opt]=true;
+
+      this.setState({
+        m_occupationRadioGrp: radioGrp,
+        m_occupation: opt
+      })
+    }
+
+    bloodRadioGrp(opt, event) {
+      let radioGrp = this.state.bloodRadioGrp;
+      for(var key in radioGrp){
+        radioGrp[key]=false
+      }
+      radioGrp[opt]=true;
+
+      this.setState({
+        bloodRadioGrp: radioGrp,
+        bloodGrp: opt
+      })
+    }
+
+    leftEduRadioGrp(opt, event) {
+      let radioGrp = this.state.leftEduRadioGrp;
+      for(var key in radioGrp){
+        radioGrp[key]=false
+      }
+      radioGrp[opt]=true;
+
+      this.setState({
+        leftEduRadioGrp: radioGrp,
+        leftEdu: opt
+      })
+    }
+
+    omysMemberRadioGrp(opt, event) {
+      let radioGrp = this.state.omysMemberRadioGrp;
+      for(var key in radioGrp){
+        radioGrp[key]=false
+      }
+      radioGrp[opt]=true;
+
+      this.setState({
+        omysMemberRadioGrp: radioGrp,
+        omysMember: opt
+      })
+    }
+
+    fh_omysMemberRadioGrp(opt, event) {
+      let radioGrp = this.state.fh_omysMemberRadioGrp;
+      for(var key in radioGrp){
+        radioGrp[key]=false
+      }
+      radioGrp[opt]=true;
+
+      this.setState({
+        fh_omysMemberRadioGrp: radioGrp,
+        fh_omysMember: opt
+      })
+    }
+
+    addSkillsCheckGrp(opt, event) {
+      let radioGrp = this.state.addSkillsCheckGrp;
+      let state = [];
+      // for(var key in radioGrp){
+      //   radioGrp[key]=false
+      // }
+      // radioGrp[opt]=true;
+      if(radioGrp[opt] === true){
+        radioGrp[opt] = false;
+      } else {
+        radioGrp[opt] = true
+      }
+
+      for(var key in radioGrp){
+        if(radioGrp[key] === true){
+          state.push(key);
+          // console.log(radioGrp[opt])
+        }
+      }
+      this.setState({
+        addSkillsCheckGrp: radioGrp,
+        addSkills: state
+      })
+    }
+
+
+
+    selectPhoto(){
+      ImagePicker.showImagePicker(options, (response) => {
+        console.log('Response = ', response);
+       
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        } else if (response.customButton) {
+          console.log('User tapped custom button: ', response.customButton);
+        } else {
+          const source = { uri: response.uri };
+       
+          // You can also display the image using data:
+          // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+          this.setState({
+            imageSource: source,
+            data: response.data
+          }, ()=>{
+            RNFetchBlob.fetch('POST', Api+'/omys_backend/upload.php?img='+this.state.name+this.state.imgName, {
+              'Content-Type': 'multipart/form-data',
+            }, [
+              { name: 'image', filename: 'image.jpeg', type: 'image/jpeg', data: this.state.data, rand: 123 }
+            ]
+            // JSON.stringify({"rand": 123})
+            ).then((resp) => {
+              console.log(resp)
+            }).catch((err) => {
+              console.log(err)
+            })
+          });
+        }
+      });
+    }
+
+    uploadPhoto(){
+
+      console.log(this.state.data);
+
+
+      RNFetchBlob.fetch('POST', Api+'/omys_backend/upload.php', {
+        'Content-Type': 'multipart/form-data',
+      }, [
+        { name: 'image', filename: 'image.jpeg', type: 'image/jpeg', data: this.state.data }
+      ]).then((resp) => {
+        console.log(resp)
+      }).catch((err) => {
+        console.log(err)
+      })
+
+
+
+
+
+
+
+
+    //   RNFetchBlob.fetch(Api+'/omys_backend/upload.php', {
+    //     method: 'POST',
+    //     headers: new Headers({
+    //       'Content-Type': 'multipart/form-data',
+    //     })
+        
+    // },[
+    //   { name: 'image', filename: 'image.png', type: 'image/png', data: this.state.data }
+    // ])
+    // .then((resp) => {
+    //     console.log(resp)
+    //   }).catch((err) => {
+    //     console.log(err)
+    //   })
+
+      
+    
+    
+    
+    }
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    validateEmail = (email) => {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    validatePhone = (num) => {
+      var re = /^\d{11}$/
+      return re.test(num)
+    }
+
+
+    submitForm = () => {
+
+      //concatenate dob
+      this.setState({dob: this.state.date + "/" + this.state.month + "/" + this.state.year}, ()=>{
+        console.log("PQ ==> ",this.refs["PQ0"].state.data);
+        console.log("AQ ==> ",this.refs["AQ0"].state.data);
+
+      if(this.refs["AQ0"].state.data === null || this.refs["AQ0"].state.data === undefined || this.refs["AQ0"].state.data === "" || this.refs["AQ0"].state.comYear === null || this.refs["AQ0"].state.comYear === undefined || this.refs["AQ0"].state.comYear === "" || this.refs["AQ0"].state.admYear === null || this.refs["AQ0"].state.admYear === undefined || this.refs["AQ0"].state.admYear === ""){
+        alert("You must select atleast 1 Academic Qualification");
+      } else {
+        if(this.refs["PQ0"].state.data === null || this.refs["PQ0"].state.data === undefined || this.refs["PQ0"].state.data === "" || this.refs["PQ0"].state.comYear === null || this.refs["PQ0"].state.comYear === undefined || this.refs["PQ0"].state.comYear === "" || this.refs["PQ0"].state.admYear === null || this.refs["PQ0"].state.admYear === undefined || this.refs["PQ0"].state.admYear === ""){
+          alert("You must select atleast 1 Professional Qualification")
+        } else {
+
+          if (this.state.email.length >=1 && !this.validateEmail(this.state.email)) {
+            alert("Email should follow correct format")
+          } else {
+
+            if (this.state.contact.length >=1 && !this.validatePhone(this.state.contact)) {
+              alert("Contact should be of 11 digits")
+            } else {
+
+              if (this.state.whatsapp.length >=1 && !this.validatePhone(this.state.whatsapp)) {
+                alert("Whatsapp no should be of 11 digits")
+              } else {
+
+              if (this.state.fh_contact.length >=1 && !this.validatePhone(this.state.fh_contact)) {
+                  alert("Father/Husband Contact should be of 11 digits")
+                } else {
+
+                  if (this.state.m_contact.length >=1 && !this.validatePhone(this.state.m_contact)) {
+                    alert("Mother Contact should be of 11 digits")
+                  } else {
+
+
+
+
+
+
+
+          // AQ
+        let l = this.state.AcademicQualifications.length;
+        for(var i=0; i<l;i++){
+          // console.log(this.refs["AQ"+i].state.AQ[0]);
+          let AQ = this.state.AQ;
+          AQ.push({aq: this.refs["AQ"+i].state.AQ[0].aq, admYear: this.refs["AQ"+i].state.admYear, comYear: this.refs["AQ"+i].state.comYear})
+          this.setState({AQ})
+        }
+
+      //PQ
+      let p = this.state.ProfessionalQualifications.length;
+      for(var j=0; j<p;j++){
+        // console.log(this.refs["PQ"+j].state);
+        let PQ = this.state.PQ
+        PQ.push({pq: this.refs["PQ"+j].state.PQ[0].pq, admYear: this.refs["PQ"+j].state.admYear, comYear: this.refs["PQ"+j].state.comYear})
+        this.setState({PQ})
+      }
+
+  
+      setTimeout(() => {
+        console.log(this.state.AQ)
+      }, 2000);
+        
+
+
+        fetch(Api+'/omys_backend/register.php', {
+          method: 'POST',
+          body: JSON.stringify({
+            name: this.state.name,
+            dob: this.state.dob,
+            gender: this.state.gender,
+            cnic: this.state.cnic,
+            khundi: this.state.khundi,
+            group: this.state.group,
+            age: this.state.age,
+            omj_card: this.state.omj_card,
+            birth_place: this.state.birth_place,
+            omys_card: this.state.omys_card,
+            email: this.state.email,
+            contact: this.state.contact,
+            whatsapp: this.state.whatsapp,
+            address: this.state.address,
+            status: this.state.status,
+            occupation: this.state.occupation,
+            fh_name: this.state.fh_name,
+            fh_cnic: this.state.fh_cnic,
+            fh_contact: this.state.fh_contact,
+            fh_occupation: this.state.fh_occupation,
+            m_name: this.state.m_name,
+            m_cnic: this.state.m_cnic,
+            m_contact: this.state.m_contact,
+            m_occupation: this.state.m_occupation,
+            // AQ: this.state.AQ,
+            AQ: JSON.stringify(this.state.AQ),
+            bloodGrp: this.state.bloodGrp,
+            // PQ: this.state.PQ,
+            PQ: JSON.stringify(this.state.PQ),
+            addSkills: this.state.addSkills,
+
+            insName: this.state.insName,
+            presClass: this.state.presClass,
+            lastAch: this.state.lastAch,
+            futInt: this.state.futInt,
+
+            cmpName: this.state.cmpName,
+            offAdd: this.state.offAdd,
+            currDesg: this.state.currDesg,
+            ebLastAch: this.state.ebLastAch,
+            ebfutInt: this.state.ebfutInt,
+
+            hobbies: this.state.hobbies,
+            profAch: this.state.profAch,
+            persAch: this.state.persAch,
+            sportsInt: this.state.sportsInt,
+
+            leftEdu: this.state.leftEdu,
+
+            omysMember: this.state.omysMember,
+            fh_omysMember: this.state.fh_omysMember,
+
+            imgName: this.state.name+this.state.imgName
+          }),
+          headers: new Headers({
+            'Content-Type': 'application/json',
+          })
+          
+      })
+      .then((response) => response.json())
+          .then((responseJson) =>{
+            console.log(responseJson)
+            if(responseJson === "Form Submitted Successfully"){
+              const { navigate } = this.props.navigation;
+              this.props.navigation.navigate('Card',{name: this.state.name, dob: this.state.dob, gender: this.state.gender, age: this.state.age, cnic: this.state.cnic, image: this.state.imageSource});
+            } else {
+              console.log("error")
+            }
+              
+          })
+          .catch((error)=>{
+              console.error(error);
+          });
+
+
+
+
+
+
+
+        }
+      }
+      }
+
+        }
+
+        }
+
+        }
+      }
+
+
+      
+
+
+
+
+
+      })
+
+
+      
+    }
+
+
+  render() {
+
+    const AcademicQualifications = this.state.AcademicQualifications.map((Element, index) => {
+      return <Element key={ index } index={ index } ref={`AQ${index}`} />
+    });
+
+    const ProfessionalQualifications = this.state.ProfessionalQualifications.map((Element, index) => {
+      return <Element key={ index } index={ index } ref={`PQ${index}`} />
+    });
+
+    return (
+      <ImageBackground source={require('../images/back2.jpg')} style={styles.backgroundImage}>
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+         <View>
+        <Header
+        leftComponent={{ icon: 'menu', color: '#fff' }}
+        centerComponent={{ text: 'OKHAI MEMON YOUTH SERVICES', style: { color: '#fff',fontWeight: 'bold', textShadowColor: 'black', textShadowOffset: {width: 0.5, height: 0.5}, textShadowRadius: 2 } }}
+        rightComponent={{ icon: 'home', color: '#fff' }}
+        backgroundColor={"#2089DC"}
+        outerContainerStyles={{borderBottomWidth: 0}}
+      />
+
+      <Card
+        title='STUDENT CENSUS FORM'
+        >
+
+
+        <FormLabel>Name</FormLabel>
+        <FormInput
+                placeholder={"Enter your name..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 5,
+                }}
+                onChangeText={(text) => this.setState({name: text})}
+                value={this.state.name}
+              />
+
+        <FormLabel>Date of Birth</FormLabel>
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+        <Picker
+          selectedValue={this.state.date}
+          style={{ height: 50, width: 90, marginLeft:10 }}
+          onValueChange={(itemValue, itemIndex) => this.setState({date: itemValue})}
+        >
+        <Picker.Item label="DD" value="DD" />
+        <Picker.Item label="1" value="1" />
+        <Picker.Item label="2" value="2" />
+        <Picker.Item label="3" value="3" />
+        <Picker.Item label="4" value="4" />
+        <Picker.Item label="5" value="5" />
+        <Picker.Item label="6" value="6" />
+        <Picker.Item label="7" value="7" />
+        <Picker.Item label="8" value="8" />
+        <Picker.Item label="9" value="9" />
+        <Picker.Item label="10" value="10" />
+        <Picker.Item label="11" value="11" />
+        <Picker.Item label="12" value="12" />
+        <Picker.Item label="13" value="13" />
+        <Picker.Item label="14" value="14" />
+        <Picker.Item label="15" value="15" />
+        <Picker.Item label="16" value="16" />
+        <Picker.Item label="17" value="17" />
+        <Picker.Item label="18" value="18" />
+        <Picker.Item label="19" value="19" />
+        <Picker.Item label="20" value="20" />
+        <Picker.Item label="21" value="21" />
+        <Picker.Item label="22" value="22" />
+        <Picker.Item label="23" value="23" />
+        <Picker.Item label="24" value="24" />
+        <Picker.Item label="25" value="25" />
+        <Picker.Item label="26" value="26" />
+        <Picker.Item label="27" value="27" />
+        <Picker.Item label="28" value="28" />
+        <Picker.Item label="29" value="29" />
+        <Picker.Item label="30" value="30" />
+        <Picker.Item label="31" value="31" />
+
+        </Picker>
+        <Picker
+          selectedValue={this.state.month}
+          style={{ height: 50, width: 110, marginLeft:10 }}
+          onValueChange={(itemValue, itemIndex) => this.setState({month: itemValue})}
+        >
+        <Picker.Item label="MM" value="MM" />
+        <Picker.Item label="January" value="jan" />
+        <Picker.Item label="February" value="feb" />
+        <Picker.Item label="March" value="mar" />
+        <Picker.Item label="April" value="apr" />
+        <Picker.Item label="May" value="may" />
+        <Picker.Item label="June" value="jun" />
+        <Picker.Item label="July" value="july" />
+        <Picker.Item label="August" value="aug" />
+        <Picker.Item label="September" value="sept" />
+        <Picker.Item label="October" value="oct" />
+        <Picker.Item label="November" value="nov" />
+        <Picker.Item label="December" value="dec" />
+        </Picker>
+        <Picker
+          selectedValue={this.state.year}
+        style={{ height: 50, width: 110, marginLeft:10 }}
+          onValueChange={(itemValue, itemIndex) => this.setState({year: itemValue})}
+        >
+        <Picker.Item label="YY" value="YY" />
+          <Picker.Item label="1950" value="1950" />
+          <Picker.Item label="1951" value="1951" />
+          <Picker.Item label="1952" value="1952" />
+          <Picker.Item label="1953" value="1953" />
+          <Picker.Item label="1954" value="1954" />
+          <Picker.Item label="1955" value="1955" />
+          <Picker.Item label="1956" value="1956" />
+          <Picker.Item label="1957" value="1957" />
+          <Picker.Item label="1958" value="1958" />
+          <Picker.Item label="1959" value="1959" />
+          <Picker.Item label="1960" value="1960" />
+          <Picker.Item label="1961" value="1961" />
+          <Picker.Item label="1962" value="1962" />
+          <Picker.Item label="1963" value="1963" />
+          <Picker.Item label="1964" value="1964" />
+          <Picker.Item label="1965" value="1965" />
+          <Picker.Item label="1966" value="1966" />
+          <Picker.Item label="1967" value="1967" />
+          <Picker.Item label="1968" value="1968" />
+          <Picker.Item label="1969" value="1969" />
+          <Picker.Item label="1970" value="1970" />
+          <Picker.Item label="1971" value="1971" />
+          <Picker.Item label="1972" value="1972" />
+          <Picker.Item label="1973" value="1973" />
+          <Picker.Item label="1974" value="1974" />
+          <Picker.Item label="1975" value="1975" />
+          <Picker.Item label="1976" value="1976" />
+          <Picker.Item label="1977" value="1977" />
+          <Picker.Item label="1978" value="1978" />
+          <Picker.Item label="1979" value="1979" />
+          <Picker.Item label="1980" value="1980" />
+          <Picker.Item label="1981" value="1981" />
+          <Picker.Item label="1982" value="1982" />
+          <Picker.Item label="1983" value="1983" />
+          <Picker.Item label="1984" value="1984" />
+          <Picker.Item label="1985" value="1985" />
+          <Picker.Item label="1986" value="1986" />
+          <Picker.Item label="1987" value="1987" />
+          <Picker.Item label="1988" value="1988" />
+          <Picker.Item label="1989" value="1989" />
+          <Picker.Item label="1990" value="1990" />
+          <Picker.Item label="1991" value="1991" />
+          <Picker.Item label="1992" value="1992" />
+          <Picker.Item label="1993" value="1993" />
+          <Picker.Item label="1994" value="1994" />
+          <Picker.Item label="1995" value="1995" />
+          <Picker.Item label="1996" value="1996" />
+          <Picker.Item label="1997" value="1997" />
+          <Picker.Item label="1998" value="1998" />
+          <Picker.Item label="1999" value="1999" />
+          <Picker.Item label="2000" value="2000" />
+          <Picker.Item label="2001" value="2001" />
+          <Picker.Item label="2002" value="2002" />
+          <Picker.Item label="2003" value="2003" />
+          <Picker.Item label="2004" value="2004" />
+          <Picker.Item label="2005" value="2005" />
+          <Picker.Item label="2006" value="2006" />
+          <Picker.Item label="2007" value="2007" />
+          <Picker.Item label="2008" value="2008" />
+          <Picker.Item label="2009" value="2009" />
+          <Picker.Item label="2010" value="2010" />
+          <Picker.Item label="2011" value="2011" />
+          <Picker.Item label="2012" value="2012" />
+          <Picker.Item label="2013" value="2013" />
+          <Picker.Item label="2014" value="2014" />
+          <Picker.Item label="2015" value="2015" />
+          <Picker.Item label="2016" value="2016" />
+          <Picker.Item label="2017" value="2017" />
+                  
+        </Picker>
+        </View>
+
+        <FormLabel>Gender</FormLabel>
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+            <CheckBox
+                title='Male'
+                name='male'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.genderRadioGrp.male}
+                onPress={this.genderRadioGrp.bind(this,'male')}
+                />
+                <CheckBox
+                
+                title='Female'
+                name='female'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.genderRadioGrp.female}
+                onPress={this.genderRadioGrp.bind(this,'female')}
+                />
+        </View>
+
+        <FormLabel>CNIC</FormLabel>
+        <FormInput
+                placeholder={"Enter your cnic..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 5,
+                }}
+                onChangeText={
+                  (text) => this.setState({cnic: text},()=>{
+                    if(this.state.cnic.length === 5){
+                      this.setState({cnic: this.state.cnic+"-"})
+                    } else if(this.state.cnic.length === 13) {
+                      this.setState({cnic: this.state.cnic+"-"})
+                    }
+                  })
+                }
+                value={this.state.cnic}
+              />
+
+        <FormLabel>Khundi</FormLabel>
+        <FormInput
+                placeholder={"Enter your khundi..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({khundi: text})}
+                value={this.state.khundi}
+              />
+        
+        <FormLabel>Group</FormLabel>
+        <FormInput
+                placeholder={"Enter your group..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({group: text})}
+                value={this.state.group}
+              />
+        <FormLabel>Age</FormLabel>
+        <FormInput
+                placeholder={"Enter your age..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({age: text})}
+                value={this.state.age}
+              />
+        <FormLabel>OMJ Card No</FormLabel>
+        <FormInput
+                placeholder={"Enter your OMJ Card No..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({omj_card: text})}
+                value={this.state.omj_card}
+              />
+        
+        <FormLabel>Birth Place</FormLabel>
+        <FormInput
+                placeholder={"Enter your birth place..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({birth_place: text})}
+                value={this.state.birth_place}
+              />
+        <FormLabel>OMYS Card No </FormLabel>
+        <FormInput
+                placeholder={"Enter your OMYS Card No..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({omys_card: text})}
+                value={this.state.omys_card}
+              />
+        
+        <FormLabel>Email</FormLabel>
+        <FormInput
+                placeholder={"Enter your email..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({email: text})}
+                value={this.state.email}
+              />
+
+        <FormLabel>Contact No</FormLabel>
+        <FormInput
+                placeholder={"Enter your contact no..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({contact: text})}
+                value={this.state.contact}
+              />
+
+        <FormLabel>Whatsapp No</FormLabel>
+        <FormInput
+                placeholder={"Enter your whatsapp no..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({whatsapp: text})}
+                value={this.state.whatsapp}
+              />
+
+        <FormLabel>Residential Address</FormLabel>
+        <FormInput
+                placeholder={"Enter your Residential Address..."}
+                multiline = {true}
+                numberOfLines = {4}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({address: text})}
+                value={this.state.address}
+              />
+        
+        <FormLabel>Marital Status</FormLabel>
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+            <CheckBox
+                title='Single'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.statusRadioGrp.single}
+                onPress={this.statusRadioGrp.bind(this,'single')}
+                />
+                <CheckBox
+                
+                title='Married'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.statusRadioGrp.married}
+                onPress={this.statusRadioGrp.bind(this,'married')}
+                />
+                <CheckBox
+                title='Divorced'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.statusRadioGrp.divorced}
+                onPress={this.statusRadioGrp.bind(this,'divorced')}
+                />
+                <CheckBox
+                
+                title='Widow'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.statusRadioGrp.widow}
+                onPress={this.statusRadioGrp.bind(this,'widow')}
+                />
+                <CheckBox
+                title='Widower'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.statusRadioGrp.widower}
+                onPress={this.statusRadioGrp.bind(this,'widower')}
+                />
+        </View>
+
+        <FormLabel>Occupation</FormLabel>
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+        <CheckBox
+                title='Student'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.occupationRadioGrp.student}
+                onPress={this.occupationRadioGrp.bind(this,'student')}
+                />
+                <CheckBox
+                
+                title='Business'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.occupationRadioGrp.business}
+                onPress={this.occupationRadioGrp.bind(this,'business')}
+                />
+                <CheckBox
+                title='House Wife'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.occupationRadioGrp.houseWife}
+                onPress={this.occupationRadioGrp.bind(this,'houseWife')}
+                />
+                <CheckBox
+                
+                title='Retired'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.occupationRadioGrp.retired}
+                onPress={this.occupationRadioGrp.bind(this,'retired')}
+                />
+                <CheckBox
+                title='Unemployed'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.occupationRadioGrp.unemployed}
+                onPress={this.occupationRadioGrp.bind(this,'unemployed')}
+                />
+                <CheckBox
+                
+                title='Govt. Employee'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.occupationRadioGrp.govtEmployee}
+                onPress={this.occupationRadioGrp.bind(this,'govtEmployee')}
+                />
+                <CheckBox
+                title='Semi Govt. Employee'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.occupationRadioGrp.semiGovtEmployee}
+                onPress={this.occupationRadioGrp.bind(this,'semiGovtEmployee')}
+                />
+                <CheckBox
+                
+                title='Self Employeed'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.occupationRadioGrp.selfEmployeed}
+                onPress={this.occupationRadioGrp.bind(this,'selfEmployeed')}
+                />
+                <CheckBox
+                title='Private Service'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.occupationRadioGrp.pvtService}
+                onPress={this.occupationRadioGrp.bind(this,'pvtService')}
+                />
+                <CheckBox
+                title='Other'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.occupationRadioGrp.other}
+                onPress={this.occupationRadioGrp.bind(this,'other')}
+                />
+        </View>
+
+        <FormLabel>Father/Husband Name</FormLabel>
+        <FormInput
+                placeholder={"Enter your father/husband name..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({fh_name: text})}
+                value={this.state.fh_name}
+              />
+
+        <FormLabel>Father/Husband CNIC</FormLabel>
+        <FormInput
+                placeholder={"Enter your Father/Husband CNIC..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({fh_cnic: text})}
+                value={this.state.fh_cnic}
+              />
+
+        <FormLabel>Father/Husband Contact No</FormLabel>
+        <FormInput
+                placeholder={"Enter your Father/Husband Contact No..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({fh_contact: text})}
+                value={this.state.fh_contact}
+              />
+
+        <FormLabel>Occupation</FormLabel>
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+        <CheckBox
+                title='Student'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.fh_occupationRadioGrp.student}
+                onPress={this.fh_occupationRadioGrp.bind(this,'student')}
+                />
+                <CheckBox
+                
+                title='Business'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.fh_occupationRadioGrp.business}
+                onPress={this.fh_occupationRadioGrp.bind(this,'business')}
+                />
+                <CheckBox
+                title='House Wife'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.fh_occupationRadioGrp.houseWife}
+                onPress={this.fh_occupationRadioGrp.bind(this,'houseWife')}
+                />
+                <CheckBox
+                
+                title='Retired'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.fh_occupationRadioGrp.retired}
+                onPress={this.fh_occupationRadioGrp.bind(this,'retired')}
+                />
+                <CheckBox
+                title='Unemployed'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.fh_occupationRadioGrp.unemployed}
+                onPress={this.fh_occupationRadioGrp.bind(this,'unemployed')}
+                />
+                <CheckBox
+                
+                title='Govt. Employee'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.fh_occupationRadioGrp.govtEmployee}
+                onPress={this.fh_occupationRadioGrp.bind(this,'govtEmployee')}
+                />
+                <CheckBox
+                title='Semi Govt. Employee'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.fh_occupationRadioGrp.semiGovtEmployee}
+                onPress={this.fh_occupationRadioGrp.bind(this,'semiGovtEmployee')}
+                />
+                <CheckBox
+                
+                title='Self Employeed'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.fh_occupationRadioGrp.selfEmployeed}
+                onPress={this.fh_occupationRadioGrp.bind(this,'selfEmployeed')}
+                />
+                <CheckBox
+                title='Private Service'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.fh_occupationRadioGrp.pvtService}
+                onPress={this.fh_occupationRadioGrp.bind(this,'pvtService')}
+                />
+                <CheckBox
+                title='Other'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.fh_occupationRadioGrp.other}
+                onPress={this.fh_occupationRadioGrp.bind(this,'student')}
+                />
+        </View>
+
+
+
+        <FormLabel>Mother Name</FormLabel>
+        <FormInput
+                placeholder={"Enter your Mother name..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({m_name: text})}
+                value={this.state.m_name}
+              />
+
+        <FormLabel>Mother CNIC</FormLabel>
+        <FormInput
+                placeholder={"Enter your Mother CNIC..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({m_cnic: text})}
+                value={this.state.m_cnic}
+              />
+
+        <FormLabel>Mother Contact No</FormLabel>
+        <FormInput
+                placeholder={"Enter your Mother Contact No..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({m_contact: text})}
+                value={this.state.m_contact}
+              />
+
+        <FormLabel>Occupation</FormLabel>
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+            <CheckBox
+                title='Student'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.m_occupationRadioGrp.student}
+                onPress={this.m_occupationRadioGrp.bind(this,'student')}
+                />
+                <CheckBox
+                
+                title='Business'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.m_occupationRadioGrp.business}
+                onPress={this.m_occupationRadioGrp.bind(this,'business')}
+                />
+                <CheckBox
+                title='House Wife'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.m_occupationRadioGrp.houseWife}
+                onPress={this.m_occupationRadioGrp.bind(this,'houseWife')}
+                />
+                <CheckBox
+                
+                title='Retired'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.m_occupationRadioGrp.retired}
+                onPress={this.m_occupationRadioGrp.bind(this,'retired')}
+                />
+                <CheckBox
+                title='Unemployed'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.m_occupationRadioGrp.unemployed}
+                onPress={this.m_occupationRadioGrp.bind(this,'unemployed')}
+                />
+                <CheckBox
+                
+                title='Govt. Employee'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.m_occupationRadioGrp.govtEmployee}
+                onPress={this.m_occupationRadioGrp.bind(this,'govtEmployee')}
+                />
+                <CheckBox
+                title='Semi Govt. Employee'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.m_occupationRadioGrp.semiGovtEmployee}
+                onPress={this.m_occupationRadioGrp.bind(this,'semiGovtEmployee')}
+                />
+                <CheckBox
+                
+                title='Self Employeed'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.m_occupationRadioGrp.selfEmployeed}
+                onPress={this.m_occupationRadioGrp.bind(this,'selfEmployeed')}
+                />
+                <CheckBox
+                title='Private Service'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.m_occupationRadioGrp.pvtService}
+                onPress={this.m_occupationRadioGrp.bind(this,'pvtService')}
+                />
+                <CheckBox
+                title='Other'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                checked={this.state.m_occupationRadioGrp.other}
+                onPress={this.m_occupationRadioGrp.bind(this,'student')}
+                />
+                
+        </View>
+        
+
+        {/* <FormLabel>Group</FormLabel>
+        <FormInput
+                placeholder={"Enter your group..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 5,
+                }}
+              /> */}
+
+        
+       
+        
+
+
+
+        {/* <Button
+            icon={{name: 'done'}}
+            backgroundColor='#03A9F4'
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+            title='SUBMIT' /> */}
+        
+
+
+        </Card>
+
+
+
+        <Card>
+
+
+        <View 
+        // style={{flexDirection:'row', flexWrap:'wrap'}}
+        >
+              
+        { AcademicQualifications }
+
+        
+        </View>
+
+        
+
+        
+
+        <Button
+            // icon={{name: 'add', color: 'black'}}
+            backgroundColor='#fff'
+            buttonStyle={{  width: 50, borderRadius: 100, marginLeft: 0,marginTop: 20, marginRight: 0, marginBottom: 20, borderWidth: 1,
+            borderColor: 'black'}}
+            icon={{ name: "add", color: 'black', style: { marginRight: 0 } }}
+            onPress={ this.add }
+           />
+
+          <FormLabel>Blood Group</FormLabel>
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+            <CheckBox
+                title='A+'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.bloodRadioGrp.Aplus}
+                onPress={this.bloodRadioGrp.bind(this,'Aplus')}
+                />
+                <CheckBox
+                
+                title='A-'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.bloodRadioGrp.Aneg}
+                onPress={this.bloodRadioGrp.bind(this,'Aneg')}
+                />
+                <CheckBox
+                title='AB+'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.bloodRadioGrp.ABplus}
+                onPress={this.bloodRadioGrp.bind(this,'ABplus')}
+                />
+                <CheckBox
+                
+                title='AB-'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.bloodRadioGrp.ABneg}
+                onPress={this.bloodRadioGrp.bind(this,'ABneg')}
+                />
+                <CheckBox
+                title='B+'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.bloodRadioGrp.Bplus}
+                onPress={this.bloodRadioGrp.bind(this,'Bplus')}
+                />
+                <CheckBox
+                
+                title='B-'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.bloodRadioGrp.Bneg}
+                onPress={this.bloodRadioGrp.bind(this,'Bneg')}
+                />
+                <CheckBox
+                title='O+'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.bloodRadioGrp.Oplus}
+                onPress={this.bloodRadioGrp.bind(this,'Oplus')}
+                />
+                <CheckBox
+                
+                title='O-'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.bloodRadioGrp.Oneg}
+                onPress={this.bloodRadioGrp.bind(this,'Oneg')}
+                />
+                
+        </View>
+
+        <View 
+        // style={{flexDirection:'row', flexWrap:'wrap'}}
+        >
+              
+        { ProfessionalQualifications }
+
+        
+        </View>
+
+        <Button
+            // icon={{name: 'add', color: 'black'}}
+            backgroundColor='#fff'
+            buttonStyle={{  width: 50, borderRadius: 100, marginLeft: 0,marginTop: 20, marginRight: 0, marginBottom: 20, borderWidth: 1,
+            borderColor: 'black'}}
+            icon={{ name: "add", color: 'black', style: { marginRight: 0 } }}
+            onPress={ this.add2 }
+           />
+
+        <FormLabel>Additional Skills</FormLabel>
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+            <CheckBox
+                title='Public Speaker'
+                // checkedIcon='dot-circle-o'
+                // uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.addSkillsCheckGrp.publicSpeaker}
+                onPress={this.addSkillsCheckGrp.bind(this,'publicSpeaker')}
+                />
+                <CheckBox
+                
+                title='Graphic Designer'
+                // checkedIcon='dot-circle-o'
+                // uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.addSkillsCheckGrp.graphicDesigner}
+                onPress={this.addSkillsCheckGrp.bind(this,'graphicDesigner')}
+                />
+                <CheckBox
+                title='Web Designer'
+                // checkedIcon='dot-circle-o'
+                // uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.addSkillsCheckGrp.webDesigner}
+                onPress={this.addSkillsCheckGrp.bind(this,'webDesigner')}
+                />
+                <CheckBox
+                
+                title='Programmer'
+                // checkedIcon='dot-circle-o'
+                // uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.addSkillsCheckGrp.programmer}
+                onPress={this.addSkillsCheckGrp.bind(this,'programmer')}
+                />
+                <CheckBox
+                title='Animator'
+                // checkedIcon='dot-circle-o'
+                // uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.addSkillsCheckGrp.animator}
+                onPress={this.addSkillsCheckGrp.bind(this,'animator')}
+                />
+                <CheckBox
+                
+                title='Mobile Repairing'
+                // checkedIcon='dot-circle-o'
+                // uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.addSkillsCheckGrp.mobileRepairing}
+                onPress={this.addSkillsCheckGrp.bind(this,'mobileRepairing')}
+                />
+                <CheckBox
+                title='Mechanic'
+                // checkedIcon='dot-circle-o'
+                // uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.addSkillsCheckGrp.mechanic}
+                onPress={this.addSkillsCheckGrp.bind(this,'mechanic')}
+                />
+                <CheckBox
+                
+                title='Electrician'
+                // checkedIcon='dot-circle-o'
+                // uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.addSkillsCheckGrp.electrician}
+                onPress={this.addSkillsCheckGrp.bind(this,'electrician')}
+                />
+                <CheckBox
+                
+                title='Carpenter'
+                // checkedIcon='dot-circle-o'
+                // uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.addSkillsCheckGrp.carpenter}
+                onPress={this.addSkillsCheckGrp.bind(this,'carpenter')}
+                />
+                <CheckBox
+                
+                title='Plumber'
+                // checkedIcon='dot-circle-o'
+                // uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.addSkillsCheckGrp.plumber}
+                onPress={this.addSkillsCheckGrp.bind(this,'plumber')}
+                />
+                <CheckBox
+                
+                title='AC Technician'
+                // checkedIcon='dot-circle-o'
+                // uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.addSkillsCheckGrp.acTechnician}
+                onPress={this.addSkillsCheckGrp.bind(this,'acTechnician')}
+                />
+                <CheckBox
+                
+                title='Electronic Repairing'
+                // checkedIcon='dot-circle-o'
+                // uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.addSkillsCheckGrp.electronicRepairing}
+                onPress={this.addSkillsCheckGrp.bind(this,'electronicRepairing')}
+                />
+                
+        </View>
+
+
+          {/* <Button
+            icon={{name: 'code'}}
+            backgroundColor='#03A9F4'
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+            title='VIEW NOW' /> */}
+        </Card>
+
+
+
+
+
+        <Card
+          title='If Student'>
+
+          <FormLabel>Institute Name</FormLabel>
+        <FormInput
+                placeholder={"Enter your Institute Name..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({insName: text})}
+                value={this.state.insName}
+              />
+
+          
+          <FormLabel>Present Class</FormLabel>
+        <FormInput
+                placeholder={"Enter your Present Class..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({presClass: text})}
+                value={this.state.presClass}
+              />
+
+        <FormLabel>Last Achievement</FormLabel>
+        <FormInput
+                placeholder={"Enter your Last Achievement..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({lastAch: text})}
+                value={this.state.lastAch}
+              />
+
+
+
+        <FormLabel>Future Interest</FormLabel>
+        <FormInput
+                placeholder={"Enter your Future Interest..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({futInt: text})}
+                value={this.state.futInt}
+              />
+
+
+        
+          {/* <Button
+            icon={{name: 'code'}}
+            backgroundColor='#03A9F4'
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+            title='VIEW NOW' /> */}
+        </Card>
+
+
+
+
+
+
+
+        <Card
+          title='If Employee/Business'>
+
+          <FormLabel>Company</FormLabel>
+        <FormInput
+                placeholder={"Enter your Company Name..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({cmpName: text})}
+                value={this.state.cmpName}
+              />
+
+          
+          <FormLabel>Office Address</FormLabel>
+        <FormInput
+                placeholder={"Enter your Office Address..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({offAdd: text})}
+                value={this.state.offAdd}
+              />
+
+        <FormLabel>Current Designation</FormLabel>
+        <FormInput
+                placeholder={"Enter your Current Designation..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({currDesg: text})}
+                value={this.state.currDesg}
+              />
+
+        <FormLabel>Last Achievement</FormLabel>
+        <FormInput
+                placeholder={"Enter your Last Achievement..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({ebLastAch: text})}
+                value={this.state.ebLastAch}
+              />
+
+
+
+        <FormLabel>Future Interest</FormLabel>
+        <FormInput
+                placeholder={"Enter your Future Interest..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({ebfutInt: text})}
+                value={this.state.ebfutInt}
+              />
+
+
+        
+          {/* <Button
+            icon={{name: 'code'}}
+            backgroundColor='#03A9F4'
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+            title='VIEW NOW' /> */}
+        </Card>
+
+
+
+
+        <Card
+          title='Extra Curricular'>
+
+          <FormLabel>Hobbies</FormLabel>
+        <FormInput
+                placeholder={"Enter your Hobbies..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({hobbies: text})}
+                value={this.state.hobbies}
+              />
+
+          
+          <FormLabel>Professional Achievement</FormLabel>
+        <FormInput
+                placeholder={"Enter your Professional Achievement..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({profAch: text})}
+                value={this.state.profAch}
+              />
+
+        <FormLabel>Personal Achievement</FormLabel>
+        <FormInput
+                placeholder={"Enter your Personal Achievement..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({persAch: text})}
+                value={this.state.persAch}
+              />
+
+
+        <FormLabel>Sports Interest</FormLabel>
+        <FormInput
+                placeholder={"Enter your Sports Interest..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+                onChangeText={(text) => this.setState({sportsInt: text})}
+                value={this.state.sportsInt}
+              />
+
+
+        
+          {/* <Button
+            icon={{name: 'code'}}
+            backgroundColor='#03A9F4'
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+            title='VIEW NOW' /> */}
+        </Card>
+
+
+
+
+
+
+        <Card
+          title='If student has left the education for the following reason'>
+
+          {/* <FormLabel>Blood Group</FormLabel> */}
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+            <CheckBox
+                title='Financial Crisis'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.leftEduRadioGrp.financialCrisis}
+                onPress={this.leftEduRadioGrp.bind(this,'financialCrisis')}
+                
+                />
+                <CheckBox
+                
+                title='Early Marriage'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.leftEduRadioGrp.earlyMarriage}
+                onPress={this.leftEduRadioGrp.bind(this,'earlyMarriage')}
+                />
+                <CheckBox
+                title='Lost Interest'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.leftEduRadioGrp.lostInterest}
+                onPress={this.leftEduRadioGrp.bind(this,'lostInterest')}
+                />
+                <CheckBox
+                
+                title='Got A Job'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.leftEduRadioGrp.gotJob}
+                onPress={this.leftEduRadioGrp.bind(this,'gotJob')}
+                />
+                <CheckBox
+                title='Started A Business'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.leftEduRadioGrp.startedBusiness}
+                onPress={this.leftEduRadioGrp.bind(this,'startedBusiness')}
+                />
+                <CheckBox
+                
+                title='Joined Family Business'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.leftEduRadioGrp.joinedFamilyBusiness}
+                onPress={this.leftEduRadioGrp.bind(this,'joinedFamilyBusiness')}
+                />
+
+              
+               
+                
+        </View>
+
+        <FormLabel>Other Reason</FormLabel>
+        <FormInput
+                placeholder={"Specify Here..."}
+                inputStyle={{
+                //   height: 60,
+                  width: '100%',
+                  backgroundColor: "#fff",
+                  borderColor: "#fff",
+                  borderBottomColor: "#CFD6DC",
+                  borderWidth: 1,
+                  marginBottom: 15,
+                }}
+              />
+
+
+        
+          {/* <Button
+            icon={{name: 'code'}}
+            backgroundColor='#03A9F4'
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+            title='VIEW NOW' /> */}
+        </Card>
+
+
+
+
+
+
+        <Card
+          title='Are you an OMYS member ?'>
+
+          {/* <FormLabel>Blood Group</FormLabel> */}
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+            <CheckBox
+                title='Yes'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.omysMemberRadioGrp.yes}
+                onPress={this.omysMemberRadioGrp.bind(this,'yes')}
+                />
+                <CheckBox
+                
+                title='No'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.omysMemberRadioGrp.no}
+                onPress={this.omysMemberRadioGrp.bind(this,'no')}
+                />
+
+                
+        </View>
+
+        
+          {/* <Button
+            icon={{name: 'code'}}
+            backgroundColor='#03A9F4'
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+            title='VIEW NOW' /> */}
+        </Card>
+
+
+
+
+
+        <Card
+          title='Is your father/husband member of OMYS ?'>
+
+          {/* <FormLabel>Blood Group</FormLabel> */}
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+            <CheckBox
+                title='Yes'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.fh_omysMemberRadioGrp.yes}
+                onPress={this.fh_omysMemberRadioGrp.bind(this,'yes')}
+                />
+                <CheckBox
+                
+                title='No'
+                checkedIcon='dot-circle-o'
+                uncheckedIcon='circle-o'
+                containerStyle={{backgroundColor: 'white',borderColor: '#fff', width: '43%'}}
+                // checked={this.state.checked}
+                checked={this.state.fh_omysMemberRadioGrp.no}
+                onPress={this.fh_omysMemberRadioGrp.bind(this,'no')}
+                />
+
+                
+        </View>
+
+        
+          {/* <Button
+            icon={{name: 'done'}}
+            backgroundColor='#03A9F4'
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+            title='SUBMIT' /> */}
+        </Card>
+
+
+        <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+            
+            <View style={{width: '45%', margin: 18}}>
+              <Image
+               style={{width: '100%', height: 150}}
+                // source={require('../images/no_image.png')}
+                source={this.state.imageSource !== null ? this.state.imageSource : require('../images/no_image.png')}
+              />  
+            </View>
+
+            <View style={{width: '45%'}}>
+
+                    <Button
+                  icon={{name: 'file-upload'}}
+                  backgroundColor='#3E51B4'
+                  buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 12, marginTop: 20, color: 'white'}}
+                  title='Upload Photo'
+                  onPress={this.selectPhoto.bind(this)}
+                  />
+
+                  {/* <Button
+                      icon={{name: 'save'}}
+                      backgroundColor='#8AC24A'
+                      buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 20, marginTop: 0, color: 'white'}}
+                      title='Save'
+                      onPress={this.uploadPhoto.bind(this)}
+                      /> */}
+
+            </View>
+        
+        </View>
+
+        <Button
+            icon={{name: 'done'}}
+            backgroundColor='#f7c744'
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 20, marginTop: 20, color: 'white'}}
+            title='SUBMIT'
+            onPress={this.submitForm}
+            />
+
+
+    </View>
+      </ScrollView>
+      </ImageBackground>
+    );
+  }
+}
+
+
+
+
+class AcademicQualification extends React.Component {
+  constructor(props){
+    super(props);
+    
+    this.state = {
+      data: '',
+
+      comYear: '',
+      admYear: '',
+
+      // AQ: [{aq: 'dummy', admYear: 'dummya', comYear: 'dummyc'}],
+      AQ: [],
+    }
+  }
+  render() {
+    // return <input 
+    //   type="file" 
+    //   name={ `document-${ this.props.index }-document` } 
+    // />;
+    return <View>
+      <Picker
+      selectedValue={this.state.data}
+      style={{ height: 50, width: '100%', marginLeft:10 }}
+      onValueChange={(itemValue, itemIndex) => this.setState({data: itemValue})}
+    >
+    <Picker.Item label="Select Academic Qualification" value="java" />
+    <Picker.Item label="Primary" value="Primary" />
+    <Picker.Item label="Secondary" value="Secondary" />
+    <Picker.Item label="Matric" value="Matric" />
+    <Picker.Item label="Intermediate" value="Intermediate" />
+    <Picker.Item label="Graduate" value="Graduate" />
+    <Picker.Item label="Post Graduate" value="Post Graduate" />
+    <Picker.Item label="Ph. D" value="Ph. D" />
+    <Picker.Item label="Aalim/Aalima" value="Aalim/Aalima" />
+    <Picker.Item label="Diploma" value="Diploma" />
+    <Picker.Item label="Uneducated" value="Uneducated" />
+    <Picker.Item label="Other" value="Other" />
+
+
+    
+    </Picker>
+    <FormInput
+            placeholder={"Admission Year..."}
+            inputStyle={{
+            //   height: 60,
+              width: '100%',
+              backgroundColor: "#fff",
+              borderColor: "#fff",
+              borderBottomColor: "#CFD6DC",
+              borderWidth: 1,
+              marginBottom: 15,
+            }}
+            onChangeText={(text) => this.setState({admYear: text})}
+            value={this.state.admYear}
+          />
+    <FormInput
+            placeholder={"Completion Year/In Process..."}
+            inputStyle={{
+            //   height: 60,
+              width: '100%',
+              backgroundColor: "#fff",
+              borderColor: "#fff",
+              borderBottomColor: "#CFD6DC",
+              borderWidth: 1,
+              marginBottom: 15,
+            }}
+            onChangeText={(text) => {
+              let AQ = this.state.AQ;
+              this.setState({comYear: text},()=>{
+                AQ.push({aq: this.state.data, admYear: this.state.admYear, comYear: this.state.comYear})
+                this.setState({AQ})
+                })
+                }
+              }
+            value={this.state.comYear}
+          />
+          <Divider style={{ backgroundColor: '#EEEEEE' }} />
+          </View>
+  }
+}
+
+
+class ProfessionalQualification extends React.Component {
+
+  constructor(props){
+    super(props);
+    
+    this.state = {
+      data: '',
+
+      comYear: '',
+      admYear: '',
+
+      // PQ: [{pq: 'dummypq', admYear: 'dummyapq', comYear: 'dummycpq'}],
+      PQ: []
+    }
+  }
+
+  render() {
+    // return <input 
+    //   type="file" 
+    //   name={ `document-${ this.props.index }-document` } 
+    // />;
+    return <View>
+      <Picker
+      selectedValue={this.state.data}
+    style={{ height: 50, width: '100%', marginLeft:10 }}
+      onValueChange={(itemValue, itemIndex) => this.setState({data: itemValue})}
+    >
+    <Picker.Item label="Select Professional Qualification" value="java" />
+    <Picker.Item label="C.A" value="C.A" />
+    <Picker.Item label="C.M.A" value="C.M.A" />
+    <Picker.Item label="A.C.C.A" value="A.C.C.A" />
+    <Picker.Item label="Doctor" value="Doctor" />
+    <Picker.Item label="Engineer" value="Engineer" />
+    <Picker.Item label="Advocate (LLB/LLM)" value="Advocate" />
+    <Picker.Item label="Masters" value="Masters" />
+    <Picker.Item label="Teacher" value="Teacher" />
+    <Picker.Item label="Nursing Course" value="Nursing Course" />
+    <Picker.Item label="Technician" value="Technician" />
+    <Picker.Item label="Journalist" value="Journalist" />
+    <Picker.Item label="I.T" value="I.T" />
+    <Picker.Item label="Other" value="Other" />
+    </Picker>
+    <FormInput
+            placeholder={"Admission Year..."}
+            inputStyle={{
+            //   height: 60,
+              width: '100%',
+              backgroundColor: "#fff",
+              borderColor: "#fff",
+              borderBottomColor: "#CFD6DC",
+              borderWidth: 1,
+              marginBottom: 15,
+            }}
+            onChangeText={(text) => this.setState({admYear: text})}
+            value={this.state.admYear}
+          />
+    <FormInput
+            placeholder={"Completion Year/In Process..."}
+            inputStyle={{
+            //   height: 60,
+              width: '100%',
+              backgroundColor: "#fff",
+              borderColor: "#fff",
+              borderBottomColor: "#CFD6DC",
+              borderWidth: 1,
+              marginBottom: 15,
+            }}
+            onChangeText={(text) => {
+              let PQ = this.state.PQ;
+              this.setState({comYear: text},()=>{
+                PQ.push({pq: this.state.data, admYear: this.state.admYear, comYear: this.state.comYear})
+                this.setState({PQ})
+                })
+                }
+              }
+              value={this.state.comYear}
+          />
+          <Divider style={{ backgroundColor: '#EEEEEE' }} />
+          </View>
+  }
+}
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: '#F5FCFF',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // or 'stretch'
+  },
+
+  logoContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    // backgroundColor: 'red',
+    height: 100,
+},
+logo: {
+    width: 80,
+    height: 80,
+    // marginBottom: 50,
+},
+title: {
+    color: 'white',
+    fontSize: 18,
+    textAlign: 'center',
+    marginTop: 5,
+    opacity: 0.9,
+    marginBottom: 50,
+    fontWeight: 'bold'
+},
+infoContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    // backgroundColor: 'green',
+    height: 100,
+    padding: 20,
+},
+
+input: {
+    height: 40,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    color: 'white',
+    paddingHorizontal: 10,
+    marginBottom: 20,
+},
+input1: {
+    height: 40,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    color: 'white',
+    paddingHorizontal: 10,
+    // marginTop: 20,
+    marginBottom: 20,
+},
+buttonContainer: {
+    backgroundColor: '#f7c744',
+    paddingVertical: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 1,
+},
+btnText: {
+    textAlign: 'center'
+},

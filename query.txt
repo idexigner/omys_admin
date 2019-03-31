@@ -1,0 +1,1 @@
+create table census_users(u_id int PRIMARY KEY AUTO_INCREMENT, name varchar(255),khundi varchar(255),contact varchar(255),username varchar(255),pass varchar(255),role varchar(255))
