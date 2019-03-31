@@ -15,7 +15,7 @@ include 'DBConfig.php';
      $cnic = $obj['cnic'];
      $khundi = $obj['khundi'];
      $group = $obj['group'];
-     $age = $obj['age'];
+   //  $age = $obj['age'];
      $omjCard = $obj['omjCard'];
      $birthPlace = $obj['birthPlace'];
      $omysCard = $obj['omysCard'];
@@ -39,12 +39,12 @@ include 'DBConfig.php';
      $otherSkill = $obj['otherSkill'];
      $instituteName = $obj['instituteName'];
      $presentClass = $obj['presentClass'];
-     $lastAchievement = $obj['lastAchievement'];
+    // $lastAchievement = $obj['lastAchievement'];
      $futureInterest = $obj['futureInterest'];
      $companyName = $obj['companyName'];
      $officeAddress = $obj['officeAddress'];
      $currentDesignation = $obj['currentDesignation'];   
-     $lastAchievementemp = $obj['lastAchievementemp'];
+   //  $lastAchievementemp = $obj['lastAchievementemp'];
      $futureInterestemp = $obj['futureInterestemp'];     
      $hobbies = $obj['hobbies'];
      $professionalAchievement = $obj['professionalAchievement'];
@@ -61,7 +61,7 @@ include 'DBConfig.php';
 
 	// $result= $con->query("update purchase set name='$pname' where p_id='$p_id'");
 
-    $result = $con->query("insert into census(name,dob,gender,cnic,khundi,s_group,age,omj_card,birth_place,omys_card,email,contact,whatsapp,address,area,status,occupation,fh_name,fh_cnic,fh_contact,fh_occupation,m_name,m_cnic,m_contact,m_occupation,AQ,bloodGrp,PQ,addSkills,otherSkill,insName,presClass,lastAch,futInt,cmpName,offAdd,currDesg,ebLastAch,ebfutInt,hobbies,profAch,persAch,sportsInt,leftEdu,otherReason,omysMember,fh_omysMember,imgName,cardNumber) values ('$name','$dateOfBirth','$gender','$cnic','$khundi','$group','$age','$omjCard','$birthPlace','$omysCard','$email','$contact','$whatsapp','$residentialAddress','$area','$maritualStatus','$stu_occupation','$fatherHusbandName','$fatherHusbandCnic','$fatherHusbandContact','$father_occupation','$motherName','$motherCnic','$motherContact','$mother_occupation','$academicStr','$bloodGroup','$professionalStr','$additionalSkills','$otherSkill','$instituteName','$presentClass','$lastAchievement','$futureInterest','$companyName','$officeAddress','$currentDesignation','$lastAchievementemp','$futureInterestemp','$hobbies','$professionalAchievement','$personalAchievement','$sportInterest','$ifStudent','$otherReason','$omysMember','$fatherMember','$imgName','$cardNumber')");
+    $result = $con->query("insert into census(name,dob,gender,cnic,khundi,s_group,omj_card,birth_place,omys_card,email,contact,whatsapp,address,area,status,occupation,fh_name,fh_cnic,fh_contact,fh_occupation,m_name,m_cnic,m_contact,m_occupation,AQ,bloodGrp,PQ,addSkills,otherSkill,insName,presClass,futInt,cmpName,offAdd,currDesg,ebfutInt,hobbies,profAch,persAch,sportsInt,leftEdu,otherReason,omysMember,fh_omysMember,imgName,cardNumber) values ('$name','$dateOfBirth','$gender','$cnic','$khundi','$group','$omjCard','$birthPlace','$omysCard','$email','$contact','$whatsapp','$residentialAddress','$area','$maritualStatus','$stu_occupation','$fatherHusbandName','$fatherHusbandCnic','$fatherHusbandContact','$father_occupation','$motherName','$motherCnic','$motherContact','$mother_occupation','$academicStr','$bloodGroup','$professionalStr','$additionalSkills','$otherSkill','$instituteName','$presentClass','$futureInterest','$companyName','$officeAddress','$currentDesignation','$futureInterestemp','$hobbies','$professionalAchievement','$personalAchievement','$sportInterest','$ifStudent','$otherReason','$omysMember','$fatherMember','$imgName','$cardNumber')");
     //$result= $con->query("insert into census (name,dob,gender,cnic,khundi,s_group,age,omj_card,birth_place,omys_card,email,contact,whatsapp,address,status,occupation,fh_name,fh_cnic,fh_contact,fh_occupation,m_name,m_cnic,m_contact,m_occupation,AQ,bloodGrp,PQ,addSkills,insName,presClass,lastAch,futInt,cmpName,offAdd,currDesg,ebLastAch,ebfutInt,hobbies,profAch,persAch,sportsInt,leftEdu,omysMember,fh_omysMember) values ('$name','$dateOfBirth','$gender','$cnic','$khundi','$group','$age','$omjCard','$birthPlace','$omysCard','$email','$contact','$whatsapp','$residentialAddress','$maritualStatus','$stu_occupation','$fatherHusbandName','$fatherHusbandCnic','$fatherHusbandContact','$father_occupation','$motherName','$motherCnic','$motherContact','$mother_occupation','$academicStr','$bloodGroup','$professionalStr','$additionalSkills','$instituteName','$presentClass','$lastAchievement','$futureInterest','$companyName','$officeAddress','$currentDesignation','$lastAchievementemp','$futureInterestemp',$hobbies','$professionalAchievement','$personalAchievement','$sportInterest','$ifStudent','$omysMember','$fatherMember')");
 	
     if($result){

@@ -1,5 +1,5 @@
-const Api="http://omysstudent.com/omys_admin/";
- //const Api = "http://localhost/omys_admin/";
+// const Api="http://omysstudent.com/omys_admin/";
+ const Api = "http://localhost/omys_admin/";
 
 
 
@@ -587,7 +587,7 @@ function imageUploadFunction(){
 
 function createUserStudent(){
   
-   
+  
     // var purchaseIdd = localStorage.getItem('purchaseIdJavascript');
     // var p_id='2';
     //var p_id=document.getElementById('purchaseUserId').innerHTML;
@@ -619,7 +619,7 @@ function createUserStudent(){
     var khundi=document.getElementById("khundi").value;
     var group=document.getElementById("group").value;
 
-    var age=document.getElementById("age").value;
+    //var age=document.getElementById("age").value;
     var omjCard=document.getElementById("omjCard").value;
     var birthPlace=document.getElementById("birthPlace").value;
     var omysCard=document.getElementById("omysCard").value;
@@ -715,12 +715,12 @@ function createUserStudent(){
 
     var instituteName=document.getElementById("instituteName").value;
     var presentClass=document.getElementById("presentClass").value;
-    var lastAchievement=document.getElementById("lastAchievement").value;
+    //var lastAchievement=document.getElementById("lastAchievement").value;
     var futureInterest=document.getElementById("futureInterest").value;
     var companyName=document.getElementById("companyName").value;
     var officeAddress=document.getElementById("officeAddress").value;
     var currentDesignation=document.getElementById("currentDesignation").value;
-    var lastAchievementemp=document.getElementById("lastAchievementemp").value;
+   // var lastAchievementemp=document.getElementById("lastAchievementemp").value;
     var futureInterestemp=document.getElementById("futureInterestemp").value;
     var hobbies=document.getElementById("hobbies").value;
     var professionalAchievement=document.getElementById("professionalAchievement").value;
@@ -895,7 +895,7 @@ function createUserStudent(){
             cnic:cnic,
             khundi:khundi,
             group:group,
-            age:age,
+           // age:age,
             omjCard:omjCard,
             birthPlace:birthPlace,
             omysCard:omysCard,
@@ -919,12 +919,12 @@ function createUserStudent(){
             otherSkill:otherSkill,
             instituteName:instituteName,
             presentClass:presentClass,
-            lastAchievement:lastAchievement,
+        //    lastAchievement:lastAchievement,
             futureInterest:futureInterest,
             companyName:companyName,
             officeAddress:officeAddress,
             currentDesignation:currentDesignation,
-            lastAchievementemp:lastAchievementemp,
+          //  lastAchievementemp:lastAchievementemp,
             futureInterestemp:futureInterestemp,
             hobbies:hobbies,
             professionalAchievement:professionalAchievement,
@@ -2803,11 +2803,11 @@ function imageDownload(){
 function onLoadFunction(page){
     var role=localStorage.getItem("role");
  //   alert(role);
-    if(role!=="Staff" && role!=="Admin"){
-        alert("Please Login First");
-        window.location.href  = "/omys_admin/index.php";
+    // if(role!=="Staff" && role!=="Admin"){
+    //     alert("Please Login First");
+    //     window.location.href  = "/omys_admin/index.php";
         
-    }
+    // }
 
     if(role==="Staff"){
         document.getElementById("createStaffId").style.display='none';

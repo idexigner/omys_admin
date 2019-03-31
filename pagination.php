@@ -1,8 +1,8 @@
 <?php  
  //pagination.php  
  include 'DBConfig.php';
-  $Api="http://omysstudent.com/omys_admin/";
- //$Api = "http://localhost/omys_admin/";
+//   $Api="http://omysstudent.com/omys_admin/";
+ $Api = "http://localhost/omys_admin/";
 
 
  $record_per_page = 250 ;  
