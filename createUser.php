@@ -36,6 +36,7 @@ include 'DBConfig.php';
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
+    <link href="css/style.css" rel="stylesheet" >
     <style>
         #camera {
             width: 100%;
@@ -133,7 +134,7 @@ include 'DBConfig.php';
                                             </div>-->
                                         <div class="row form-group">
                                             <div class="col col-md-3">
-                                                <label for="text-input" class=" form-control-label">Name</label>
+                                                <label for="text-input" class=" form-control-label">Name <span class="requiredField">*</span></label>
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <input type="text" id="name" name="name" placeholder="Enter Name"
@@ -147,7 +148,7 @@ include 'DBConfig.php';
                                         <div class="row form-group">
                                             <div class="col col-md-3">
                                                 <label for="text-input" class=" form-control-label">Date of
-                                                    Birth</label>
+                                                    Birth <span class="requiredField">*</span></label>
                                             </div>
                                             <div class="col-4 col-md-3">
 
@@ -297,7 +298,7 @@ include 'DBConfig.php';
 
                                         <div class="row form-group">
                                             <div class="col col-md-3">
-                                                <label class=" form-control-label">Gender</label>
+                                                <label class=" form-control-label">Gender <span class="requiredField">*</span></label>
                                             </div>
                                             <div class="col col-md-9">
                                                 <div class="form-check">
@@ -338,10 +339,10 @@ include 'DBConfig.php';
 
                                         <div class="row form-group">
                                             <div class="col col-md-3">
-                                                <label for="text-input" class=" form-control-label">CNIC</label>
+                                                <label for="text-input" class=" form-control-label">CNIC <span class="requiredField">*</span></label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input type="text" id="cnic" name="cnic" placeholder="Enter CNIC"
+                                                <input type="number" id="cnic" name="cnic"  placeholder="Enter CNIC"
                                                     class="form-control">
                                                 <!--<small class="form-text text-muted">This is a help text</small>-->
                                             </div>
@@ -351,7 +352,7 @@ include 'DBConfig.php';
 
                                         <div class="row form-group">
                                             <div class="col col-md-3">
-                                                <label for="text-input" class=" form-control-label">Khundi</label>
+                                                <label for="text-input" class=" form-control-label">Khundi <span class="requiredField">*</span></label>
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <input type="text" id="khundi" name="khundi" placeholder="Enter Khundi"
@@ -396,8 +397,8 @@ include 'DBConfig.php';
                                                 <label for="text-input" class=" form-control-label">OMJ Card No</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input type="text" id="omjCard" name="omjCard"
-                                                    placeholder="Enter OMJ Card No" class="form-control">
+                                                <input type="number" id="omjCard" name="omjCard"
+                                                    placeholder="Enter OMJ Card No"  class="form-control">
                                                 <!--<small class="form-text text-muted">This is a help text</small>-->
                                             </div>
                                         </div>
@@ -425,8 +426,8 @@ include 'DBConfig.php';
                                                 <label for="text-input" class=" form-control-label">OMYS Card No</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input type="text" id="omysCard" name="omysCard"
-                                                    placeholder="Enter OMYS Card No" class="form-control">
+                                                <input type="number" id="omysCard" name="omysCard"
+                                                    placeholder="Enter OMYS Card No"  class="form-control">
                                                 <!--<small class="form-text text-muted">This is a help text</small>-->
                                             </div>
                                         </div>
@@ -449,11 +450,11 @@ include 'DBConfig.php';
 
                                         <div class="row form-group">
                                             <div class="col col-md-3">
-                                                <label for="text-input" class=" form-control-label">Contact No</label>
+                                                <label for="text-input" class=" form-control-label">Contact No <span class="requiredField">*</span></label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input type="text" id="contact" name="contact"
-                                                    placeholder="Enter Contact" class="form-control">
+                                                <input type="number" id="contact" name="contact"
+                                                    placeholder="Enter Contact"  class="form-control">
                                                 <!--<small class="form-text text-muted">This is a help text</small>-->
                                             </div>
                                         </div>
@@ -464,8 +465,8 @@ include 'DBConfig.php';
                                                 <label for="text-input" class=" form-control-label">Whatsapp No</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input type="text" id="whatsapp" name="whatsapp"
-                                                    placeholder="Enter Whatsapp" class="form-control">
+                                                <input type="number" id="whatsapp" name="whatsapp"
+                                                    placeholder="Enter Whatsapp"  class="form-control">
                                                 <!--<small class="form-text text-muted">This is a help text</small>-->
                                             </div>
                                         </div>
@@ -741,7 +742,7 @@ include 'DBConfig.php';
                                         <div class="row form-group">
                                             <div class="col col-md-3">
                                                 <label for="text-input" class=" form-control-label">Father/Husband
-                                                    Name</label>
+                                                    Name <span class="requiredField">*</span></label>
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <input type="text" id="fatherHusbandName" name="fatherHusbandName"
@@ -757,7 +758,7 @@ include 'DBConfig.php';
                                                     CNIC</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input type="text" id="fatherHusbandCnic" name="fatherHusbandCnic"
+                                                <input type="number" id="fatherHusbandCnic"  name="fatherHusbandCnic"
                                                     placeholder="Enter Father/Husband CNIC" class="form-control">
                                                 <!--<small class="form-text text-muted">This is a help text</small>-->
                                             </div>
@@ -772,7 +773,7 @@ include 'DBConfig.php';
                                                     Contact</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input type="text" id="fatherHusbandContact" name="fatherHusbandContact"
+                                                <input type="number" id="fatherHusbandContact"  name="fatherHusbandContact"
                                                     placeholder="Enter Father/Husband Contact" class="form-control">
                                                 <!--<small class="form-text text-muted">This is a help text</small>-->
                                             </div>
@@ -950,8 +951,8 @@ include 'DBConfig.php';
                                                 <label for="text-input" class=" form-control-label">Mother CNIC</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input type="text" id="motherCnic" name="motherdCnic"
-                                                    placeholder="Enter Mother CNIC" class="form-control">
+                                                <input type="number" id="motherCnic" name="motherdCnic"
+                                                    placeholder="Enter Mother CNIC"  class="form-control">
                                                 <!--<small class="form-text text-muted">This is a help text</small>-->
                                             </div>
                                         </div>
@@ -965,8 +966,8 @@ include 'DBConfig.php';
                                                     Contact</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input type="text" id="motherContact" name="motherContact"
-                                                    placeholder="Enter Mother Contact" class="form-control">
+                                                <input type="number " id="motherContact" name="motherContact"
+                                                    placeholder="Enter Mother Contact"  class="form-control">
                                                 <!--<small class="form-text text-muted">This is a help text</small>-->
                                             </div>
                                         </div>
@@ -1171,12 +1172,12 @@ include 'DBConfig.php';
                                             </div>
 
                                         </div>
-
+<!-- 
                                         <div id="aqContainer">
 
 
 
-                                        </div>
+                                        </div> -->
 
 
                                         <!--<div style="float:right">
@@ -1185,7 +1186,7 @@ include 'DBConfig.php';
 
 
 
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-md-3"></div>
                                             <div class="col-md-5"><input type="button" class="btn btn-default" value="+"
                                                     onclick="addAcademic();">
@@ -1195,8 +1196,8 @@ include 'DBConfig.php';
                                                 <input type="button" style="float:right;" class="btn btn-default"
                                                     value="-" onclick="removeAcademic();">
                                             </div>
-                                        </div>
-                                        <br>
+                                        </div> 
+                                        <br>-->
 
 
 
@@ -1387,11 +1388,11 @@ include 'DBConfig.php';
 
                                         </div>
 
-                                        <div id="pqContainer">
+                                        <!-- <div id="pqContainer">
 
 
 
-                                        </div>
+                                        </div> -->
 
 
                                         <!--<div style="float:right">
@@ -1399,7 +1400,7 @@ include 'DBConfig.php';
                                                         </div>-->
 
 
-
+<!-- 
                                         <div class="row">
                                             <div class="col-md-3"></div>
                                             <div class="col-md-5"><input type="button" class="btn btn-default" value="+"
@@ -1410,7 +1411,7 @@ include 'DBConfig.php';
                                                     value="-" onclick="removeProfessional();">
                                             </div>
                                         </div>
-                                        <br>
+                                        <br> -->
 
 
 

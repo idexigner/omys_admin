@@ -275,15 +275,14 @@
 
 
 
- <div class="row form-group">
+ <!-- <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">Age</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="text" id="sage" name="sage" placeholder="Enter Age" class="form-control" >
-                                                    <!--<small class="form-text text-muted">This is a help text</small>-->
                                                 </div>
-                                            </div>
+                                            </div> -->
 
 
 
@@ -1401,15 +1400,14 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <!-- <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">Last Achievement</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="text" id="slastAchievement" name="slastAchievement" placeholder="Enter Last Achievement" class="form-control">
-                                                    <!--<small class="form-text text-muted">This is a help text</small>-->
                                                 </div>
-                                            </div>
+                                            </div> -->
 
 
 
@@ -1472,15 +1470,14 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row form-group">
+                                            <!-- <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">Last Achievement</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="text" id="slastAchievementemp" name="slastAchievementemp" placeholder="Enter Last Achievement" class="form-control">
-                                                    <!--<small class="form-text text-muted">This is a help text</small>-->
                                                 </div>
-                                            </div>
+                                            </div> -->
 
 
 

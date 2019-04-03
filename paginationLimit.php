@@ -27,6 +27,7 @@ if($_POST['receive'] == 'pagin'){
         //  echo $search;
          $start_from = $_POST['start'];
         //
+        // $query = "SELECT * FROM census where s_id between $start_from and $record_per_page ORDER BY s_id "; 
          $query = "SELECT * FROM census where s_id between $start_from and $record_per_page ORDER BY edit desc,s_id "; 
          //$query = "SELECT * FROM census ORDER BY s_id desc LIMIT $start_from, $record_per_page"; 
         // $query = "SELECT * FROM census ORDER BY s_id DESC LIMIT 1,326";  
@@ -87,7 +88,7 @@ else{
            <th>Cnic</th>
            <th>Khundi</th>
            <th>Group</th>
-           <th>Age</th>
+           
            <th>Omj_Card</th>
            <th>Birth Place</th>
            <th>Omys_Card</th>
@@ -113,12 +114,12 @@ else{
            <th>Other Additional Skill</th>
            <th>Institute Name</th>
            <th>Present Class</th>
-           <th>Last Achievement</th>
+           
            <th>Future Interest</th>
            <th>Company Name</th>
            <th>Office Address</th>
            <th>Current Designation</th>
-           <th>Emp Last Achievement</th>
+           
            <th>Future Interest</th>
            <th>Hobbies</th>
            <th>Professional Acievement</th>
@@ -166,7 +167,7 @@ $countLoop = 0;
       <td>'.$row["cnic"].'</td>
       <td>'.$row["khundi"].'</td>
       <td>'.$row["s_group"].'</td>
-      <td>'.$row["age"].'</td>
+      
       <td>'.$row["omj_card"].'</td>
       <td>'.$row["birth_place"].'</td>
       <td>'.$row["omys_card"].'</td>
@@ -192,12 +193,12 @@ $countLoop = 0;
       <td>'.$row["otherSkill"].'</td>
       <td>'.$row["insName"].'</td>
       <td>'.$row["presClass"].'</td>
-      <td>'.$row["lastAch"].'</td>
+      
       <td>'.$row["futInt"].'</td>
       <td>'.$row["cmpName"].'</td>
       <td>'.$row["offAdd"].'</td>
       <td>'.$row["currDesg"].'</td>
-      <td>'.$row["ebLastAch"].'</td>
+      
       <td>'.$row["ebfutInt"].'</td>
       <td>'.$row["hobbies"].'</td>
       <td>'.$row["profAch"].'</td>

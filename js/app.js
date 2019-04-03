@@ -278,182 +278,6 @@ function generateReport(){
 
 
 
-function addAcademic(){
-
-    console.log("reached");
-
-    var aqContainer = document.getElementById('aqContainer');
-
-    var parentRow=document.createElement("div");
-    parentRow.className="row form-group";
-
-    aqContainer.appendChild(parentRow);
-    // <div class="col col-md-3">
-
-    var initialDiv=document.createElement("div");
-    initialDiv.className="col col-md-3";
-
-    parentRow.appendChild(initialDiv);
-
-    var arraySelectValue=["Primary","Secondary","Matric","Intermediate","Graduate","Post Graduate","Ph. D","Aalim/Aalima","Diploma","Uneducated","Other"]
-
-    var firstDiv=document.createElement("div");
-    firstDiv.className="col-4 col-md-3";
-     
-
-    var secondDiv=document.createElement("div");
-    secondDiv.className="col-4 col-md-3";
-
-    var thirdDiv=document.createElement("div");
-    thirdDiv.className="col-4 col-md-3";
-
-    parentRow.appendChild(firstDiv); 
-    parentRow.appendChild(secondDiv); 
-    parentRow.appendChild(thirdDiv); 
-
-    var selectList = document.createElement("select");
-    selectList.name="aq"+(aqcount+1);
-    selectList.id="aq"+(aqcount+1);
-    selectList.className="form-control";
-
-    firstDiv.appendChild(selectList);
-
-    for(var i=0;i<arraySelectValue.length;i++){
-        var option=document.createElement("option");
-        option.value = arraySelectValue[i];
-        option.text = arraySelectValue[i];
-        selectList.appendChild(option);
-    }   
-
-    var inputSecond= document.createElement("input");
-    inputSecond.type="text";
-    inputSecond.id="admYear"+(aqcount+1);
-    inputSecond.name="admYear"+(aqcount+1);
-    inputSecond.className="form-control";
-    inputSecond.placeholder="Admission Year";
-
-    secondDiv.appendChild(inputSecond);
-
-    var inputThird=document.createElement("input");
-    inputThird.type="text";
-    inputThird.id="comYear"+(aqcount+1);
-    inputThird.name="comYear"+(aqcount+1);
-    inputThird.className="form-control";
-    inputThird.placeholder="Completion Year";
-
-    thirdDiv.appendChild(inputThird);
-
-    document.getElementById('aqDummyCount').value=aqcount;
-
-    aqcount++;
-
-
-    //  <input type="text" id="admYear" name="admYear" placeholder="Admission Year" class="form-control">
-    // <input type="text" id="comYear" name="comYear" placeholder="Completion Year" class="form-control">
-
-
-
-}
-
-
-function removeAcademic(){
-    var aqContainer = document.getElementById('aqContainer');
-
-    while (aqContainer.hasChildNodes()) {
-                aqContainer.removeChild(aqContainer.lastChild);
-    }
-    aqcount=1;
-}
-
-
-
-function addProfessional(){
-
-    
-    var pqContainer = document.getElementById('pqContainer');
-
-    var parentRow=document.createElement("div");
-    parentRow.className="row form-group";
-
-    pqContainer.appendChild(parentRow);
-    // <div class="col col-md-3">
-
-    var initialDiv=document.createElement("div");
-    initialDiv.className="col col-md-3";
-
-    parentRow.appendChild(initialDiv);
-
-    var arraySelectValuepq=["C.A","A.C.C.A","Doctor","Engineer","Advocate","Masters","Teacher","Nursing Course","Technician","Journalist","I.T","Other"];
-
-    var firstDiv=document.createElement("div");
-    firstDiv.className="col-4 col-md-3";
-     
-
-    var secondDiv=document.createElement("div");
-    secondDiv.className="col-4 col-md-3";
-
-    var thirdDiv=document.createElement("div");
-    thirdDiv.className="col-4 col-md-3";
-
-    parentRow.appendChild(firstDiv); 
-    parentRow.appendChild(secondDiv); 
-    parentRow.appendChild(thirdDiv); 
-
-    var selectListpq = document.createElement("select");
-    selectListpq.name="pq"+(pqcount+1);
-    selectListpq.id="pq"+(pqcount+1);
-    selectListpq.className="form-control";
-
-    firstDiv.appendChild(selectListpq);
-
-    for(var i=0;i<arraySelectValuepq.length;i++){
-        var option=document.createElement("option");
-        option.value = arraySelectValuepq[i];
-        option.text = arraySelectValuepq[i];
-        selectListpq.appendChild(option);
-    }   
-
-    var inputSecondpq= document.createElement("input");
-    inputSecondpq.type="text";
-    inputSecondpq.id="admYearpq"+(pqcount+1);
-    inputSecondpq.name="admYearpq"+(pqcount+1);
-    inputSecondpq.className="form-control";
-    inputSecondpq.placeholder="Admission Year";
-
-    secondDiv.appendChild(inputSecondpq);
-
-    var inputThird=document.createElement("input");
-    inputThird.type="text";
-    inputThird.id="comYearpq"+(pqcount+1);
-    inputThird.name="comYearpq"+(pqcount+1);
-    inputThird.className="form-control";
-    inputThird.placeholder="Completion Year";
-
-    thirdDiv.appendChild(inputThird);
-
-    document.getElementById('pqDummyCount').value=pqcount;
-
-    pqcount++;
-
-
-    //  <input type="text" id="admYear" name="admYear" placeholder="Admission Year" class="form-control">
-    // <input type="text" id="comYear" name="comYear" placeholder="Completion Year" class="form-control">
-
-
-
-}
-
-
-
-function removeProfessional(){
-    var pqContainer = document.getElementById('pqContainer');
-
-    while (pqContainer.hasChildNodes()) {
-                pqContainer.removeChild(pqContainer.lastChild);
-    }
-    pqcount=1;
-
-}
 
 
 function submitFunction(){
@@ -591,6 +415,8 @@ function createUserStudent(){
     // var purchaseIdd = localStorage.getItem('purchaseIdJavascript');
     // var p_id='2';
     //var p_id=document.getElementById('purchaseUserId').innerHTML;
+
+     
     var name=document.getElementById("name").value;
 
     var dayDrop = document.getElementById("day");
@@ -654,7 +480,6 @@ function createUserStudent(){
 
         stu_occupation=JSON.stringify(stu_occupation);
 
-   
 
     var fatherHusbandName=document.getElementById("fatherHusbandName").value;
     var fatherHusbandCnic=document.getElementById("fatherHusbandCnic").value;
@@ -763,13 +588,23 @@ function createUserStudent(){
 
 
    // aqDummyCount;
-    var academicStr='',s1,s2,s3,aq,admYear,comYear;
 
+   var aqId = document.getElementById("aq1");
+  //  var yearDropValue = ;
+
+
+    var academicStr='',s1,s2,s3,aq,admYear,comYear;
+  //  yearDrop.options[yearDrop.selectedIndex].value;
     // $aqDummyCount =  $_POST['aqDummyCount']; 
     //console.log(document.getElementById('admYear1').value);
-    if(document.getElementById('admYear1').value!=='' ){
-            if(aqcount !== '0')
-            {
+    // alert(aqId.selectedIndex);
+    
+    // alert(aqId.options[aqId.selectedIndex].value);
+
+    //if(document.getElementById('admYear1').value!=='' ){
+        if(aqId.selectedIndex != 0){
+            // if(aqcount !== '0')
+            // {
             academicStr='[';
 
             // $_POST['day']."/". $_POST['month']."/".$_POST['year'];
@@ -796,9 +631,9 @@ function createUserStudent(){
 
                 academicStr=academicStr+"{aq:\""+aq+"\",admYear:\""+admYear+"\",comYear:\""+comYear+"\"}";  
 
-                if((i+1)!==aqcount && aqcount!==1){
-                    academicStr=academicStr+",";
-                }
+                // if((i+1)!==aqcount && aqcount!==1){
+                //     academicStr=academicStr+",";
+                // }
 
                 // echo "<script type='text/javascript'>console.log($s2);</script>";          
 
@@ -806,23 +641,23 @@ function createUserStudent(){
 
             academicStr+="]";
 
-            }
-            else{
-                academicStr="";
-            }
+            // }
+            // else{
+            //     academicStr="";
+            // }
 
         }
 
 
-
+        var pqId = document.getElementById("pq1");
 
          var professionalStr='',ps1,ps2,ps3,pq,padmYear,pcomYear;
 
     // $aqDummyCount =  $_POST['aqDummyCount']; 
     //console.log(document.getElementById('admYear1').value);
-    if(document.getElementById('admYearpq1').value!=='' ){
-        if(pqcount !== '0')
-        {
+    if(pqId.selectedIndex != 0 ){
+        // if(pqcount !== '0')
+        // {
         professionalStr='[';
 
         // $_POST['day']."/". $_POST['month']."/".$_POST['year'];
@@ -840,9 +675,9 @@ function createUserStudent(){
 
              professionalStr=professionalStr+"{pq:\""+pq+"\",admYear:\""+padmYear+"\",comYear:\""+pcomYear+"\"}";  
 
-            if((i+1)!==pqcount && pqcount!==1){
-                professionalStr=professionalStr+",";
-            }
+            // if((i+1)!==pqcount && pqcount!==1){
+            //     professionalStr=professionalStr+",";
+            // }
 
             // echo "<script type='text/javascript'>console.log($s2);</script>";          
 
@@ -850,10 +685,10 @@ function createUserStudent(){
 
         professionalStr+="]";
 
-        }
-        else{
-            professionalStr="";
-        }
+        // }
+        // else{
+        //     professionalStr="";
+        // }
 
         }
     
@@ -884,8 +719,58 @@ function createUserStudent(){
         var cmin=1000000,cmax=10000000;
         var cardNumber = Math.floor(Math.random()*(cmax-cmin+1)+cmin);
 
-      
+        // alert(name);
+        // alert(gender);
+        // alert(cnic);
+        // alert(khundi);
+        // alert(contact);
+        // alert(fatherHusbandName);
+        // alert(dateOfBirth);
+        //  alert(academicStr);
+        
 
+        var checkRequired = true;
+        
+        if(name === '' && checkRequired){
+            alert("Kindly Fill the Name Field");
+            checkRequired = false;
+        } 
+        else if(gender === '' && checkRequired){
+            alert("Kindly Fill the Gender Field");
+            checkRequired = false;
+        }
+        else if(cnic === '' && checkRequired){
+            alert("Kindly Fill the Cnic Field");
+            checkRequired = false;
+        }
+        else if(khundi === '' && checkRequired){
+            alert("Kindly Fill the Khundi Field");
+            checkRequired = false;
+        }
+        else if(contact === '' && checkRequired){
+            alert("Kindly Fill the Contact Field");
+            checkRequired = false;
+        }
+        else if(fatherHusbandName === '' && checkRequired){
+            alert("Kindly Fill the FatherHusbandName Field");
+            checkRequired = false;
+        }
+        else if(dateOfBirth === 'DD/MM/YY' && checkRequired){
+            alert("Kindly Fill the Date of birth Field");
+            checkRequired = false;
+        }
+        else if(academicStr === '' && checkRequired){
+            alert("Kindly Fill the Academic Qualification Field");
+            checkRequired = false;
+        }
+        else if(imgName === '' && checkRequired && gender === 'male'){
+            alert("Kindly Upload the Image");
+            checkRequired = false;
+        }
+
+
+      
+        if(checkRequired){
     fetch(Api+'backend/bcreateUserJava.php', {
         method: 'POST',
         body: JSON.stringify({
@@ -970,186 +855,15 @@ function createUserStudent(){
             
         });
 
+    }//Check Required if Condition
+
 
 
 
 }
 
 
-function tableLoad(){
-    studentTableLoad();
-}
 
-function studentTableLoad(){
-//     document.getElementById("userTable").innerHTML='';
-//     console.log("Reached student Modal");
-//     var restApi=Api+'backend/bshowUserTableFull.php';
-//     if(document.getElementById("numRecord").value==='1000'){
-//         restApi=Api+'backend/bshowUserTableFull.php';
-//     }
-    
-//     var counter=0;
-//      fetch(restApi, {
-//         method: 'GET',
-//         headers: new Headers({
-//             'content-type': 'application/json',
-//             'Accept': 'application/json',
-//         })
-//     })
-//     .then((response) => response.json())
-//     .then((responseJson) =>{
-//         console.log(responseJson.length);
-//         var len = responseJson.length
-
-
-// {/* <span class='pagination_link' style='cursor:pointer; padding:6px; border:1px solid #ccc;' id='".$i."'>".$i."</span>" */}
-//     var paginationHassaan=document.getElementById("paginationHassaan");
-
-
-//     // for(var i=1;i<=len/50;i++){
-//     //     var span=document.createElement("span");
-//     //     span.className="pagination_link";
-//     //     span.style="cursor:pointer; padding:6px; border:1px solid #ccc;";
-//     //     span.id=i;
-//     //     var text=document.createTextNode(i);
-//     //     span.appendChild(text);
-//     //     paginationHassaan.appendChild(span);
-//     //     //paginationHassaan.innerHTML+=span;
-//     // }
-
-
-
-
-
-
-
-
-
-
-
-//         console.log(responseJson);
-//         // alluserdata = responseJson;
-
-//         // document.getElementById("userTable").innerHTML+=''
-//         // responseJson.map((ad)=>{
-//         // counter++;
-//         //    document.getElementById("userTable").innerHTML+= showStudentTable(ad);
-          
-
-//         // })
-//         //document.getElementById("maxRows").value=00;
-//        //document.getElementById("maxRows").value=50;
-//         //document.getElementById("maxRows").value=25;
-//     })
-//     .catch((error)=>{
-//     console.error(error);
-//       });
-}
-
-function showStudentTable(data){
-//console.log(data.name);
-    var aq='';
-    var pq='';
-   /* if(data.AQ!== ''){
-        var academicQualification=eval(data.AQ);
-    
-    
-    / console.log(academicQualification);
-    
-        for(var i =0;i<academicQualification.length;i++)
-        {
-            aq+=academicQualification[i].aq;
-            if((i+1)!==academicQualification.length){
-                aq+=",";
-            }
-            
-        }
-    
-    / console.log(aq);
-
-
-    var professionalQualification=eval(data.PQ);
-    
-    / console.log(academicQualification);
-    
-        for(var i =0;i<professionalQualification.length;i++)
-        {
-            pq+=professionalQualification[i].pq;
-            if((i+1)!==professionalQualification.length){
-                pq+=",";
-            }
-            
-        }
-    }
-    else{
-
-    }*/
-    
-    
-    // console.log(academicQualification[0] +"     "+professionalQualification[0]);
-    // console.log(aq);
-    var editColor='';
-    if(data.edit==='edited'){
-        editColor = "#A6F478";
-    }
-    else{
-        editColor = "#FFFFFF";
-    }
-
-    return `
-             <tr onClick="loadStudentMod(${data.s_id})" style="background-color: `+editColor+`">
-                <td>${data.s_id}</td>
-                <td>${data.name}</td>
-                <td>${data.dob}</td>
-                <td>${data.gender}</td>
-                <td>${data.cnic}</td>
-                <td>${data.khundi}</td>
-                <td>${data.s_group}</td>
-                <td>${data.age}</td>
-                <td>${data.omj_card}</td>
-                <td>${data.birth_place}</td>
-                <td>${data.omys_card}</td>
-                <td>${data.email}</td>
-                <td>${data.contact}</td>
-                <td>${data.whatsapp}</td>
-                <td>${data.address}</td>
-                <td>${data.status}</td>
-                <td>${data.occupation}</td>
-                <td>${data.fh_name}</td>
-                <td>${data.fh_cnic}</td>
-                <td>${data.fh_contact}</td>
-                <td>${data.fh_occupation}</td>
-                <td>${data.m_name}</td>
-                <td>${data.m_cnic}</td>
-                <td>${data.m_contact}</td>
-                <td>${data.m_occupation}</td>
-                <td>${aq}</td>
-                <td>${data.bloodGrp}</td>
-                <td>${pq}</td>
-                <td>${data.addSkills}</td>
-                <td>${data.insName}</td>
-                <td>${data.presClass}</td>
-                <td>${data.lastAch}</td>
-                <td>${data.futInt}</td>
-                <td>${data.cmpName}</td>
-                <td>${data.offAdd}</td>
-                <td>${data.currDesg}</td>
-                <td>${data.ebLastAch}</td>
-                <td>${data.ebfutInt}</td>
-                <td>${data.hobbies}</td>
-                <td>${data.profAch}</td>
-                <td>${data.persAch}</td>
-                <td>${data.sportsInt}</td>
-                <td>${data.leftEdu}</td>
-                <td>${data.otherReason}</td>
-                <td>${data.omysMember}</td>
-                <td>${data.fh_omysMember}</td>
-                <td>${data.cardNumber}</td>
-
-            </tr>
-            
-            `;
-}
 
 function blogin(){
     console.log("reached");
@@ -1295,7 +1009,7 @@ function loadStudentMod(data){
             document.getElementById("scnic").value=obj.cnic;
             document.getElementById("skhundi").value=obj.khundi;
             document.getElementById("sgroup").value=obj.s_group;
-            document.getElementById("sage").value=obj.age;
+            // document.getElementById("sage").value=obj.age;
             document.getElementById("somjCard").value=obj.omj_card;
             document.getElementById("sbirthPlace").value=obj.birth_place;
             document.getElementById("somysCard").value=obj.omys_card;
@@ -1392,12 +1106,12 @@ function loadStudentMod(data){
 
             document.getElementById("sinstituteName").value=obj.insName;
             document.getElementById("spresentClass").value=obj.presClass;
-            document.getElementById("slastAchievement").value=obj.lastAch;
+            // document.getElementById("slastAchievement").value=obj.lastAch;
             document.getElementById("sfutureInterest").value=obj.futInt;
             document.getElementById("scompanyName").value=obj.cmpName;
             document.getElementById("sofficeAddress").value=obj.offAdd;
             document.getElementById("scurrentDesignation").value=obj.currDesg;
-            document.getElementById("slastAchievementemp").value=obj.ebLastAch;
+            // document.getElementById("slastAchievementemp").value=obj.ebLastAch;
             document.getElementById("sfutureInterestemp").value=obj.ebfutInt;
             document.getElementById("shobbies").value=obj.hobbies;
             document.getElementById("sprofessionalAchievement").value=obj.profAch;
@@ -1878,7 +1592,7 @@ function updateStudentUser(){
     var scnic=document.getElementById("scnic").value;
     var skhundi=document.getElementById("skhundi").value;
     var sgroup=document.getElementById("sgroup").value;
-    var sage=document.getElementById("sage").value;
+    // var sage=document.getElementById("sage").value;
     var somjCard=document.getElementById("somjCard").value;
     var sbirthPlace=document.getElementById("sbirthPlace").value;
     var somysCard=document.getElementById("somysCard").value;
@@ -1973,12 +1687,12 @@ function updateStudentUser(){
 
     var sinstituteName=document.getElementById("sinstituteName").value;
     var spresentClass=document.getElementById("spresentClass").value;
-    var slastAchievement=document.getElementById("slastAchievement").value;
+    // var slastAchievement=document.getElementById("slastAchievement").value;
     var sfutureInterest=document.getElementById("sfutureInterest").value;
     var scompanyName=document.getElementById("scompanyName").value;
     var sofficeAddress=document.getElementById("sofficeAddress").value;
     var scurrentDesignation=document.getElementById("scurrentDesignation").value;
-    var slastAchievementemp=document.getElementById("slastAchievementemp").value;
+    // var slastAchievementemp=document.getElementById("slastAchievementemp").value;
     var sfutureInterestemp=document.getElementById("sfutureInterestemp").value;
     var shobbies=document.getElementById("shobbies").value;
     var sprofessionalAchievement=document.getElementById("sprofessionalAchievement").value;
@@ -2146,7 +1860,7 @@ function updateStudentUser(){
             scnic:scnic,
             skhundi:skhundi,
             sgroup:sgroup,
-            sage:sage,
+           
             somjCard:somjCard,
             sbirthPlace:sbirthPlace,
             somysCard:somysCard,
@@ -2171,12 +1885,12 @@ function updateStudentUser(){
             sotherSkill:sotherSkill,
             sinstituteName:sinstituteName,
             spresentClass:spresentClass,
-            slastAchievement:slastAchievement,
+           
             sfutureInterest:sfutureInterest,
             scompanyName:scompanyName,
             sofficeAddress:sofficeAddress,
             scurrentDesignation:scurrentDesignation,
-            slastAchievementemp:slastAchievementemp,
+            
             sfutureInterestemp:sfutureInterestemp,
             shobbies:shobbies,
             sprofessionalAchievement:sprofessionalAchievement,            
