@@ -781,6 +781,20 @@ include 'DBConfig.php';
 
 
 
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="text-input" class=" form-control-label">Father/Husband
+                                                    OMJ Card No</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="number" id="fatherHusbandOmjCard"  name="fatherHusbandOmjCard"
+                                                    placeholder="Enter Father/Husband OMJ Card No" class="form-control">
+                                                <!--<small class="form-text text-muted">This is a help text</small>-->
+                                            </div>
+                                        </div>
+
+
+
 
 
 
@@ -818,7 +832,7 @@ include 'DBConfig.php';
                                                         </div>
 
 
-                                                        <div class="col col-md-4">
+                                                        <!-- <div class="col col-md-4">
                                                             <div class="radio" style="display:inline;">
                                                                 <label for="radio2" class="form-check-label ">
                                                                     <input type="radio" id="father_occupation3"
@@ -827,7 +841,7 @@ include 'DBConfig.php';
                                                                 </label>
                                                             </div>
 
-                                                        </div>
+                                                        </div> -->
 
 
                                                         <br>
@@ -835,7 +849,7 @@ include 'DBConfig.php';
                                                         <div class="col col-md-4">
                                                             <div class="radio" style="display:inline;">
                                                                 <label for="radio1" class="form-check-label ">
-                                                                    <input type="radio" id="father_occupation4"
+                                                                    <input type="radio" id="father_occupation3"
                                                                         name="father_occupation" value="retired"
                                                                         class="form-check-input">Retired
                                                                 </label>
@@ -847,7 +861,7 @@ include 'DBConfig.php';
                                                         <div class="col col-md-4">
                                                             <div class="radio" style="display:inline;">
                                                                 <label for="radio2" class="form-check-label ">
-                                                                    <input type="radio" id="father_occupation5"
+                                                                    <input type="radio" id="father_occupation4"
                                                                         name="father_occupation" value="unemployed"
                                                                         class="form-check-input">Unemployed
                                                                 </label>
@@ -859,7 +873,7 @@ include 'DBConfig.php';
                                                         <div class="col col-md-4">
                                                             <div class="radio" style="display:inline;">
                                                                 <label for="radio2" class="form-check-label ">
-                                                                    <input type="radio" id="father_occupation6"
+                                                                    <input type="radio" id="father_occupation5"
                                                                         name="father_occupation" value="govtEmployee"
                                                                         class="form-check-input">Govt. Employee
                                                                 </label>
@@ -873,7 +887,7 @@ include 'DBConfig.php';
                                                         <div class="col col-md-4">
                                                             <div class="radio" style="display:inline;">
                                                                 <label for="radio1" class="form-check-label ">
-                                                                    <input type="radio" id="father_occupation7"
+                                                                    <input type="radio" id="father_occupation6"
                                                                         name="father_occupation"
                                                                         value="semiGovtEmployee"
                                                                         class="form-check-input">Semi Govt. Employee
@@ -886,7 +900,7 @@ include 'DBConfig.php';
                                                         <div class="col col-md-4">
                                                             <div class="radio" style="display:inline;">
                                                                 <label for="radio2" class="form-check-label ">
-                                                                    <input type="radio" id="father_occupation8"
+                                                                    <input type="radio" id="father_occupation7"
                                                                         name="father_occupation" value="selfEmployeed"
                                                                         class="form-check-input">Self Employeed
                                                                 </label>
@@ -898,7 +912,7 @@ include 'DBConfig.php';
                                                         <div class="col col-md-4">
                                                             <div class="radio" style="display:inline;">
                                                                 <label for="radio2" class="form-check-label ">
-                                                                    <input type="radio" id="father_occupation9"
+                                                                    <input type="radio" id="father_occupation8"
                                                                         name="father_occupation" value="pvtService"
                                                                         class="form-check-input">Private Service
                                                                 </label>
@@ -911,7 +925,7 @@ include 'DBConfig.php';
                                                         <div class="col col-md-4">
                                                             <div class="radio" style="display:inline;">
                                                                 <label for="radio1" class="form-check-label ">
-                                                                    <input type="radio" id="father_occupation10"
+                                                                    <input type="radio" id="father_occupation9"
                                                                         name="father_occupation" value="other"
                                                                         class="form-check-input">Other
                                                                 </label>
@@ -1146,6 +1160,7 @@ include 'DBConfig.php';
                                                     <option value="Post Graduate">Post Graduate</option>
                                                     <option value="Ph. D">Ph. D</option>
                                                     <option value="Aalim/Aalima">Aalim/Aalima</option>
+                                                    <option value="Hafiz/Hafiza">Hafiz/Hafiza </option>
                                                     <option value="Diploma">Diploma</option>
                                                     <option value="Uneducated">Uneducated</option>
                                                     <option value="Other">Other</option>

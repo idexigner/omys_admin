@@ -243,39 +243,6 @@ include 'DBConfig.php';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                               
                                 <div class='pagination-container' >
 				<nav>
@@ -305,16 +272,6 @@ include 'DBConfig.php';
                         <div id="paginationHassaan">
 
                         </div>
-
-
-
-
-                       
-
-
-
-
-
 
 
 

@@ -46,14 +46,19 @@
            <th>Father Name</th>
            <th>Father CNIC</th>
            <th>Father Contact</th>
+           <th>Father OMJ Card No</th>
            <th>Father Occupation</th>
            <th>Mother Name</th>
            <th>Mother CNIC</th>
            <th>Mother Contact</th>
            <th>Mother Occupation</th>
            <th>Academic Qualification</th>
+           <th>Starting Year AQ</th>
+           <th>Ending Year AQ</th>
            <th>Blood group</th>
            <th>Professional Qualification</th>
+           <th>Starting Year PQ</th>
+           <th>Ending Year PQ</th>
            <th>Additional Skill</th>
            <th>Other Additional Skill</th>
            <th>Institute Name</th>
@@ -98,9 +103,37 @@ $countLoop = 0;
      //$imag='http://localhost/omys_backend/uploads/images/Umer%20Farooq4571.332010673359.jpeg';
      // <td style="max-width:110px; height:auto"><div style="max-width:105px; height:auto;background-color:red"><img src="'.$img.'" alt="No Image" width="100px" height="auto"></div></td>
      // $img='12'; style="background-color: '.$editColor.'"
-
+//$row["bloodGrp"]
 //     <td style="width:110px; height:100px"><span style="max-width:130px; height:auto;"><img src="'.$img.'" alt="No Image" width="130px" height="auto"></span></td>
+      $stu_occ= substr($row["occupation"],2,strlen($row["occupation"])-4);
+      $aq=$row["AQ"];
+      $pq=$row["PQ"];
+      $addSkill=$row["addSkills"];
+      $aqTable = substr($aq,6,strpos($aq,'admYear')-strpos($aq,'aq')-6);
+      $aqTable = str_replace("\"","",$aqTable);
+      $aqTable = str_replace(":","",$aqTable);
+      $aqStrtYr = substr($aq,strpos($aq,'admYear')+9,strpos($aq,'comYear')-strpos($aq,'admYear')-11);
+      $aqStrtYr = str_replace("\"","",$aqStrtYr);
+      $aqEndYr = substr($aq,strpos($aq,'comYear')+9,strlen($aq)-strpos($aq,'comYear')-12);
+      $aqEndYr = str_replace("\"","",$aqEndYr);
 
+      $pqTable = substr($pq,6,strpos($pq,'admYear')-strpos($pq,'pq')-6);
+      $pqTable = str_replace("\"","",$pqTable);
+      $pqTable = str_replace(":","",$pqTable);
+      $pqStrtYr = substr($pq,strpos($pq,'admYear')+9,strpos($pq,'comYear')-strpos($pq,'admYear')-11);
+      $pqStrtYr = str_replace("\"","",$pqStrtYr);
+      $pqEndYr = substr($pq,strpos($pq,'comYear')+9,strlen($pq)-strpos($pq,'comYear')-12);
+      $pqEndYr = str_replace("\"","",$pqEndYr);
+
+
+      if($addSkill === '[]'){
+           $addSkill='';
+      }
+      else{
+           $addSkill = substr($addSkill,2,strlen($addSkill)-3);
+           $addSkill = str_replace("\"","",$addSkill);
+      }
+      
       $editColor='';
 
       if($row["edit"]==='edited'){
@@ -130,19 +163,24 @@ $countLoop = 0;
       <td>'.$row["address"].'</td>
       <td>'.$row["area"].'</td>
       <td>'.$row["status"].'</td>
-      <td>'.$row["occupation"].'</td>
+      <td>'.str_replace("\"","",$stu_occ).'</td>
       <td>'.$row["fh_name"].'</td>
       <td>'.$row["fh_cnic"].'</td>
       <td>'.$row["fh_contact"].'</td>
+      <td>'.$row["fh_omjCard"].'</td>
       <td>'.$row["fh_occupation"].'</td>
       <td>'.$row["m_name"].'</td>
       <td>'.$row["m_cnic"].'</td>
       <td>'.$row["m_contact"].'</td>
       <td>'.$row["m_occupation"].'</td>
-      <td>'.$row["AQ"].'</td>
+      <td>'.$aqTable.'</td>
+      <td>'.$aqStrtYr.'</td>
+      <td>'.$aqEndYr.'</td>
       <td>'.$row["bloodGrp"].'</td>
-      <td>'.$row["PQ"].'</td>
-      <td>'.$row["addSkills"].'</td>
+      <td>'.$pqTable.'</td>
+      <td>'.$pqStrtYr.'</td>
+      <td>'.$pqEndYr.'</td>
+      <td>'.$addSkill.'</td>
       <td>'.$row["otherSkill"].'</td>
       <td>'.$row["insName"].'</td>
       <td>'.$row["presClass"].'</td>
