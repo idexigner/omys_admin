@@ -27,7 +27,7 @@
 
         <div class="row form-group">
               <div class="col col-md-3">
-                 <label for="text-input" class=" form-control-label">Name</label>
+                 <label for="text-input" class=" form-control-label">Name<span class="requiredField">*</span></label>
                </div>
               <div class="col-12 col-md-9">
               <input type="text" id="sname" name="sname"  placeholder="Enter Name" class="form-control">
@@ -43,13 +43,12 @@
 
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Date of Birth</label>
+                                                    <label for="text-input" class=" form-control-label">Date of Birth<span class="requiredField">*</span></label>
                                                 </div>
                                                 <div class="col-4 col-md-3">
 
                                                     <select name="sday" id="sday" class="form-control" >
-                                                     
-                                                         <option value="DD">DD</option>
+                                                        <option value="DD">DD</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -81,13 +80,6 @@
                                                         <option value="29">29</option>
                                                         <option value="30">30</option>
                                                         <option value="31">31</option>
-
-
-
-
-
-                                                       
-                                                      
                                                     </select>
                                                     
                                                     <!--<small class="form-text text-muted">This is a help text</small>-->
@@ -202,7 +194,7 @@
 
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label class=" form-control-label">Gender</label>
+                                                    <label class=" form-control-label">Gender<span class="requiredField">*</span></label>
                                                 </div>
                                                 <div class="col col-md-9">
                                                     <div class="form-check">
@@ -240,7 +232,7 @@
 
                                              <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">CNIC</label>
+                                                    <label for="text-input" class=" form-control-label">CNIC<span class="requiredField">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="text" id="scnic" name="scnic" placeholder="Enter CNICs" class="form-control" >
@@ -252,7 +244,7 @@
 
                                              <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Khundi</label>
+                                                    <label for="text-input" class=" form-control-label">Khundi<span class="requiredField">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="text" id="skhundi" name="skhundi" placeholder="Enter Khundi" class="form-control" >
@@ -342,7 +334,7 @@
 
  <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Contact No</label>
+                                                    <label for="text-input" class=" form-control-label">Contact No<span class="requiredField">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="text" id="scontact" name="scontact" placeholder="Enter Contact" class="form-control" >
@@ -596,7 +588,7 @@
 
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Father/Husband Name</label>
+                                                    <label for="text-input" class=" form-control-label">Father/Husband Name<span class="requiredField">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="text" id="sfatherHusbandName" name="sfatherHusbandName" placeholder="Enter Father/Husband Name" class="form-control"  >
@@ -627,6 +619,20 @@
                                                     <!--<small class="form-text text-muted">This is a help text</small>-->
                                                 </div>
                                             </div>
+
+
+
+                                            <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="text-input" class=" form-control-label">Father/Husband
+                                                    OMJ Card No</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="number" id="sfatherHusbandOmjCard"  name="sfatherHusbandOmjCard"
+                                                    placeholder="Enter Father/Husband OMJ Card No" class="form-control">
+                                                <!--<small class="form-text text-muted">This is a help text</small>-->
+                                            </div>
+                                        </div>
 
 
 
@@ -663,14 +669,14 @@
                                                             </div>
 
 
-                                                            <div class="col col-md-4">
+                                                            <!-- <div class="col col-md-4">
                                                                 <div class="radio" style="display:inline;">
                                                             <label for="radio2" class="form-check-label ">
                                                                 <input type="radio" id="sfather_occupation3" name="sfather_occupation" value="houseWife" class="form-check-input" >House Wife
                                                             </label>
                                                         </div>
 
-                                                            </div>
+                                                            </div> -->
 
 
                                                             <br>
@@ -678,7 +684,7 @@
                                                              <div class="col col-md-4">
                                                                     <div class="radio" style="display:inline;">
                                                             <label  for="radio1" class="form-check-label ">
-                                                                <input type="radio"  id="sfather_occupation4" name="sfather_occupation" value="retired" class="form-check-input" >Retired
+                                                                <input type="radio"  id="sfather_occupation3" name="sfather_occupation" value="retired" class="form-check-input" >Retired
                                                             </label>
                                                              </div>  
 
@@ -688,7 +694,7 @@
                                                             <div class="col col-md-4">
                                                                 <div class="radio" style="display:inline;">
                                                             <label for="radio2" class="form-check-label ">
-                                                                <input type="radio"  id="sfather_occupation5" name="sfather_occupation" value="unemployed" class="form-check-input" >Unemployed
+                                                                <input type="radio"  id="sfather_occupation4" name="sfather_occupation" value="unemployed" class="form-check-input" >Unemployed
                                                             </label>
                                                         </div>
 
@@ -698,7 +704,7 @@
                                                             <div class="col col-md-4">
                                                                 <div class="radio" style="display:inline;">
                                                             <label for="radio2" class="form-check-label ">
-                                                                <input type="radio"  id="sfather_occupation6" name="sfather_occupation" value="govtEmployee" class="form-check-input"  >Govt. Employee
+                                                                <input type="radio"  id="sfather_occupation5" name="sfather_occupation" value="govtEmployee" class="form-check-input"  >Govt. Employee
                                                             </label>
                                                         </div>
 
@@ -710,7 +716,7 @@
                                                              <div class="col col-md-4">
                                                                     <div class="radio" style="display:inline;">
                                                             <label  for="radio1" class="form-check-label ">
-                                                                <input type="radio"  id="sfather_occupation7" name="sfather_occupation" value="semiGovtEmployee" class="form-check-input" >Semi Govt. Employee
+                                                                <input type="radio"  id="sfather_occupation6" name="sfather_occupation" value="semiGovtEmployee" class="form-check-input" >Semi Govt. Employee
                                                             </label>
                                                              </div>  
 
@@ -720,7 +726,7 @@
                                                             <div class="col col-md-4">
                                                                 <div class="radio" style="display:inline;">
                                                             <label for="radio2" class="form-check-label ">
-                                                                <input type="radio"  id="sfather_occupation8" name="sfather_occupation" value="selfEmployeed" class="form-check-input"  >Self Employeed
+                                                                <input type="radio"  id="sfather_occupation7" name="sfather_occupation" value="selfEmployeed" class="form-check-input"  >Self Employeed
                                                             </label>
                                                         </div>
 
@@ -730,7 +736,7 @@
                                                             <div class="col col-md-4">
                                                                 <div class="radio" style="display:inline;">
                                                             <label for="radio2" class="form-check-label ">
-                                                                <input type="radio"  id="sfather_occupation9" name="sfather_occupation" value="pvtService" class="form-check-input" >Private Service
+                                                                <input type="radio"  id="sfather_occupation8" name="sfather_occupation" value="pvtService" class="form-check-input" >Private Service
                                                             </label>
                                                         </div>
 
@@ -741,7 +747,7 @@
                                                              <div class="col col-md-4">
                                                                     <div class="radio" style="display:inline;">
                                                             <label  for="radio1" class="form-check-label ">
-                                                                <input type="radio"  id="sfather_occupation10" name="sfather_occupation" value="other" class="form-check-input"  >Other
+                                                                <input type="radio"  id="sfather_occupation9" name="sfather_occupation" value="other" class="form-check-input"  >Other
                                                             </label>
                                                              </div>  
 
@@ -936,8 +942,8 @@
                                                 </div>
                                                 <div class="col-4 col-md-3">
 
-                                                    <select name="saq1" id="saq1" class="form-control" onchange="aqChange()">
-                                                        <!--<option >Select Academic Qualification</option>-->
+                                                    <select name="saq1" id="saq1" class="form-control">
+                                                        <option >Select Academic Qualification</option>
                                                         <option value="Primary">Primary</option>
                                                         <option value="Secondary">Secondary</option>
                                                         <option value="Matric">Matric</option>
@@ -969,12 +975,12 @@
                                                     </div>
 
                                                 </div>
-
+<!-- 
                                                     <div id="saqContainer">
 
 
 
-                                                        </div>
+                                                        </div> -->
 
                                                        
                                                         <!--<div style="float:right">
@@ -982,7 +988,7 @@
                                                         </div>-->
 
                                           
-
+<!-- 
                                              <div class="row">
                                                             <div class="col-md-3"></div>
                                                             <div class="col-md-5"><input type="button"  class="btn btn-default" value="+" onclick="saddAcademic();">
@@ -992,7 +998,7 @@
                                                                 <input type="button" style="float:right;" class="btn btn-default" value="-" onclick="sremoveAcademic();">
                                                                 </div>
                                                         </div>
-                                                        <br>
+                                                        <br> -->
                                                         
 
 
@@ -1134,6 +1140,7 @@
 
                                                     <select name="spq1" id="spq1" class="form-control"  >
                                                       
+                                                        <option>Select Professional Qualification</option>
                                                         <option value="C.A">C.A</option>                                              
                                                         <option value="A.C.C.A">A.C.C.A</option>
                                                         <option value="Doctor">Doctor</option>
@@ -1168,11 +1175,11 @@
 
                                                 </div>
 
-                                                    <div id="spqContainer">
+                                                    <!-- <div id="spqContainer">
 
 
 
-                                                        </div>
+                                                        </div> -->
 
                                                        
                                                         <!--<div style="float:right">
@@ -1181,7 +1188,7 @@
 
                                           
 
-                                             <div class="row">
+                                             <!-- <div class="row">
                                                             <div class="col-md-3"></div>
                                                             <div class="col-md-5"><input type="button"  class="btn btn-default" value="+" onclick="saddProfessional();">
                                                             </div>
@@ -1189,30 +1196,7 @@
                                                                 <input type="button" style="float:right;"  class="btn btn-default" value="-" onclick="sremoveProfessional();">
                                                                 </div>
                                                         </div>
-                                                        <br>
-
-
-
-
-
-
-
-
-
-
-
-
-                                         
-
-
-
-
-
-
-
-
-
-
+                                                        <br> -->
 
 
 

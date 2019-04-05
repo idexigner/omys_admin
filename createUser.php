@@ -1150,7 +1150,7 @@ include 'DBConfig.php';
                                             </div>
                                             <div class="col-4 col-md-3">
 
-                                                <select name="aq1" id="aq1" class="form-control" onchange="aqChange()">
+                                                <select name="aq1" id="aq1" class="form-control">
                                                     <option>Select Academic Qualification</option>
                                                     <option value="Primary">Primary</option>
                                                     <option value="Secondary">Secondary</option>
@@ -1365,7 +1365,7 @@ include 'DBConfig.php';
                                             </div>
                                             <div class="col-4 col-md-3">
 
-                                                <select name="pq1" id="pq1" class="form-control" onChange="pqChange();">
+                                                <select name="pq1" id="pq1" class="form-control">
                                                     <option>Select Professional Qualification</option>
                                                     <option value="C.A">C.A</option>
                                                     <option value="A.C.C.A">A.C.C.A</option>

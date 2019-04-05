@@ -31,6 +31,7 @@ include 'DBConfig.php';
      $sfatherHusbandCnic = $obj['sfatherHusbandCnic'];
      $sfatherHusbandContact = $obj['sfatherHusbandContact'];
      $sfather_occupation = $obj['sfather_occupation'];
+     $sfatherHusbandOmjCard = $obj['sfatherHusbandOmjCard'];
      $smotherName = $obj['smotherName'];
      $smotherCnic = $obj['smotherCnic'];
      $smotherContact = $obj['smotherContact'];
@@ -65,7 +66,7 @@ include 'DBConfig.php';
 	// $result= $con->query("update purchase set name='$pname' where p_id='$p_id'");
 
 
-    $result= $con->query("update census set name='$sname',dob='$updateDateOfBirth',gender='$sgender',cnic='$scnic',khundi='$skhundi',s_group='$sgroup',omj_card='$somjCard',birth_place='$sbirthPlace',omys_card='$somysCard',email='$semail',contact='$scontact',whatsapp='$swhatsapp',address='$sresidentialAddress',area='$sarea',status='$smaritualStatus',occupation='$stu_occupation',fh_name='$sfatherHusbandName',fh_cnic='$sfatherHusbandCnic',fh_contact='$sfatherHusbandContact',fh_occupation='$sfather_occupation',m_name='$smotherName',m_cnic='$smotherCnic',m_contact='$smotherContact',m_occupation='$smother_occupation',AQ='$academicStr',bloodGrp='$sbloodGroup',PQ='$professionalStr',addSkills='$sadditionalSkills',otherSkill='$sotherSkill',insName='$sinstituteName',presClass='$spresentClass',futInt='$sfutureInterest',cmpName='$scompanyName',offAdd='$sofficeAddress',currDesg='$scurrentDesignation',ebfutInt='$sfutureInterestemp',hobbies='$shobbies',profAch='$sprofessionalAchievement',persAch='$spersonalAchievement',sportsInt='$ssportInterest',leftEdu='$sifStudent',otherReason='$sotherReason',omysMember='$somysMember',fh_omysMember='$sfatherMember',imgName='$imgName', edit='$edit' where s_id='$s_id'");
+    $result= $con->query("update census set name='$sname',dob='$updateDateOfBirth',gender='$sgender',cnic='$scnic',khundi='$skhundi',s_group='$sgroup',omj_card='$somjCard',birth_place='$sbirthPlace',omys_card='$somysCard',email='$semail',contact='$scontact',whatsapp='$swhatsapp',address='$sresidentialAddress',area='$sarea',status='$smaritualStatus',occupation='$stu_occupation',fh_name='$sfatherHusbandName',fh_cnic='$sfatherHusbandCnic',fh_contact='$sfatherHusbandContact',fh_occupation='$sfather_occupation',	fh_omjCard='$sfatherHusbandOmjCard',m_name='$smotherName',m_cnic='$smotherCnic',m_contact='$smotherContact',m_occupation='$smother_occupation',AQ='$academicStr',bloodGrp='$sbloodGroup',PQ='$professionalStr',addSkills='$sadditionalSkills',otherSkill='$sotherSkill',insName='$sinstituteName',presClass='$spresentClass',futInt='$sfutureInterest',cmpName='$scompanyName',offAdd='$sofficeAddress',currDesg='$scurrentDesignation',ebfutInt='$sfutureInterestemp',hobbies='$shobbies',profAch='$sprofessionalAchievement',persAch='$spersonalAchievement',sportsInt='$ssportInterest',leftEdu='$sifStudent',otherReason='$sotherReason',omysMember='$somysMember',fh_omysMember='$sfatherMember',imgName='$imgName', edit='$edit' where s_id='$s_id'");
 	
     if($result){
 				echo json_encode("Success");
