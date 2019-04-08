@@ -1,5 +1,5 @@
-const Api="http://omysstudent.com/omys_admin/";
-// const Api = "http://localhost/omys_admin/";
+// const Api="http://omysstudent.com/omys_admin/";
+const Api = "http://localhost/omys_admin/";
 
 
 

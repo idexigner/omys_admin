@@ -1,0 +1,7 @@
+<input list="hosting-plan" type="text">
+
+<datalist id="hosting-plan">
+<option value="small"/>
+<option value="medium"/>
+<option value="large"/>
+</datalist>
