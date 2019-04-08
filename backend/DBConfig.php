@@ -1,10 +1,10 @@
 <?php
 
 //Define your host here.
-$HostName = "localhost";
+/*HostName = "localhost";
  
 //Define your database name here.
-$DatabaseName = "omys_faraz";
+$DatabaseName = "omys";
  
 //Define your database username here.
 $HostUser = "root";
@@ -14,8 +14,8 @@ $HostPass = "";
  
 
 $con = new mysqli($HostName, $HostUser, $HostPass, $DatabaseName);
-
- /*
+*/
+ 
 // //Define your host here.
  $HostName = "omysstudent.com";
  
@@ -30,7 +30,7 @@ $con = new mysqli($HostName, $HostUser, $HostPass, $DatabaseName);
  
 
  $con = new mysqli($HostName, $HostUser, $HostPass, $DatabaseName);
- */
+ 
  
  
 ?>

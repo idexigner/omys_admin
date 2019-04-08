@@ -1,5 +1,5 @@
-// const Api="http://omysstudent.com/omys_admin/";
-const Api = "http://localhost/omys_admin/";
+const Api="http://omysstudent.com/omys_admin/";
+// const Api = "http://localhost/omys_admin/";
 
 
 
@@ -1105,6 +1105,12 @@ function loadStudentMod(data) {
             document.getElementById("spersonalAchievement").value = obj.persAch;
             document.getElementById("ssportInterest").value = obj.sportsInt;
 
+          
+            if (obj.edit == 'edited') {
+                document.getElementById('sedit').checked = true;
+            }
+
+
             var imgDb = obj.imgName;
             document.getElementById("imgFromDb").value = imgDb;
 
@@ -1191,6 +1197,7 @@ function loadStudentMod(data) {
 
             }
 
+            
 
 
 
@@ -2189,25 +2196,25 @@ function imageDownload() {
         }
 
     });
+}
 
 
-
-
-
-
-
-
+function logout(){
+    alert("Thank you For using Census System");
+    localStorage.setItem("role", '');
+    window.location.href  = "/omys_admin/index.php";
+    
 
 }
 
 function onLoadFunction(page) {
     var role = localStorage.getItem("role");
     //   alert(role);
-    // if(role!=="Staff" && role!=="Admin"){
-    //     alert("Please Login First");
-    //     window.location.href  = "/omys_admin/index.php";
+    if(role!=="Staff" && role!=="Admin"){
+        alert("Please Login First");
+        window.location.href  = "/omys_admin/index.php";
 
-    // }
+    }
 
     if (role === "Staff") {
         document.getElementById("createStaffId").style.display = 'none';

@@ -4,7 +4,7 @@
 $HostName = "localhost";
  
 //Define your database name here.
-$DatabaseName = "omys_faraz";
+$DatabaseName = "omys";
  
 //Define your database username here.
 $HostUser = "root";

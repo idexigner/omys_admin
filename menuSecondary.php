@@ -13,16 +13,16 @@
                                 <i class="fas fa-chart-bar"></i>View User</a>
                         </li>
 
-                         <li id="ReportId2">
+                         <!-- <li id="ReportId2">
                             <a href="reportPrctc.php">
                                 <i class="fas fa-chart-bar"></i>Print Id Card</a>
-                        </li>
+                        </li> -->
                         <li id="createStaffId2">
                             <a href="createStaff.php">
                                 <i class="fas fa-chart-bar"></i>Create Staff</a>
                         </li>
 
                         <li>
-                            <a href="index.php">
+                        <a onclick="logout()" href="index.php">
                                 <i class="fas fa-chart-bar"></i>Logout</a>
                         </li>

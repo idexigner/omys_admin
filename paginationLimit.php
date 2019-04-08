@@ -1,8 +1,8 @@
 <?php  
  //pagination.php  
  include 'DBConfig.php';
-//  $Api="http://omysstudent.com/omys_admin/";
- $Api = "http://localhost/omys_admin/";
+ $Api="http://omysstudent.com/omys_admin/";
+//  $Api = "http://localhost/omys_admin/";
 
 
 
@@ -81,7 +81,7 @@ else{
  $output .= "  <div class='table-responsive' >
       <table class='table table-border table-striped table-earning' id='tableStu'>  
            <tr>  
-           th>Stu ID</th>
+           <th>Stu ID</th>
            <th>Name</th>
            <th>Dob</th>
            <th>Gender</th>

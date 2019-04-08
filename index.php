@@ -116,5 +116,16 @@
 
 </body>
 
+<script>
+    var role = localStorage.getItem("role");
+    //   alert(role);
+    if(role==="Staff" || role==="Admin"){
+        // alert("Please Login First");
+        window.location.href  = "/omys_admin/dashboard.php";
+
+    }
+
+</script>
+
 </html>
 <!-- end document-->
