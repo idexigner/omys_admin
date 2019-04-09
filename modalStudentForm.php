@@ -240,17 +240,34 @@
                                                 </div>
                                             </div>
 
+                                            
 
 
-                                             <div class="row form-group">
+                                            <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="text-input" class=" form-control-label">Khundi <span class="requiredField">*</span></label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                            <input list="skhundi-datalist" type="text" id="skhundi" class="form-control">
+ 
+                                            <datalist id="skhundi-datalist">
+                                                <option value="Small">Small</option>
+                                                <option value="Medium">Medium</option>
+                                                <option value="Large">Large</option>
+                                            </datalist>
+                                                <!-- <input type="text" id="khundi" name="khundi" placeholder="Enter Khundi"
+                                                    class="form-control"> -->
+                                            </div>
+                                        </div>
+
+                                             <!-- <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">Khundi<span class="requiredField">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="text" id="skhundi" name="skhundi" placeholder="Enter Khundi" class="form-control" >
-                                                    <!--<small class="form-text text-muted">This is a help text</small>-->
                                                 </div>
-                                            </div>
+                                            </div> -->
 
 
 

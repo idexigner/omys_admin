@@ -439,6 +439,9 @@ function createUserStudent() {
 
     var cnic = document.getElementById("cnic").value;
     var khundi = document.getElementById("khundi").value;
+
+    // alert(khundi);
+
     var group = document.getElementById("group").value;
 
     //var age=document.getElementById("age").value;
@@ -993,7 +996,14 @@ function loadStudentMod(data) {
             }
 
             document.getElementById("scnic").value = obj.cnic;
+
+            
+
+
             document.getElementById("skhundi").value = obj.khundi;
+
+
+
             document.getElementById("sgroup").value = obj.s_group;
             // document.getElementById("sage").value=obj.age;
             document.getElementById("somjCard").value = obj.omj_card;
@@ -2210,11 +2220,11 @@ function logout(){
 function onLoadFunction(page) {
     var role = localStorage.getItem("role");
     //   alert(role);
-    if(role!=="Staff" && role!=="Admin"){
-        alert("Please Login First");
-        window.location.href  = "/omys_admin/index.php";
+    // if(role!=="Staff" && role!=="Admin"){
+    //     alert("Please Login First");
+    //     window.location.href  = "/omys_admin/index.php";
 
-    }
+    // }
 
     if (role === "Staff") {
         document.getElementById("createStaffId").style.display = 'none';

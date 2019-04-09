@@ -17,9 +17,9 @@
       $page = 1;  
  }  
  $start_from = ($page - 1)*$record_per_page;  
-//  $query = "SELECT * FROM census ORDER BY s_id desc LIMIT $start_from, $record_per_page"; 
+ $query = "SELECT * FROM census ORDER BY s_id desc LIMIT $start_from, $record_per_page"; 
 
- $query = "SELECT * FROM census ORDER BY edit desc,s_id desc LIMIT $start_from, $record_per_page"; 
+//  $query = "SELECT * FROM census ORDER BY edit desc,s_id desc LIMIT $start_from, $record_per_page"; 
 // $query = "SELECT * FROM census ORDER BY s_id DESC LIMIT 1,326";  
  $result = mysqli_query($con, $query);  
  $output .= "  <div class='table-responsive' >
