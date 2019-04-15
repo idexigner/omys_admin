@@ -9,6 +9,7 @@ include 'DBConfig.php';
 	 // decoding the received JSON and store into $obj variable.
 	 $obj = json_decode($json,true);
 
+     $date = $obj['date'];
      $name = $obj['name'];
      $dateOfBirth = $obj['dateOfBirth'];
      $gender = $obj['gender'];
@@ -59,12 +60,12 @@ include 'DBConfig.php';
      $professionalStr = $obj['professionalStr'];
      $imgName=$obj['imgName'];
      $cardNumber=$obj['cardNumber'];
+     $user_id = $obj['user_id'];
 
 	// $result= $con->query("update purchase set name='$pname' where p_id='$p_id'");
 
-    $result = $con->query("insert into census(name,dob,gender,cnic,khundi,s_group,omj_card,birth_place,omys_card,email,contact,whatsapp,address,area,status,occupation,fh_name,fh_cnic,fh_contact,fh_omjCard,fh_occupation,m_name,m_cnic,m_contact,m_occupation,AQ,bloodGrp,PQ,addSkills,otherSkill,insName,presClass,futInt,cmpName,offAdd,currDesg,ebfutInt,hobbies,profAch,persAch,sportsInt,leftEdu,otherReason,omysMember,fh_omysMember,imgName,cardNumber) values ('$name','$dateOfBirth','$gender','$cnic','$khundi','$group','$omjCard','$birthPlace','$omysCard','$email','$contact','$whatsapp','$residentialAddress','$area','$maritualStatus','$stu_occupation','$fatherHusbandName','$fatherHusbandCnic','$fatherHusbandContact','$fatherHusbandOmjCard','$father_occupation','$motherName','$motherCnic','$motherContact','$mother_occupation','$academicStr','$bloodGroup','$professionalStr','$additionalSkills','$otherSkill','$instituteName','$presentClass','$futureInterest','$companyName','$officeAddress','$currentDesignation','$futureInterestemp','$hobbies','$professionalAchievement','$personalAchievement','$sportInterest','$ifStudent','$otherReason','$omysMember','$fatherMember','$imgName','$cardNumber')");
-    //$result= $con->query("insert into census (name,dob,gender,cnic,khundi,s_group,age,omj_card,birth_place,omys_card,email,contact,whatsapp,address,status,occupation,fh_name,fh_cnic,fh_contact,fh_occupation,m_name,m_cnic,m_contact,m_occupation,AQ,bloodGrp,PQ,addSkills,insName,presClass,lastAch,futInt,cmpName,offAdd,currDesg,ebLastAch,ebfutInt,hobbies,profAch,persAch,sportsInt,leftEdu,omysMember,fh_omysMember) values ('$name','$dateOfBirth','$gender','$cnic','$khundi','$group','$age','$omjCard','$birthPlace','$omysCard','$email','$contact','$whatsapp','$residentialAddress','$maritualStatus','$stu_occupation','$fatherHusbandName','$fatherHusbandCnic','$fatherHusbandContact','$father_occupation','$motherName','$motherCnic','$motherContact','$mother_occupation','$academicStr','$bloodGroup','$professionalStr','$additionalSkills','$instituteName','$presentClass','$lastAchievement','$futureInterest','$companyName','$officeAddress','$currentDesignation','$lastAchievementemp','$futureInterestemp',$hobbies','$professionalAchievement','$personalAchievement','$sportInterest','$ifStudent','$omysMember','$fatherMember')");
-	
+    $result = $con->query("insert into census(date,name,dob,gender,cnic,khundi,s_group,omj_card,birth_place,omys_card,email,contact,whatsapp,address,area,status,occupation,fh_name,fh_cnic,fh_contact,fh_omjCard,fh_occupation,m_name,m_cnic,m_contact,m_occupation,AQ,bloodGrp,PQ,addSkills,otherSkill,insName,presClass,futInt,cmpName,offAdd,currDesg,ebfutInt,hobbies,profAch,persAch,sportsInt,leftEdu,otherReason,omysMember,fh_omysMember,imgName,cardNumber,u_id) values ('$date','$name','$dateOfBirth','$gender','$cnic','$khundi','$group','$omjCard','$birthPlace','$omysCard','$email','$contact','$whatsapp','$residentialAddress','$area','$maritualStatus','$stu_occupation','$fatherHusbandName','$fatherHusbandCnic','$fatherHusbandContact','$fatherHusbandOmjCard','$father_occupation','$motherName','$motherCnic','$motherContact','$mother_occupation','$academicStr','$bloodGroup','$professionalStr','$additionalSkills','$otherSkill','$instituteName','$presentClass','$futureInterest','$companyName','$officeAddress','$currentDesignation','$futureInterestemp','$hobbies','$professionalAchievement','$personalAchievement','$sportInterest','$ifStudent','$otherReason','$omysMember','$fatherMember','$imgName','$cardNumber','$user_id')");
+
     if($result){
 				echo json_encode("Success");
 			}

@@ -204,6 +204,7 @@ include 'DBConfig.php';
                                                         <option value="Staff">Role</option>
                                                         <option value="Admin">Admin</option>
                                                         <option value="Staff">Staff</option>
+                                                        <option value="worker">Worker</option>
                                                        
                                                       
                                                     </select>

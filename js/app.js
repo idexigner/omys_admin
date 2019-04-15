@@ -411,8 +411,11 @@ function createUserStudent() {
     // var purchaseIdd = localStorage.getItem('purchaseIdJavascript');
     // var p_id='2';
     //var p_id=document.getElementById('purchaseUserId').innerHTML;
+    var date = new Date();
 
+    var month = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'july', 'aug', 'sept', 'oct', 'nov', 'dec'];
 
+    date = date.getDate() + '/' + month[date.getMonth()] + '/' + date.getFullYear();
     var name = document.getElementById("name").value;
 
     var dayDrop = document.getElementById("day");
@@ -594,20 +597,12 @@ function createUserStudent() {
 
 
     var academicStr = '', s1, s2, s3, aq, admYear, comYear;
-    //  yearDrop.options[yearDrop.selectedIndex].value;
-    // $aqDummyCount =  $_POST['aqDummyCount']; 
-    //console.log(document.getElementById('admYear1').value);
-    // alert(aqId.selectedIndex);
-
-    // alert(aqId.options[aqId.selectedIndex].value);
-
-    //if(document.getElementById('admYear1').value!=='' ){
+  
     if (aqId.selectedIndex != 0) {
-        // if(aqcount !== '0')
-        // {
+       
         academicStr = '[';
 
-        // $_POST['day']."/". $_POST['month']."/".$_POST['year'];
+       
 
         for (var i = 0; i < aqcount; i++) {
             s1 = 'aq' + (i + 1);
@@ -620,39 +615,23 @@ function createUserStudent() {
             comYear = document.getElementById(s3).value;
 
 
-            // \" [{"aq":"Primary","admYear":"2012","comYear":"In progress"}]
-
-
-            // [{"aq":"Matric","admYear":"2010","comYear":"2012"},{"aq":"Intermediate","admYear":"2012","comYear":"2014"}]
-
-            // $academicStr=$academicStr."{".$aq.",".$admYear.",".$comYear."}";  
-            // academicStr=academicStr+"{\"aq\":\""+aq+"\",\"admYear\":\""+admYear+"\",\"comYear\":\""+comYear+"\"}";  
 
 
             academicStr = academicStr + "{aq:\"" + aq + "\",admYear:\"" + admYear + "\",comYear:\"" + comYear + "\"}";
 
-            // if((i+1)!==aqcount && aqcount!==1){
-            //     academicStr=academicStr+",";
-            // }
-
-            // echo "<script type='text/javascript'>console.log($s2);</script>";          
+                   
 
         }
 
         academicStr += "]";
 
-        // }
-        // else{
-        //     academicStr="";
-        // }
 
     }
     var pqId = document.getElementById("pq1");
 
     var professionalStr = '', ps1, ps2, ps3, pq, padmYear, pcomYear;
 
-    // $aqDummyCount =  $_POST['aqDummyCount']; 
-    //console.log(document.getElementById('admYear1').value);
+  
     if (pqId.selectedIndex != 0) {
         // if(pqcount !== '0')
         // {
@@ -673,20 +652,12 @@ function createUserStudent() {
 
             professionalStr = professionalStr + "{pq:\"" + pq + "\",admYear:\"" + padmYear + "\",comYear:\"" + pcomYear + "\"}";
 
-            // if((i+1)!==pqcount && pqcount!==1){
-            //     professionalStr=professionalStr+",";
-            // }
-
-            // echo "<script type='text/javascript'>console.log($s2);</script>";          
+           
 
         }
 
         professionalStr += "]";
 
-        // }
-        // else{
-        //     professionalStr="";
-        // }
 
     }
 
@@ -707,9 +678,6 @@ function createUserStudent() {
     else {
         imgName = '';
     }
-
-    // alert(document.getElementById("imageUpload").value);
-    // alert(document.getElementById("imageCaptureTag").value);
 
 
     var cmin = 1000000, cmax = 10000000;
@@ -758,11 +726,14 @@ function createUserStudent() {
     }
 
 
+    var user_id = localStorage.getItem('user');
+
 
     if (checkRequired) {
         fetch(Api + 'backend/bcreateUserJava.php', {
             method: 'POST',
             body: JSON.stringify({
+                date: date,
                 name: name,
                 dateOfBirth: dateOfBirth,
                 gender: gender,
@@ -813,6 +784,7 @@ function createUserStudent() {
                 professionalStr: professionalStr,
                 imgName: imgName,
                 cardNumber: cardNumber,
+                user_id:user_id
 
                 // pass: pass,
                 // fullname: fullname,
@@ -856,7 +828,7 @@ function createUserStudent() {
 
 
 function blogin() {
-    console.log("reached");
+    //console.log("reached");
     var username = document.getElementById("username").value;
     var pass = document.getElementById("password").value;
 
@@ -881,6 +853,7 @@ function blogin() {
             else {
                 // alert("farazedit"+ responseJson[0].role);
                 localStorage.setItem("role", responseJson[0].role);
+                localStorage.setItem("user", responseJson[0].u_id);
                 window.location.href = "/omys_admin/dashboard.php";
             }
             // console.log(responseJson);
@@ -971,7 +944,7 @@ function loadStudentMod(data) {
 
             document.getElementById("sday").selectedIndex = indexDay;
 
-            var arrayMonth = ['MM', 'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'july', 'aug', 'sep', 'oct', 'nov', 'dec'];
+            var arrayMonth = ['MM', 'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'july', 'aug', 'sept', 'oct', 'nov', 'dec'];
 
             var indexMonth = arrayMonth.indexOf(month);
 
@@ -2225,12 +2198,20 @@ function onLoadFunction(page) {
     //     window.location.href  = "/omys_admin/index.php";
 
     // }
+    if (role === "worker") {
+        document.getElementById("createStaffId").style.display = 'none';
+        document.getElementById("createStaffId2").style.display = 'none';
+        // document.getElementById("ReportId").style.display = 'none';
+        // document.getElementById("ReportId2").style.display = 'none';
+        document.getElementById("viewUserId").style.display = 'none';
+        document.getElementById("viewUserId2").style.display = 'none';
+    }
 
     if (role === "Staff") {
         document.getElementById("createStaffId").style.display = 'none';
         document.getElementById("createStaffId2").style.display = 'none';
-        document.getElementById("ReportId").style.display = 'none';
-        document.getElementById("ReportId2").style.display = 'none';
+        // document.getElementById("ReportId").style.display = 'none';
+        // document.getElementById("ReportId2").style.display = 'none';
     }
     console.log(role);
     if (page === 'dashboard') {

@@ -26,11 +26,12 @@ if($_POST['receive'] == 'pagin'){
         // $search='%'.$_POST['search'].'%';
         //  echo $search;
          $start_from = $_POST['start'];
-        //
-        // $query = "SELECT * FROM census where s_id between $start_from and $record_per_page ORDER BY s_id "; 
-         $query = "SELECT * FROM census where s_id between $start_from and $record_per_page ORDER BY edit desc,s_id "; 
-         //$query = "SELECT * FROM census ORDER BY s_id desc LIMIT $start_from, $record_per_page"; 
-        // $query = "SELECT * FROM census ORDER BY s_id DESC LIMIT 1,326";  
+        
+     
+         $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.s_id between $start_from and $record_per_page ORDER BY c.edit desc,c.s_id "; 
+   
+
+//        $query = "SELECT * FROM census where s_id between $start_from and $record_per_page ORDER BY edit desc,s_id "; 
 }
 else{
             $record_per_page = 400;
@@ -54,22 +55,35 @@ else{
             //  $start_from = $_POST['start'];
             if($column == 'name'){
             
-            $query = "SELECT * FROM census where name like '$search' ORDER BY edit desc,s_id"; 
+                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.name like '$search' ORDER BY c.edit desc,c.s_id"; 
+
+           // $query = "SELECT * FROM census where name like '$search' ORDER BY edit desc,s_id"; 
             }
             else if ($column == 'khundi'){
-                $query = "SELECT * FROM census where khundi like '$search' ORDER BY edit desc,s_id"; 
+
+                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.khundi like '$search' ORDER BY c.edit desc,c.s_id"; 
+               // $query = "SELECT * FROM census where khundi like '$search' ORDER BY edit desc,s_id"; 
             }
             else if ($column == 'contact'){
-                $query = "SELECT * FROM census where contact like '$search' ORDER BY edit desc,s_id"; 
+
+                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.contact like '$search' ORDER BY c.edit desc,c.s_id"; 
+                // $query = "SELECT * FROM census where contact like '$search' ORDER BY edit desc,s_id"; 
             }
             else if ($column == 'fh_name'){
-                $query = "SELECT * FROM census where fh_name like '$search' ORDER BY edit desc,s_id"; 
+
+                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.fh_name like '$search' ORDER BY c.edit desc,c.s_id"; 
+
+               // $query = "SELECT * FROM census where fh_name like '$search' ORDER BY edit desc,s_id"; 
             }
             else if ($column == 'address'){
-                $query = "SELECT * FROM census where address like '$search' ORDER BY edit desc,s_id"; 
+
+                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.address like '$search' ORDER BY c.edit desc,c.s_id";
+                // $query = "SELECT * FROM census where address like '$search' ORDER BY edit desc,s_id"; 
             }
             else if ($column == 'area'){
-                $query = "SELECT * FROM census where area like '$search' ORDER BY edit desc,s_id"; 
+
+                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.area like '$search' ORDER BY c.edit desc,c.s_id"; 
+                // $query = "SELECT * FROM census where area like '$search' ORDER BY edit desc,s_id"; 
             }
             
             //  $query = "SELECT * FROM census ORDER BY s_id  LIMIT $start_from, $record_per_page"; 
@@ -135,6 +149,7 @@ else{
            <th>OMYS Member</th>
            <th>Father OMYS Member</th>
            <th>cardNumber</th> 
+           <th>User</th> 
         
            </tr>  
           
@@ -203,7 +218,7 @@ $countLoop = 0;
       
       <tr onClick="loadStudentMod('.$row["s_id"].')" style="background-color:'.$editColor.'" >
       <td>'.$row["s_id"].'</td>
-      <td>'.$row["name"].'</td>
+      <td>'.$row["student_name"].'</td>
       <td>'.$row["dob"].'</td>
       <td>'.$row["gender"].'</td>
       <td>'.$row["cnic"].'</td>
@@ -256,6 +271,7 @@ $countLoop = 0;
       <td>'.$row["omysMember"].'</td>
       <td>'.$row["fh_omysMember"].'</td>
       <td>'.$row["cardNumber"].'</td>
+      <td>'.$row["staff_name"].'</td>
       <input type="text" id="imgLink'.$countLoop.'" value="'.$img.'"  style="display:none;"/>
       <input type="text" id="imgName'.$countLoop.'" value="'.$imgName.'"  style="display:none;"/>  
 

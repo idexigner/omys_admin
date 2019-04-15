@@ -17,7 +17,9 @@
       $page = 1;  
  }  
  $start_from = ($page - 1)*$record_per_page;  
- $query = "SELECT * FROM census ORDER BY s_id desc LIMIT $start_from, $record_per_page"; 
+ $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id ORDER BY c.s_id desc LIMIT $start_from, $record_per_page"; 
+
+// $query = "SELECT * FROM census ORDER BY s_id desc LIMIT $start_from, $record_per_page"; 
 
 //  $query = "SELECT * FROM census ORDER BY edit desc,s_id desc LIMIT $start_from, $record_per_page"; 
 // $query = "SELECT * FROM census ORDER BY s_id DESC LIMIT 1,326";  
@@ -26,6 +28,7 @@
       <table class='table table-border table-striped table-earning' id='tableStu'>  
            <tr>  
            <th>Stu ID</th>
+           <th>Date</th>
            <th>Name</th>
            <th>Dob</th>
            <th>Gender</th>
@@ -79,6 +82,7 @@
            <th>OMYS Member</th>
            <th>Father OMYS Member</th>
            <th>cardNumber</th> 
+           <th>User</th> 
           
            </tr>  
            
@@ -144,10 +148,10 @@ $countLoop = 0;
           $editColor='#FFFFFF';
       }
       $output .= '  
-      
       <tr onClick="loadStudentMod('.$row["s_id"].')" style="background-color:'.$editColor.'">
       <td>'.$row["s_id"].'</td>
-      <td>'.$row["name"].'</td>
+      <td>'.$row["date"].'</td>
+      <td>'.$row["student_name"].'</td>      
       <td>'.$row["dob"].'</td>
       <td>'.$row["gender"].'</td>
       <td>'.$row["cnic"].'</td>
@@ -200,6 +204,7 @@ $countLoop = 0;
       <td>'.$row["omysMember"].'</td>
       <td>'.$row["fh_omysMember"].'</td>
       <td>'.$row["cardNumber"].'</td>
+      <td>'.$row["staff_name"].'</td>
       <input type="text" id="imgLink'.$countLoop.'" value="'.$img.'"  style="display:none;"/>
       <input type="text" id="imgName'.$countLoop.'" value="'.$imgName.'" style="display:none;"/> 
       
