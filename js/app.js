@@ -1,9 +1,6 @@
 // const Api="http://omysstudent.com/omys_admin/";
 const Api = "http://localhost/omys_admin/";
 
-
-
-
 var student_data = [];
 var stu_id;
 
@@ -902,7 +899,7 @@ function loadStudentMod(data) {
     // purchaseTable();
     // sremoveAcademic();
     // sremoveProfessional();
-    console.log("reached student modal")
+   // console.log("reached student modal")
     $('#userStudentModal').modal('show');
     //var purchaseIdd=purc_id;
     stu_id = data;
@@ -927,8 +924,9 @@ function loadStudentMod(data) {
         .then((responseJson) => {
             var obj = responseJson[0];
             document.getElementById("sid").value = obj.s_id;
-
-            document.getElementById("sname").value = obj.name;
+            
+            document.getElementById("sStaffName").value = obj.staff_name;
+            document.getElementById("sname").value = obj.student_name;
             var sdob = obj.dob;
 
             var date = sdob.substr(0, (sdob.indexOf("/")));
@@ -2181,6 +2179,36 @@ function imageDownload() {
     });
 }
 
+function khundiListChange(){
+    
+    var khundiArray = ["ASWANI", "BARAI", "BHANWARIA", "DADWALA", "DARBAR", "DARIYA", "DAWRA", "DUROODWALA", "ESSANI", "GABA", "GABRANI", "GAGAI", "GANATRA", "GATTA", "GAZIANI", "JAFRANI", "JAKHURA HYD", "JAKHURA", "JIWANI", "KALANI", "KARAR", "KATH", "KHOSA", "LADHANI", "MAMDANI", "MANGRORIA", "MARKATIYA", "MOORAD", "MOOSANI", "MUHAMMADI", "MULLARA", "PANJWANI HYD", "PANJWANI", "PASTA", "PATEL", "POPATPOTRA", "SURIYA", "TOBERIA", "VAYANI", "OTHER" ];
+
+    if(khundiArray.indexOf(document.getElementById("khundi").value) > -1){
+
+    }
+    else{
+        alert("Kindly Select Khundi From the given Dropdown");
+        document.getElementById("khundi").value = "";
+        document.getElementById("khundi").focus();
+    }
+  //  console.log("reached khundi List");
+}
+
+
+function skhundiListChange(){
+    
+    var khundiArray = ["ASWANI", "BARAI", "BHANWARIA", "DADWALA", "DARBAR", "DARIYA", "DAWRA", "DUROODWALA", "ESSANI", "GABA", "GABRANI", "GAGAI", "GANATRA", "GATTA", "GAZIANI", "JAFRANI", "JAKHURA HYD", "JAKHURA", "JIWANI", "KALANI", "KARAR", "KATH", "KHOSA", "LADHANI", "MAMDANI", "MANGRORIA", "MARKATIYA", "MOORAD", "MOOSANI", "MUHAMMADI", "MULLARA", "PANJWANI HYD", "PANJWANI", "PASTA", "PATEL", "POPATPOTRA", "SURIYA", "TOBERIA", "VAYANI", "OTHER" ];
+
+    if(khundiArray.indexOf(document.getElementById("skhundi").value) > -1){
+
+    }
+    else{
+        alert("Kindly Select Khundi From the given Dropdown");
+        document.getElementById("skhundi").value = "";
+        document.getElementById("skhundi").focus();
+    }
+  //  console.log("reached khundi List");
+}
 
 function logout(){
     alert("Thank you For using Census System");
@@ -2193,11 +2221,11 @@ function logout(){
 function onLoadFunction(page) {
     var role = localStorage.getItem("role");
     //   alert(role);
-    // if(role!=="Staff" && role!=="Admin"){
-    //     alert("Please Login First");
-    //     window.location.href  = "/omys_admin/index.php";
+    if(role!=="Staff" && role!=="Admin" && role!=="worker"){
+        alert("Please Login First");
+        window.location.href  = "/omys_admin/index.php";
 
-    // }
+    }
     if (role === "worker") {
         document.getElementById("createStaffId").style.display = 'none';
         document.getElementById("createStaffId2").style.display = 'none';
@@ -2219,17 +2247,16 @@ function onLoadFunction(page) {
         document.getElementById("dashboardId2").className = "active has-sub";
     }
     else if (page === 'viewUser') {
-        document.getElementById("viewUserId").className = "active has-sub";
-        document.getElementById("viewUserId2").className = "active has-sub";
-        // tableLoad();
-        // var as= prompt("Reached Page");
-        // if(as === 'a'){
-        //     alert("Thank You");
-        //     abc();
-        // }
-        // else{
-        //     alert("Sorry");
-        // }
+        if(role == "Admin" || role == "Staff"){
+            document.getElementById("viewUserId").className = "active has-sub";
+            document.getElementById("viewUserId2").className = "active has-sub";
+
+        }
+        else{
+            alert("You dont have enough rights");
+        window.location.href  = "/omys_admin/dashboard.php";
+        }
+      
 
     }
     else if (page === 'createUser') {
@@ -2238,14 +2265,26 @@ function onLoadFunction(page) {
     }
 
     else if (page === 'createStaff') {
+        if(role == "Admin"){
         document.getElementById("createStaffId").className = "active has-sub";
         document.getElementById("createStaffId2").className = "active has-sub";
         staffTableLoad();
+        }
+        else{
+            alert("You dont have enough rights");
+           window.location.href  = "/omys_admin/dashboard.php";
+        }
     }
     else if (page === 'reportPrctc') {
-        document.getElementById("ReportId").className = "active has-sub";
-        document.getElementById("ReportId2").className = "active has-sub";
-        reportNameMethod();
+        if(role == "Admin"){
+            document.getElementById("ReportId").className = "active has-sub";
+            document.getElementById("ReportId2").className = "active has-sub";
+            reportNameMethod();
+        }
+        else{
+            alert("You dont have enough rights");
+        window.location.href  = "/omys_admin/dashboard.php";
+        }
 
 
     }

@@ -79,6 +79,7 @@
                                                          
                                                         <option value="Admin">Admin</option>
                                                         <option value="Staff">Staff</option>
+                                                        <option value="worker">Worker</option>
                                                       
                                                     </select>
                                                     

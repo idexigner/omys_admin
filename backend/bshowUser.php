@@ -10,7 +10,7 @@ include 'DBConfig.php';
 	 $obj = json_decode($json,true);
      $id = $obj['id'];
 
-	$result= $con->query("select * from census where s_id='$id'");
+	$result= $con->query("SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.s_id='$id'");
 	
 	
 		if($result->num_rows>0){
