@@ -1,5 +1,6 @@
 var Api='';
 
+<<<<<<< HEAD
 if(window.location.href.includes("localhost")){
     Api = "http://localhost/omys_admin/";
 }
@@ -10,6 +11,8 @@ else{
 
 //
 
+=======
+>>>>>>> 553c54c737a417d845f5e3d2cd1d2eac904d4862
 var student_data = [];
 var stu_id;
 
