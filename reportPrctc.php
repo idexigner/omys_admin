@@ -36,7 +36,7 @@
       $obj_pdf->setPrintFooter(false);  
       $obj_pdf->SetAutoPageBreak(TRUE, 10);  
       $obj_pdf->SetFont('helvetica', '', 8);  
-      $obj_pdf->AddPage(); 
+      $obj_pdf->AddPage('L'); 
       $obj_pdf->setJPEGQuality(100);
 
       $imgdata = base64_decode('iVBORw0KGgoAAAANSUhEUgAAABwAAAASCAMAAAB/2U7WAAAABlBMVEUAAAD///+l2Z/dAAAASUlEQVR4XqWQUQoAIAxC2/0vXZDrEX4IJTRkb7lobNUStXsB0jIXIAMSsQnWlsV+wULF4Avk9fLq2r8a5HSE35Q3eO2XP1A1wQkZSgETvDtKdQAAAABJRU5ErkJggg==');
@@ -50,11 +50,11 @@
       
       include 'backend/DBConfig.php';
       if($idText== ''){
-        $sql = "SELECT * FROM census ";  
+        $sql = "SELECT s_id,name,fh_name,khundi,cnic,dob,bloodGrp,address,contact,fh_contact,imgName,gender FROM census ";  
 
       }
       else{
-        $sql = "SELECT * FROM census where s_id not in(".$idText.")";  
+        $sql = "SELECT s_id,name,fh_name,khundi,cnic,dob,bloodGrp,address,contact,fh_contact,imgName,gender FROM census where s_id not in(".$idText.")";  
       }
      // $connect = mysqli_connect("localhost", "root", "", "testing");  
       
@@ -63,74 +63,282 @@
       $count=0;
       while($row = mysqli_fetch_array($result))  
       { 
-        $demo=$row['name'];
-        $demo1=$row['fh_name'];
-        $demo2=$row['khundi'];
-        $demo3=$row['cnic'];
-        $demo4=$row['dob'];
-        $demo5=$row['bloodGrp'];
-        $demo6=$row['address'];
-        $demo7=$row['contact'];
-        $demo8=$row['fh_contact'];
-        $demo9=$row['imgName'];
+        // $demoSid=$row['s_id'];
+        // $demo=$row['name'];
+        // $demo1=$row['fh_name'];
+        // $demo2=$row['khundi'];
+        // $demo3=$row['cnic'];
+        // $demo4=$row['dob'];
+
+//         <style>
+// .module footer-services{
+// margin-bottom:9px !important;
+// }
+// .header-center{
+// padding: 9px 0 0 0 !important;
+// }
+// </style>
+        // $demo5=$row['bloodGrp'];
+        // $demo6=$row['address'];
+        // $demo7=$row['contact'];
+        // $demo8=$row['fh_contact'];
+        // $demo9=$row['imgName'];
         
         
        
-        $obj_pdf->Image('images/front.jpg', 5,5+$x, 90, 53, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
+        $obj_pdf->Image('images/FrontCardrgb2.jpg', 5+$x,5, 53, 90, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
 
-        // $obj_pdf->Image('images/pic.jpg', 10, 24+$x, 20, 24, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
-        $obj_pdf->Image('../omys_backend/uploads/images/'.$demo9.'.jpeg', 108, 8+$x, 11, 14, 'JPG', '#', '', true, 150, '', false, false, 0, false, false, false);
+        
+        if($row['gender']== 'male'){
+            
+        }// ../omys_backend/uploads/images/$obj_pdf->Image('images/pic.jpg', 10, 24+$x, 20, 24, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
+        $obj_pdf->Image('../omys_backend/uploads/images/'.$row['imgName'].'.jpeg', 24+$x,30.2, 15, 20, 'JPG', '#', '', true, 150, '', false, false, 0, false, false, false);
 
-        $obj_pdf->SetFont('helvetica', '', 7);
+        $obj_pdf->Image('images/logo.png', 12+$x,16, 11, 13, 'PNG', '#', '', false, 150, '', false, false, 0, false, false, false);
 
-        $obj_pdf->SetXY(51, 24.5+$x);
-        $obj_pdf->Cell(0, 0, $row['name'], 0, 1, 'L', 0, '', 1);
-        $obj_pdf->SetXY(51, 28+$x);
-        $obj_pdf->Cell(0, 0, $row['fh_name'], 0, 1, 'L', 0, '', 1);
-        $obj_pdf->SetXY(51, 31.5+$x);
-        $obj_pdf->Cell(0, 0, $row['khundi'], 0, 1, 'L', 0, '', 1);
-        $obj_pdf->SetXY(51, 35+$x);
-        $obj_pdf->Cell(0, 0, $demo3, 0, 1, 'L', 0, '', 1);
-        $obj_pdf->SetXY(51, 38.5+$x);
-        $obj_pdf->Cell(0, 0, $demo4, 0, 1, 'L', 0, '', 1);
-        $obj_pdf->SetXY(51, 42+$x);
-        $obj_pdf->Cell(0, 0, $demo5, 0, 1, 'L', 0, '', 1);
+        $obj_pdf->Image('images/censusLogo.png', 30+$x,82, 24, 11, 'PNG', '#', '', false, 150, '', false, false, 0, false, false, false);
+
+        $obj_pdf->SetFont('helvetica', 'B', 7);
+        $obj_pdf->SetTextColor(255,255,255);
+        $obj_pdf->SetXY(7+$x, 10);
+        $obj_pdf->Cell(0, 0, "THE OKHAI MEMON", 0, 1, 'L', 0, '', 1);
+        $obj_pdf->SetXY(7.5+$x, 13);
+        $obj_pdf->Cell(0, 0, "YOUTH SERVICES", 0, 1, 'L', 0, '', 1);
+
+
+
+        $obj_pdf->SetFont('helvetica', '', 6);
+        $obj_pdf->SetTextColor(0,0,0);
+        $obj_pdf->SetXY(40+$x, 30);
+        $obj_pdf->Cell(0, 0, "Registration No.", 0, 1, 'L', 0, '', 1);
+        $obj_pdf->SetXY(40+$x, 33);
+        $obj_pdf->Cell(0, 0,$row['s_id'], 0, 1, 'L', 0, '', 1);
+
+
+        $obj_pdf->SetFont('helvetica', 'B', 7.5);
+
+        if(strlen($row['name'])>11){
+            if(strlen($row['name'])>20){
+                $obj_pdf->SetXY(16+$x, 53);
+                $obj_pdf->Cell(0,0, $row['name'], 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+            }
+            else{
+                $obj_pdf->SetXY(20+$x, 53);
+            $obj_pdf->Cell(0,0, $row['name'], 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+            }
+        }
+        else{
+            $obj_pdf->SetXY(24.5+$x, 53);
+        $obj_pdf->Cell(0,0, $row['name'], 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+        }
+        
+        // $obj_pdf->Cell(0 , 0 , $row['name'], 0, false, 'L', 0, '', 0, false, 'T', 'M');
+
+
+        $obj_pdf->SetFont('helvetica', '',6.5);
+        $obj_pdf->SetXY(7+$x, 60);
+        $obj_pdf->Cell(0,0, 'Father Name :', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+        $obj_pdf->SetXY(23+$x, 60);
+        $obj_pdf->Cell(0,0, $row['fh_name'], 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+
+        $obj_pdf->SetXY(7+$x, 64);
+        $obj_pdf->Cell(0,0, 'Khundi', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+        $obj_pdf->SetXY(23+$x, 64);
+        $obj_pdf->Cell(0,0, $row['khundi'], 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+
+
+        $obj_pdf->SetXY(7+$x, 68);
+        $obj_pdf->Cell(0,0, 'D.O.B. :', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+        $obj_pdf->SetXY(23+$x, 68);
+        $obj_pdf->Cell(0,0, $row['dob'], 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+
+
+        $obj_pdf->SetXY(7+$x, 72);
+        $obj_pdf->Cell(0,0, 'Blood Group :', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+        $obj_pdf->SetXY(23+$x, 72);
+        $obj_pdf->Cell(0,0, $row['bloodGrp'], 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+
+
+
+
+
+
+
+        $obj_pdf->Image('images/BackCardrgb2.jpg', 5+$x, 105, 53, 90, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
+
+
+        // $obj_pdf->Image('../omys_backend/uploads/images/'.$demo9.'.jpg', 108, 8+$x, 11, 14, 'JPG', '#', '', true, 150, '', false, false, 0, false, false, false);
+     
+        $obj_pdf->Image('images/logo.png', 26+$x,153, 11, 13, 'PNG', '#', '', false, 150, '', false, false, 0, false, false, false);
+
+
+        $style = array(
+            'border' => 2,
+            'vpadding' => 'auto',
+            'hpadding' => 'auto',
+            'fgcolor' => array(0,0,0),
+            'bgcolor' =>  array(255,255,255),
+            'module_width' => 1,
+            'module_height' => 1
+
+        );
+        $barcode = array(
+            'Registration No.:' => $row['s_id'],
+            'Name : ' => $row['name'],
+            'Father Name : ' => $row['fh_name'],
+            'Khundi : ' => $row['khundi'],
+            'D.O.B. : ' => $row['dob'],
+            'Blood group : ' => $row['bloodGrp'],
+            'Adrress : ' => $row['address'],
+            'Contact : ' => $row['contact'],
+            'Incase Emergency : ' => $row['fh_contact']
+        );
+
+        $qrCode = 'Registration No. : [[[' . $row['s_id'] .']]] '.
+        'Name : [[[' . $row['name'] .']]] '.
+        'Father Name : [[[' . $row['fh_name'] .']]] '.
+        'Khundi : [[[' . $row['khundi'] .']]] '.
+        'D.O.B. : [[[' . $row['dob'] .']]] '.
+        'Blood group : [[[' . $row['bloodGrp'] .']]] '.
+        'Adrress : [[[' . $row['address'] .']]] '.
+        'Contact : [[[' . $row['contact'] .']]] '.
+        'Incase Emergency : [[[' . $row['fh_contact'];
+        // $obj_pdf->SetXY(7+$x, 128);
+        // $obj_pdf->Cell(0,0, 'Contact No :', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+        // $obj_pdf->SetXY(10+$x, 120);
+        // $obj_pdf->Cell(0,0, $row['contact'], 0, false, 'L', 0, '', 0, false, 'T', 'M');
+        $obj_pdf->write2DBarcode($qrCode ,'QRCODE,H',24+$x,135,15,15,$style,'N');
+
+        $obj_pdf->SetFont('helvetica', '',6.1);
+        $obj_pdf->SetXY(7+$x, 120);
+        $obj_pdf->Cell(0,0, 'Address :', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+
+        if(strlen($row['address']) >28){
+            if(strlen($row['address']) >60){
+                $obj_pdf->SetXY(17+$x, 120);
+                $obj_pdf->Cell(0,0, substr($row['address'],0,27), 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+                $obj_pdf->SetXY(17+$x, 123);
+                $obj_pdf->Cell(0,0, substr($row['address'],27,33), 0, false, 'L', 0, '', 0, false, 'T', 'M');
+                $obj_pdf->SetXY(17+$x, 126);
+                $obj_pdf->Cell(0,0, substr($row['address'],60), 0, false, 'L', 0, '', 0, false, 'T', 'M');
+            }
+            else{
+
+            
+            $obj_pdf->SetXY(17+$x, 120);
+            $obj_pdf->Cell(0,0, substr($row['address'],0,27), 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+            $obj_pdf->SetXY(17+$x, 123);
+            $obj_pdf->Cell(0,0, substr($row['address'],27), 0, false, 'L', 0, '', 0, false, 'T', 'M');
+            }
+        }
+        else{
+            $obj_pdf->SetXY(17+$x, 120);
+            $obj_pdf->Cell(0,0, $row['address'], 0, false, 'L', 0, '', 0, false, 'T', 'M');
+
+        }
+
+
+        $obj_pdf->SetXY(7+$x, 128);
+        $obj_pdf->Cell(0,0, 'Contact No :', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+        $obj_pdf->SetXY(20+$x, 128);
+        $obj_pdf->Cell(0,0, $row['contact'], 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+
+        $obj_pdf->SetXY(7+$x, 131);
+        $obj_pdf->Cell(0,0, 'Incase of Emergency :', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+        $obj_pdf->SetXY(29+$x, 131);
+        $obj_pdf->Cell(0,0, $row['fh_contact'], 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+
+
+        $obj_pdf->SetXY(19+$x, 150);
+        $obj_pdf->Cell(0,0, 'If found please return to', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+
+
+        $obj_pdf->SetFont('helvetica', 'B',7);
+        $obj_pdf->SetXY(7.5+$x, 167);
+        $obj_pdf->Cell(0,0, 'THE OKHAI MEMON YOUTH SERVICES', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+        $obj_pdf->SetFont('helvetica', '',6.5);
+        $obj_pdf->SetXY(9+$x, 170);
+        $obj_pdf->Cell(0,0, 'Plot No, 522 Block 3 near HEF Family Park,', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+        $obj_pdf->SetXY(11+$x, 172.5);
+        $obj_pdf->Cell(0,0, 'Hussainabad, F.B.Area, Karachi-75950', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+        $obj_pdf->SetXY(12+$x, 175);
+        $obj_pdf->Cell(0,0, 'Tel : 021 - 36312090 / 36314338', 0, false, 'L', 0, '', 0, false, 'T', 'M');
+        
+        $obj_pdf->SetFont('helvetica', '',6);
+        $obj_pdf->SetXY(15+$x, 185);
+        $obj_pdf->Cell(0,0, 'Email : azmealishan@omys.org', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+
+        $obj_pdf->SetTextColor(255,255,255);
+        $obj_pdf->SetXY(17+$x, 189);
+        $obj_pdf->Cell(0,0, 'Website : www.omys.org', 0, false, 'L', 0, '', 0, false, 'T', 'M'); 
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        // $obj_pdf->Cell(20, 10, $date->format('d.m.Y'), 0, false, 'L', 0, '', 0, false, 'T', 'M');   
+        // $obj_pdf->Cell(0, 0, 'Creator', 0, false, 'C', 0, '', 0, false, 'T', 'M'); 
+        // $obj_pdf->Cell(20, 10, 'Page '.$obj_pdf->getAliasNumPage().'/'.$obj_pdf->getAliasNbPages(), 0, false, 'R', 0, '', 0, false, 'T', 'M');
+
+        // $obj_pdf->Cell(0,0,$row['name'],0,1,"L",0,"",1);
+        // $obj_pdf->Cell(0, 0, $row['name'], 0, 1, 'L', 0, '', 1);
+        // $obj_pdf->SetXY(27+$x, 32);
+        // $obj_pdf->Cell(0, 0, $demoSid, 0, 1, 'L', 0, '', 1);
+
+
+
+        // $obj_pdf->SetXY(51, 24.5+$x);
+        // $obj_pdf->Cell(0, 0, $row['name'], 0, 1, 'L', 0, '', 1);
+        // $obj_pdf->SetXY(51, 28+$x);
+        // $obj_pdf->Cell(0, 0, $row['fh_name'], 0, 1, 'L', 0, '', 1);
+        // $obj_pdf->SetXY(51, 31.5+$x);
+        // $obj_pdf->Cell(0, 0, $row['khundi'], 0, 1, 'L', 0, '', 1);
+        // $obj_pdf->SetXY(51, 35+$x);
+        // $obj_pdf->Cell(0, 0, $demo3, 0, 1, 'L', 0, '', 1);
+        // $obj_pdf->SetXY(51, 38.5+$x);
+        // $obj_pdf->Cell(0, 0, $demo4, 0, 1, 'L', 0, '', 1);
+        // $obj_pdf->SetXY(51, 42+$x);
+        // $obj_pdf->Cell(0, 0, $demo5, 0, 1, 'L', 0, '', 1);
         // ';
 
 
+//        $obj_pdf->Image('images/BackCardrgb.jpg', 105, 5+$x, 53, 90, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
 
 
-        $obj_pdf->Image('images/back.jpg', 105, 5+$x, 90, 53, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
-
-        // $obj_pdf->Image('images/pic.jpg', 108, 8+$x, 11, 14, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
-
-        $obj_pdf->Image('../omys_backend/uploads/images/'.$demo9.'.jpeg', 108, 8+$x, 11, 14, 'JPG', '#', '', true, 150, '', false, false, 0, false, false, false);
-        // Sameer M Ashraf1281.134822173044
-        $obj_pdf->SetXY(143, 7.5+$x);
-        $obj_pdf->Cell(0, 0, $demo6, 0, 1, 'L', 0, '', 1);
-        $obj_pdf->SetXY(143, 14.5+$x);
-        $obj_pdf->Cell(0, 0, $demo7, 0, 1, 'L', 0, '', 1);
-        $obj_pdf->SetXY(143, 18+$x);
-        $obj_pdf->Cell(0, 0, $demo8, 0, 1, 'L', 0, '', 1);
+           // Sameer M Ashraf1281.134822173044
+        // $obj_pdf->SetXY(143, 7.5+$x);
+        // $obj_pdf->Cell(0, 0, $demo6, 0, 1, 'L', 0, '', 1);
+        // $obj_pdf->SetXY(143, 14.5+$x);
+        // $obj_pdf->Cell(0, 0, $demo7, 0, 1, 'L', 0, '', 1);
+        // $obj_pdf->SetXY(143, 18+$x);
+        // $obj_pdf->Cell(0, 0, $demo8, 0, 1, 'L', 0, '', 1);
 
         $count++;
         $x+=55;
         if(($count%5)===0)
         {
-          $obj_pdf->AddPage(); 
+          $obj_pdf->AddPage('L'); 
           $x=0;
         }
 
-        $obj_pdf->Image('images/front.jpg', 5,5+$x, 90, 53, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
+        // $obj_pdf->Image('images/FrontCardrgb.jpg', 5,5+$x, 53, 90, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
 
-        $obj_pdf->Image('images/pic.jpg', 10, 24+$x, 20, 24, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
-
-
+        // $obj_pdf->Image('images/pic.jpg', 10, 24+$x, 20, 24, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
 
 
-        $obj_pdf->Image('images/back.jpg', 105, 5+$x, 90, 53, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
 
-        $obj_pdf->Image('images/pic.jpg', 108, 8+$x, 11, 14, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
+
+        // $obj_pdf->Image('images/BackCardrgb.jpg', 105, 5+$x, 53, 90, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
+
+        // $obj_pdf->Image('images/pic.jpg', 108, 8+$x, 11, 14, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
 
 
       }

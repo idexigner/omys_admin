@@ -9,8 +9,8 @@ if (strpos($url, "localhost")) {
     $HostName = "localhost";
     
     //Define your database name here.
-    $DatabaseName = "omys";
-    // $DatabaseName = "omys_faraz";
+    // $DatabaseName = "omys";
+    $DatabaseName = "omys_faraz";
     
     //Define your database username here.
     $HostUser = "root";

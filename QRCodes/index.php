@@ -31,8 +31,10 @@
                 </div>
                 <hr>
                 <form action="show.php" method="get">
-                    <input type="text" autocomplete="off" class="form-control" name="text" style="border-radius: 0px; " placeholder="Text..." value="">
-                    <br>
+                    <!-- <input type="text" autocomplete="off" class="form-control" name="text" style="border-radius: 0px; " placeholder="Text..." value=""> -->
+                    
+                    <textarea class="form-control" name="text" style="border-radius: 0px; " placeholder="Text..." ></textarea>
+<br>
                     <input type="submit" class="btn btn-md btn-danger btn-block" value="Generate">
                 </form>
             </div>

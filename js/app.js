@@ -1,6 +1,6 @@
 var Api='';
 
-<<<<<<< HEAD
+
 if(window.location.href.includes("localhost")){
     Api = "http://localhost/omys_admin/";
 }
@@ -9,10 +9,7 @@ else{
 }
 
 
-//
 
-=======
->>>>>>> 553c54c737a417d845f5e3d2cd1d2eac904d4862
 var student_data = [];
 var stu_id;
 
@@ -1124,6 +1121,10 @@ function loadStudentMod(data) {
                 document.getElementById('sedit').checked = true;
             }
 
+            if (obj.print == 'printed') {
+                document.getElementById('sprint').checked = true;
+            }
+
 
             var imgDb = obj.imgName;
             document.getElementById("imgFromDb").value = imgDb;
@@ -1514,6 +1515,13 @@ function updateStudentUser() {
         edit = 'edited';
     }
 
+    var print = '';
+    if (document.getElementById('sprint').checked) {
+        print = 'printed';
+    }
+
+    
+
     var checkUpdateRequired = true;
 
     if (sname === '' && checkUpdateRequired) {
@@ -1604,7 +1612,8 @@ function updateStudentUser() {
                 academicStr: academicStr,
                 professionalStr: professionalStr,
                 imgName: imgName,
-                edit: edit
+                edit: edit,
+                print: print
                 // pass: pass,
                 // fullname: fullname,
             }),
@@ -2322,9 +2331,6 @@ function onLoadFunction(page) {
 
 
     }
-
-
-
 }
 
 

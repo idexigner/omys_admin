@@ -35,7 +35,7 @@ if($_POST['receive'] == 'pagin'){
          $start_from = $_POST['start'];
         
      
-         $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.s_id between $start_from and $record_per_page ORDER BY c.edit desc,c.s_id desc"; 
+         $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.s_id between $start_from and $record_per_page ORDER BY c.print desc,c.edit desc,c.s_id desc"; 
    
 
 //        $query = "SELECT * FROM census where s_id between $start_from and $record_per_page ORDER BY edit desc,s_id "; 
@@ -62,34 +62,34 @@ else{
             //  $start_from = $_POST['start'];
             if($column == 'name'){
             
-                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.name like '$search' ORDER BY c.edit desc,c.s_id"; 
+                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.name like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
 
            // $query = "SELECT * FROM census where name like '$search' ORDER BY edit desc,s_id"; 
             }
             else if ($column == 'khundi'){
 
-                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.khundi like '$search' ORDER BY c.edit desc,c.s_id"; 
+                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.khundi like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
                // $query = "SELECT * FROM census where khundi like '$search' ORDER BY edit desc,s_id"; 
             }
             else if ($column == 'contact'){
 
-                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.contact like '$search' ORDER BY c.edit desc,c.s_id"; 
+                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.contact like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
                 // $query = "SELECT * FROM census where contact like '$search' ORDER BY edit desc,s_id"; 
             }
             else if ($column == 'fh_name'){
 
-                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.fh_name like '$search' ORDER BY c.edit desc,c.s_id"; 
+                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.fh_name like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
 
                // $query = "SELECT * FROM census where fh_name like '$search' ORDER BY edit desc,s_id"; 
             }
             else if ($column == 'address'){
 
-                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.address like '$search' ORDER BY c.edit desc,c.s_id";
+                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.address like '$search' ORDER BY c.print desc,c.edit desc,c.s_id";
                 // $query = "SELECT * FROM census where address like '$search' ORDER BY edit desc,s_id"; 
             }
             else if ($column == 'area'){
 
-                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.area like '$search' ORDER BY c.edit desc,c.s_id"; 
+                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.area like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
                 // $query = "SELECT * FROM census where area like '$search' ORDER BY edit desc,s_id"; 
             }
             

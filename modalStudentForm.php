@@ -1890,16 +1890,36 @@
                                                             </label>
                                                              
                                                              </div>
-                                                             </div></div></div>
+                                                             </div>
+                                                             </div>
+                                                             </div>
+
+
+
+
+                                                             <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label class=" form-control-label">Card Printed</label>
+                                                </div>
+                                                <div class="col col-md-9">
+                                                    <div class="form-check">
+                                                       
+                                                            
+                                                            
+                                                                    <div class="radio" style="display:inline;">
+                                                            <label for="radio1" class="form-check-label ">
+                                                                <input type="checkbox" id="sprint" name="sprint[]" value="Print" class="form-check-input" style="width:20px; height:20px;margin:0;padding:0"  >
+                                                            </label>
+                                                             
+                                                             </div>
+                                                             </div>
+                                                             </div>
+                                                             </div>
+
+
 
 
                                                              <br><hr>
-
-
-
-
-
-
 
                                             <div >   
                                                 <input type="button" onclick="deleteStudentUser();" name="delete" class="btn btn-danger" value="Delete">   
