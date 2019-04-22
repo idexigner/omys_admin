@@ -366,12 +366,50 @@ include 'DBConfig.php';
                                                 <label for="text-input" class=" form-control-label">Khundi <span class="requiredField">*</span></label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                            <input list="khundi-datalist" type="text" id="khundi" class="form-control">
+                                            <input list="khundi-datalist" type="text" id="khundi" onchange="khundiListChange()" class="form-control">
  
                                             <datalist id="khundi-datalist">
-                                                <option value="Small">Small</option>
-                                                <option value="Medium">Medium</option>
-                                                <option value="Large">Large</option>
+                                                <option value="ASWANI">ASWANI</option>
+                                                <option value="BARAI">BARAI</option>
+                                                <option value="BHANWARIA">BHANWARIA</option>
+                                                <option value="DADWALA">DADWALA</option>
+                                                <option value="DARBAR">DARBAR</option>
+                                                <option value="DARIYA">DARIYA</option>
+                                                <option value="DAWRA">DAWRA</option>
+                                                <option value="DUROODWALA">DUROODWALA</option>
+                                                <option value="ESSANI">ESSANI</option>
+                                                <option value="GABA">GABA</option>
+                                                <option value="GABRANI">GABRANI</option>
+                                                <option value="GAGAI">GAGAI</option>
+                                                <option value="GANATRA">GANATRA</option>
+                                                <option value="GATTA">GATTA</option>
+                                                <option value="GAZIANI">GAZIANI</option>
+                                                <option value="JAFRANI">JAFRANI</option>
+                                                <option value="JAKHURA HYD">JAKHURA HYD</option>
+                                                <option value="JAKHURA">JAKHURA</option>
+                                                <option value="JIWANI">JIWANI</option>
+                                                <option value="KALANI">KALANI</option>
+                                                <option value="KARAR">KARAR</option>
+                                                <option value="KATH">KATH</option>
+                                                <option value="KHOSA">KHOSA</option>
+                                                <option value="LADHANI">LADHANI</option>
+                                                <option value="MAMDANI">MAMDANI</option>
+                                                <option value="MANGRORIA">MANGRORIA</option>
+                                                <option value="MARKATIYA">MARKATIYA</option>
+                                                <option value="MOORAD">MOORAD</option>
+                                                <option value="MOOSANI">MOOSANI</option>
+                                                <option value="MUHAMMADI">MUHAMMADI</option>
+                                                <option value="MULLARA">MULLARA</option>
+                                                <option value="PANJWANI HYD">PANJWANI HYD</option>
+                                                <option value="PANJWANI">PANJWANI</option>
+                                                <option value="PASTA">PASTA</option>
+                                                <option value="PATEL">PATEL</option>
+                                                <option value="POPATPOTRA">POPATPOTRA</option>
+                                                <option value="SURIYA">SURIYA</option>
+                                                <option value="TOBERIA">TOBERIA</option>
+                                                <option value="VAYANI">VAYANI</option>
+                                                <option value="OTHER">OTHER</option>
+
                                             </datalist>
                                                 <!-- <input type="text" id="khundi" name="khundi" placeholder="Enter Khundi"
                                                     class="form-control"> -->

@@ -12,7 +12,7 @@ include 'DBConfig.php';
 
 	
 
-	$result= $con->query("SELECT * FROM census ORDER BY s_id asc limit 100");
+	$result= $con->query("SELECT s_id,name FROM census ORDER BY s_id asc");
 	
 	
 		if($result->num_rows>0){

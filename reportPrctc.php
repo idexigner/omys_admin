@@ -21,6 +21,7 @@
  }  
  if(isset($_POST["create_pdf"]))  
  {  
+       
       require_once('TCPDF-master/tcpdf.php');  
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       $obj_pdf->SetCreator(PDF_CREATOR);  
@@ -71,50 +72,54 @@
         $demo6=$row['address'];
         $demo7=$row['contact'];
         $demo8=$row['fh_contact'];
+        $demo9=$row['imgName'];
         
         
        
-        // $obj_pdf->Image('images/front.jpg', 5,5+$x, 90, 53, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
+        $obj_pdf->Image('images/front.jpg', 5,5+$x, 90, 53, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
 
         // $obj_pdf->Image('images/pic.jpg', 10, 24+$x, 20, 24, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
+        $obj_pdf->Image('../omys_backend/uploads/images/'.$demo9.'.jpeg', 108, 8+$x, 11, 14, 'JPG', '#', '', true, 150, '', false, false, 0, false, false, false);
 
-        // $obj_pdf->SetFont('helvetica', '', 7);
+        $obj_pdf->SetFont('helvetica', '', 7);
 
-        // $obj_pdf->SetXY(51, 24.5+$x);
-        // $obj_pdf->Cell(0, 0, $row['name'], 0, 1, 'L', 0, '', 1);
-        // $obj_pdf->SetXY(51, 28+$x);
-        // $obj_pdf->Cell(0, 0, $row['fh_name'], 0, 1, 'L', 0, '', 1);
-        // $obj_pdf->SetXY(51, 31.5+$x);
-        // $obj_pdf->Cell(0, 0, $row['khundi'], 0, 1, 'L', 0, '', 1);
-        // $obj_pdf->SetXY(51, 35+$x);
-        // $obj_pdf->Cell(0, 0, $demo3, 0, 1, 'L', 0, '', 1);
-        // $obj_pdf->SetXY(51, 38.5+$x);
-        // $obj_pdf->Cell(0, 0, $demo4, 0, 1, 'L', 0, '', 1);
-        // $obj_pdf->SetXY(51, 42+$x);
-        // $obj_pdf->Cell(0, 0, $demo5, 0, 1, 'L', 0, '', 1);
-        // // ';
-
-
+        $obj_pdf->SetXY(51, 24.5+$x);
+        $obj_pdf->Cell(0, 0, $row['name'], 0, 1, 'L', 0, '', 1);
+        $obj_pdf->SetXY(51, 28+$x);
+        $obj_pdf->Cell(0, 0, $row['fh_name'], 0, 1, 'L', 0, '', 1);
+        $obj_pdf->SetXY(51, 31.5+$x);
+        $obj_pdf->Cell(0, 0, $row['khundi'], 0, 1, 'L', 0, '', 1);
+        $obj_pdf->SetXY(51, 35+$x);
+        $obj_pdf->Cell(0, 0, $demo3, 0, 1, 'L', 0, '', 1);
+        $obj_pdf->SetXY(51, 38.5+$x);
+        $obj_pdf->Cell(0, 0, $demo4, 0, 1, 'L', 0, '', 1);
+        $obj_pdf->SetXY(51, 42+$x);
+        $obj_pdf->Cell(0, 0, $demo5, 0, 1, 'L', 0, '', 1);
+        // ';
 
 
-        // $obj_pdf->Image('images/back.jpg', 105, 5+$x, 90, 53, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
+
+
+        $obj_pdf->Image('images/back.jpg', 105, 5+$x, 90, 53, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
 
         // $obj_pdf->Image('images/pic.jpg', 108, 8+$x, 11, 14, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
 
-        // $obj_pdf->SetXY(143, 7.5+$x);
-        // $obj_pdf->Cell(0, 0, $demo6, 0, 1, 'L', 0, '', 1);
-        // $obj_pdf->SetXY(143, 14.5+$x);
-        // $obj_pdf->Cell(0, 0, $demo7, 0, 1, 'L', 0, '', 1);
-        // $obj_pdf->SetXY(143, 18+$x);
-        // $obj_pdf->Cell(0, 0, $demo8, 0, 1, 'L', 0, '', 1);
+        $obj_pdf->Image('../omys_backend/uploads/images/'.$demo9.'.jpeg', 108, 8+$x, 11, 14, 'JPG', '#', '', true, 150, '', false, false, 0, false, false, false);
+        // Sameer M Ashraf1281.134822173044
+        $obj_pdf->SetXY(143, 7.5+$x);
+        $obj_pdf->Cell(0, 0, $demo6, 0, 1, 'L', 0, '', 1);
+        $obj_pdf->SetXY(143, 14.5+$x);
+        $obj_pdf->Cell(0, 0, $demo7, 0, 1, 'L', 0, '', 1);
+        $obj_pdf->SetXY(143, 18+$x);
+        $obj_pdf->Cell(0, 0, $demo8, 0, 1, 'L', 0, '', 1);
 
-        // $count++;
-        // $x+=55;
-        // if(($count%5)===0)
-        // {
-        //   $obj_pdf->AddPage(); 
-        //   $x=0;
-        // }
+        $count++;
+        $x+=55;
+        if(($count%5)===0)
+        {
+          $obj_pdf->AddPage(); 
+          $x=0;
+        }
 
         $obj_pdf->Image('images/front.jpg', 5,5+$x, 90, 53, 'JPG', '#', '', true, 150, '', false, false, 1, false, false, false);
 
@@ -154,6 +159,7 @@
     ";
     //$obj_pdf->writeHTML($content);  
     //$obj_pdf->writeHTML($content2); 
+    ob_end_clean();
       $obj_pdf->Output('sample.pdf', 'I');  
  }  
  ?>  

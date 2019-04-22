@@ -1,8 +1,14 @@
-// const Api="http://omysstudent.com/omys_admin/";
-const Api = "http://localhost/omys_admin/";
+var Api='';
+
+if(window.location.href.includes("localhost")){
+    Api = "http://localhost/omys_admin/";
+}
+else{
+    Api="http://omysstudent.com/omys_admin/";
+}
 
 
-
+//
 
 var student_data = [];
 var stu_id;
@@ -851,25 +857,17 @@ function blogin() {
                 window.location.href = "/omys_admin/index.php";
             }
             else {
+
+                
                 // alert("farazedit"+ responseJson[0].role);
                 localStorage.setItem("role", responseJson[0].role);
                 localStorage.setItem("user", responseJson[0].u_id);
+                localStorage.setItem("username", responseJson[0].name);
+
+                logStatus('in',responseJson[0].u_id,responseJson[0].name);
                 window.location.href = "/omys_admin/dashboard.php";
             }
-            // console.log(responseJson);
-            // if(responseJson[0].username === username && responseJson[0]=== pass){
-            //     // localStorage.setItem("loggedUser", JSON.stringify(responseJson[0]))
-            //     alert("inside");
-            // if(responseJson[0].m_type === "admin"){
-            //     window.location = "./admin.php";
-            // } else {
-            //     window.location = "./user.php";
-            // }
-            // }
-            // alert('Successfull');
-            // var obj[];
-            // alert();
-            // window.location.href  = "/omys_admin/index.php";
+            
 
         })
         .catch((error) => {
@@ -879,6 +877,35 @@ function blogin() {
             window.location.href = "/omys_admin/index.php";
         });
 
+
+}
+
+function logStatus(status,u_id,u_name){
+
+    var d = new Date();
+    d= d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear() + "---" + d.getHours() +":"+ d.getMinutes();
+    fetch(Api + 'backend/logStatus.php', {
+        method: 'POST',
+        body: JSON.stringify({
+            status: status,
+            u_id: u_id,
+            date: d,
+            u_name: u_name
+        }),
+        headers: new Headers({
+            'Content-Type': 'application/json',
+        })
+    })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            
+        })
+        .catch((error) => {
+            // console.error(error);
+            alert(error);
+
+            //window.location.href = "/omys_admin/index.php";
+        });
 
 }
 
@@ -902,7 +929,7 @@ function loadStudentMod(data) {
     // purchaseTable();
     // sremoveAcademic();
     // sremoveProfessional();
-    console.log("reached student modal")
+   // console.log("reached student modal")
     $('#userStudentModal').modal('show');
     //var purchaseIdd=purc_id;
     stu_id = data;
@@ -927,8 +954,9 @@ function loadStudentMod(data) {
         .then((responseJson) => {
             var obj = responseJson[0];
             document.getElementById("sid").value = obj.s_id;
-
-            document.getElementById("sname").value = obj.name;
+            
+            document.getElementById("sStaffName").value = obj.staff_name;
+            document.getElementById("sname").value = obj.student_name;
             var sdob = obj.dob;
 
             var date = sdob.substr(0, (sdob.indexOf("/")));
@@ -1518,8 +1546,6 @@ function updateStudentUser() {
         checkUpdateRequired = false;
     }
 
-    
-    
 
     // console.log(proom);
     if (checkUpdateRequired) {
@@ -1534,7 +1560,6 @@ function updateStudentUser() {
                 scnic: scnic,
                 skhundi: skhundi,
                 sgroup: sgroup,
-
                 somjCard: somjCard,
                 sbirthPlace: sbirthPlace,
                 somysCard: somysCard,
@@ -1560,12 +1585,10 @@ function updateStudentUser() {
                 sotherSkill: sotherSkill,
                 sinstituteName: sinstituteName,
                 spresentClass: spresentClass,
-
                 sfutureInterest: sfutureInterest,
                 scompanyName: scompanyName,
                 sofficeAddress: sofficeAddress,
                 scurrentDesignation: scurrentDesignation,
-
                 sfutureInterestemp: sfutureInterestemp,
                 shobbies: shobbies,
                 sprofessionalAchievement: sprofessionalAchievement,
@@ -2028,6 +2051,7 @@ function reportNameMethod() {
     })
         .then((response) => response.json())
         .then((responseJson) => {
+
             console.log(responseJson);
             var reportContainer = document.getElementById("reportPersonSelection");
             var parentRow = document.createElement("div");
@@ -2072,6 +2096,7 @@ function reportNameMethod() {
 }
 function finalizeStudent() {
     var text = '';
+    // debugger;
     countFirstText = 0;
 
     for (var i = 0; i < countReportStudent; i++) {
@@ -2181,8 +2206,42 @@ function imageDownload() {
     });
 }
 
+function khundiListChange(){
+    
+    var khundiArray = ["ASWANI", "BARAI", "BHANWARIA", "DADWALA", "DARBAR", "DARIYA", "DAWRA", "DUROODWALA", "ESSANI", "GABA", "GABRANI", "GAGAI", "GANATRA", "GATTA", "GAZIANI", "JAFRANI", "JAKHURA HYD", "JAKHURA", "JIWANI", "KALANI", "KARAR", "KATH", "KHOSA", "LADHANI", "MAMDANI", "MANGRORIA", "MARKATIYA", "MOORAD", "MOOSANI", "MUHAMMADI", "MULLARA", "PANJWANI HYD", "PANJWANI", "PASTA", "PATEL", "POPATPOTRA", "SURIYA", "TOBERIA", "VAYANI", "OTHER" ];
+
+    if(khundiArray.indexOf(document.getElementById("khundi").value) > -1){
+
+    }
+    else{
+        alert("Kindly Select Khundi From the given Dropdown");
+        document.getElementById("khundi").value = "";
+        document.getElementById("khundi").focus();
+    }
+  //  console.log("reached khundi List");
+}
+
+
+function skhundiListChange(){
+    
+    var khundiArray = ["ASWANI", "BARAI", "BHANWARIA", "DADWALA", "DARBAR", "DARIYA", "DAWRA", "DUROODWALA", "ESSANI", "GABA", "GABRANI", "GAGAI", "GANATRA", "GATTA", "GAZIANI", "JAFRANI", "JAKHURA HYD", "JAKHURA", "JIWANI", "KALANI", "KARAR", "KATH", "KHOSA", "LADHANI", "MAMDANI", "MANGRORIA", "MARKATIYA", "MOORAD", "MOOSANI", "MUHAMMADI", "MULLARA", "PANJWANI HYD", "PANJWANI", "PASTA", "PATEL", "POPATPOTRA", "SURIYA", "TOBERIA", "VAYANI", "OTHER" ];
+
+    if(khundiArray.indexOf(document.getElementById("skhundi").value) > -1){
+
+    }
+    else{
+        alert("Kindly Select Khundi From the given Dropdown");
+        document.getElementById("skhundi").value = "";
+        document.getElementById("skhundi").focus();
+    }
+  //  console.log("reached khundi List");
+}
 
 function logout(){
+
+    logStatus('out',localStorage.getItem("user"),localStorage.getItem("username"))
+
+    
     alert("Thank you For using Census System");
     localStorage.setItem("role", '');
     window.location.href  = "/omys_admin/index.php";
@@ -2193,11 +2252,11 @@ function logout(){
 function onLoadFunction(page) {
     var role = localStorage.getItem("role");
     //   alert(role);
-    // if(role!=="Staff" && role!=="Admin"){
-    //     alert("Please Login First");
-    //     window.location.href  = "/omys_admin/index.php";
+    if(role!=="Staff" && role!=="Admin" && role!=="worker"){
+        alert("Please Login First");
+        window.location.href  = "/omys_admin/index.php";
 
-    // }
+    }
     if (role === "worker") {
         document.getElementById("createStaffId").style.display = 'none';
         document.getElementById("createStaffId2").style.display = 'none';
@@ -2219,17 +2278,16 @@ function onLoadFunction(page) {
         document.getElementById("dashboardId2").className = "active has-sub";
     }
     else if (page === 'viewUser') {
-        document.getElementById("viewUserId").className = "active has-sub";
-        document.getElementById("viewUserId2").className = "active has-sub";
-        // tableLoad();
-        // var as= prompt("Reached Page");
-        // if(as === 'a'){
-        //     alert("Thank You");
-        //     abc();
-        // }
-        // else{
-        //     alert("Sorry");
-        // }
+        if(role == "Admin" || role == "Staff"){
+            document.getElementById("viewUserId").className = "active has-sub";
+            document.getElementById("viewUserId2").className = "active has-sub";
+
+        }
+        else{
+            alert("You dont have enough rights");
+        window.location.href  = "/omys_admin/dashboard.php";
+        }
+      
 
     }
     else if (page === 'createUser') {
@@ -2238,14 +2296,26 @@ function onLoadFunction(page) {
     }
 
     else if (page === 'createStaff') {
+        if(role == "Admin"){
         document.getElementById("createStaffId").className = "active has-sub";
         document.getElementById("createStaffId2").className = "active has-sub";
         staffTableLoad();
+        }
+        else{
+            alert("You dont have enough rights");
+           window.location.href  = "/omys_admin/dashboard.php";
+        }
     }
     else if (page === 'reportPrctc') {
-        document.getElementById("ReportId").className = "active has-sub";
-        document.getElementById("ReportId2").className = "active has-sub";
-        reportNameMethod();
+        if(role == "Admin"){
+            document.getElementById("ReportId").className = "active has-sub";
+            document.getElementById("ReportId2").className = "active has-sub";
+            reportNameMethod();
+        }
+        else{
+            alert("You dont have enough rights");
+        window.location.href  = "/omys_admin/dashboard.php";
+        }
 
 
     }

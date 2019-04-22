@@ -1,10 +1,17 @@
 <?php  
  //pagination.php  
  include 'DBConfig.php';
-//  $Api="http://omysstudent.com/omys_admin/";
- $Api = "http://localhost/omys_admin/";
-
-
+ 
+// $protocol = $_SERVER['HTTPS'] == 'on' ? 'https' : 'http';
+$protocol = 'http';
+ $url= $protocol.'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+ 
+ if (strpos($url, "localhost")) { 
+      $Api = "http://localhost/omys_admin/";
+ }
+ else{
+      $Api="http://omysstudent.com/omys_admin/";
+ }
 
 if($_POST['receive'] == 'pagin'){
             //$record_per_page = 150;
@@ -28,7 +35,7 @@ if($_POST['receive'] == 'pagin'){
          $start_from = $_POST['start'];
         
      
-         $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.s_id between $start_from and $record_per_page ORDER BY c.edit desc,c.s_id "; 
+         $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.s_id between $start_from and $record_per_page ORDER BY c.edit desc,c.s_id desc"; 
    
 
 //        $query = "SELECT * FROM census where s_id between $start_from and $record_per_page ORDER BY edit desc,s_id "; 

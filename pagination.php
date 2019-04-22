@@ -1,8 +1,19 @@
 <?php  
  //pagination.php  
  include 'DBConfig.php';
-//   $Api="http://omysstudent.com/omys_admin/";
- $Api = "http://localhost/omys_admin/";
+
+// $protocol = $_SERVER['HTTPS'] == 'on' ? 'https' : 'http';
+$protocol = 'http';
+$url= $protocol.'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+
+if (strpos($url, "localhost")) { 
+     $Api = "http://localhost/omys_admin/";
+}
+else{
+     $Api="http://omysstudent.com/omys_admin/";
+}
+ 
+// 
 
 
  $record_per_page = 250 ;  
@@ -17,7 +28,7 @@
       $page = 1;  
  }  
  $start_from = ($page - 1)*$record_per_page;  
- $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id ORDER BY c.s_id desc LIMIT $start_from, $record_per_page"; 
+ $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id ORDER BY edit desc,c.s_id desc LIMIT $start_from, $record_per_page"; 
 
 // $query = "SELECT * FROM census ORDER BY s_id desc LIMIT $start_from, $record_per_page"; 
 

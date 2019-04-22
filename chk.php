@@ -1,777 +1,426 @@
+<%-- SPG:
+
+This HTML file has been associated with a SharePoint Master Page (.master file) carrying the same name.  While the files remain associated, you will not be allowed to edit the .master file, and any rename, move, or deletion operations will be reciprocated.
+
+To build the master page directly from this HTML file, simply edit the page as you normally would.  Use the Snippet Generator at http://dcasp2-admin.treehouseconsultancy.org/_layouts/15/ComponentHome.aspx?Url=http%3A%2F%2Fdcasp2%2Dadmin%2Etreehouseconsultancy%2Eorg%2F%5Fcatalogs%2Fmasterpage%2FPortalMaster%5FDCAS%2Emaster to create and customize useful SharePoint entities, then copy and paste them as HTML snippets into your HTML code.   All updates to this file will automatically sync to the associated Master Page.
+
+ --%>
+<%@Master language="C#"%>
+<%@Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>
+<%@Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>
+<%@ Register assembly="AjaxControlToolkit, Version=4.5.7.1005, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" namespace="AjaxControlToolkit" tagprefix="asp" %>
+<%@Register TagPrefix="wssucw" TagName="Welcome" Src="~/_controltemplates/15/Welcome.ascx"%>
+<%@Register TagPrefix="wssucmui" TagName="MUISelector" Src="~/_controltemplates/15/MUISelector.ascx"%>
+<%@Register TagPrefix="PublishingRibbon" TagName="PublishingRibbon" Src="~/_controltemplates/15/Ribbon.ascx"%>
+<%@Register TagPrefix="cusCB" TagName="Chatbox" Src="~/_controltemplates/15/DCASProject/Common/ChatboxUC.ascx"%>
+<%@Register TagPrefix="cusA" TagName="Accss" Src="~/_controltemplates/15/DCASProject/Common/AccessibilityUC.ascx"%>
+<%@Register TagPrefix="cusS" TagName="Share" Src="~/_controltemplates/15/DCASProject/Common/ShareUC.ascx"%>
+<%@Register TagPrefix="cusMM" TagName="MainMenu" Src="~/_controltemplates/15/DCASProject/Common/MainMenuUC.ascx"%>
+<%@Register TagPrefix="cusP" TagName="Partners" Src="~/_controltemplates/15/DCASProject/Common/PartnersUC.ascx"%>
+<%@Register TagPrefix="cusPubCon" TagName="PublicationandContactbox" Src="~/_controltemplates/15/DCASProject/Common/PublicationandContactboxUC.ascx"%>
+<%@Register TagPrefix="cusFM" TagName="FooterMenu" Src="~/_controltemplates/15/DCASProject/Common/FooterMenu.ascx"%>
+<%@Register TagPrefix="cusNL" TagName="Newsletter" Src="~/_controltemplates/15/DCASProject/Common/NewsletterUC.ascx"%>
+<%@Register TagPrefix="cusF" TagName="Footer" Src="~/_controltemplates/15/DCASProject/Common/FooterUC.ascx"%>
+<%@Register TagPrefix="cusEGov" TagName="EGov" Src="~/_controltemplates/15/DCASProject/Common/EGovUC.ascx"%>
+<%@Register TagPrefix="cusFAQ" TagName="Faq" Src="~/_controltemplates/15/DCASProject/Common/FAQUC.ascx"%>
+<%@Register TagPrefix="cusPoll" TagName="Poll" Src="~/_controltemplates/15/DCASProject/Common/PollUC.ascx"%>
+<%@Register TagPrefix="cusLogin" TagName="LoginSnippet" Src="~/_controltemplates/15/DCASProject/Common/LoginSnippetUC.ascx"%>
+
+
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-   body{
+<SharePoint:SPHtmlTag runat="server" id="SPHtmlTag" dir="&lt;%$Resources:wss,multipages_direction_dir_value%&gt;">
 
-background-color: #eee; 
-}
-
-table th , table td{
-text-align: center;
-}
-
-table tr:nth-child(even){
-background-color: #BEF2F5
-}
-
-.pagination li:hover{
-cursor: pointer;
-}
-        </style>
-</head>
-<body>
+    <head runat="server">
+        <meta http-equiv="X-UA-Compatible" />
+        <link rel="shortcut icon" href="/Style Library/DCASBranding/img/favicon.ico" type="image/vnd.microsoft.icon" />
 
 
 
-<div class="container">
-		<h2>Select Number Of Rows</h2>
-				<div class="form-group"> 	<!--		Show Numbers Of Rows 		-->
-			 		<select class  ="form-control" name="state" id="maxRows">
-						 <option value="5000">Show ALL Rows</option>
-						 <option value="5">5</option>
-						 <option value="10">10</option>
-						 <option value="15">15</option>
-						 <option value="20">20</option>
-						 <option value="50">50</option>
-						 <option value="70">70</option>
-						 <option value="100">100</option>
-						</select>
-			 		
-			  	</div>
-
-<table class="table table-striped table-class" id= "table-id">
-	<tr>
-		<th>Name</th>
-		<th>Email</th>
-		<th>Phone</th>
-		<th>Date</th>
-	</tr>
-	<tr>
-		<td>Rajah Armstrong</td>
-		<td>erat.neque@noncursusnon.ca</td>
-		<td>1-636-140-1210</td>
-		<td>Oct 26, 2015</td>
-	</tr>
-	<tr>
-		<td>Kuame Parsons</td>
-		<td>non.sapien@in.com</td>
-		<td>1-962-122-8834</td>
-		<td>Aug 2, 2015</td>
-	</tr>
-	<tr>
-		<td>Ira Parker</td>
-		<td>Vivamus.molestie.dapibus@quisturpisvitae.edu</td>
-		<td>1-584-906-8572</td>
-		<td>Sep 15, 2015</td>
-	</tr>
-	<tr>
-		<td>Dante Carlson</td>
-		<td>dis.parturient@mi.co.uk</td>
-		<td>1-364-156-9666</td>
-		<td>Nov 28, 2015</td>
-	</tr>
-	<tr>
-		<td>Nathan Bernard</td>
-		<td>Etiam.vestibulum.massa@nonummy.net</td>
-		<td>1-646-420-3211</td>
-		<td>Aug 4, 2016</td>
-	</tr>
-	<tr>
-		<td>Dillon Poole</td>
-		<td>eget@vitae.ca</td>
-		<td>1-788-762-3800</td>
-		<td>Apr 25, 2016</td>
-	</tr>
-	<tr>
-		<td>Hu Leach</td>
-		<td>ligula.eu.enim@eu.org</td>
-		<td>1-888-617-5106</td>
-		<td>Nov 3, 2015</td>
-	</tr>
-	<tr>
-		<td>Dean Lucas</td>
-		<td>ligula.Nullam.feugiat@orciUt.org</td>
-		<td>1-176-725-3287</td>
-		<td>Mar 10, 2016</td>
-	</tr>
-	<tr>
-		<td>Dorian Durham</td>
-		<td>at@conubianostraper.org</td>
-		<td>1-867-829-4207</td>
-		<td>Nov 11, 2016</td>
-	</tr>
-	<tr>
-		<td>Roth Ward</td>
-		<td>Donec@atvelitCras.ca</td>
-		<td>1-539-674-6286</td>
-		<td>May 4, 2015</td>
-	</tr>
-	<tr>
-		<td>Geoffrey Gilliam</td>
-		<td>rutrum.justo.Praesent@euismodetcommodo.ca</td>
-		<td>1-450-585-0087</td>
-		<td>Nov 28, 2016</td>
-	</tr>
-	<tr>
-		<td>Vance Bonner</td>
-		<td>Nunc.mauris@amet.co.uk</td>
-		<td>1-746-842-1533</td>
-		<td>Jul 25, 2016</td>
-	</tr>
-	<tr>
-		<td>Castor Rivera</td>
-		<td>faucibus.Morbi.vehicula@euismodet.edu</td>
-		<td>1-134-497-7454</td>
-		<td>Dec 3, 2016</td>
-	</tr>
-	<tr>
-		<td>Marshall Wheeler</td>
-		<td>tempus.eu@sedfacilisis.ca</td>
-		<td>1-709-608-3138</td>
-		<td>Dec 6, 2015</td>
-	</tr>
-	<tr>
-		<td>Porter Woods</td>
-		<td>ultricies.sem.magna@urnajustofaucibus.com</td>
-		<td>1-797-194-5400</td>
-		<td>Jul 21, 2016</td>
-	</tr>
-	<tr>
-		<td>Dexter Barnes</td>
-		<td>convallis@auctorveliteget.org</td>
-		<td>1-262-180-8026</td>
-		<td>Sep 1, 2016</td>
-	</tr>
-	<tr>
-		<td>Aaron Owen</td>
-		<td>rhoncus.Nullam.velit@luctusutpellentesque.net</td>
-		<td>1-236-283-7422</td>
-		<td>Jul 26, 2016</td>
-	</tr>
-	<tr>
-		<td>Malachi Mcmahon</td>
-		<td>nunc.sed.pede@Maurisblanditenim.com</td>
-		<td>1-973-844-7994</td>
-		<td>Dec 31, 2015</td>
-	</tr>
-	<tr>
-		<td>Ivan Vasquez</td>
-		<td>eu.lacus.Quisque@Nunc.org</td>
-		<td>1-626-851-7695</td>
-		<td>Feb 23, 2016</td>
-	</tr>
-	<tr>
-		<td>Colby Cline</td>
-		<td>faucibus.orci.luctus@VivamusnisiMauris.com</td>
-		<td>1-861-773-5057</td>
-		<td>Nov 11, 2015</td>
-	</tr>
-	<tr>
-		<td>Dale Crawford</td>
-		<td>ac@estacmattis.ca</td>
-		<td>1-620-744-5242</td>
-		<td>Oct 8, 2016</td>
-	</tr>
-	<tr>
-		<td>Griffith Flowers</td>
-		<td>Ut.tincidunt@tellus.ca</td>
-		<td>1-690-390-5508</td>
-		<td>Sep 12, 2015</td>
-	</tr>
-	<tr>
-		<td>Stone Morris</td>
-		<td>Integer.id@diamatpretium.com</td>
-		<td>1-214-162-0579</td>
-		<td>Jan 10, 2016</td>
-	</tr>
-	<tr>
-		<td>Bradley Mcfarland</td>
-		<td>ipsum.dolor.sit@nislNulla.org</td>
-		<td>1-619-732-1620</td>
-		<td>Oct 29, 2016</td>
-	</tr>
-	<tr>
-		<td>Sylvester Morse</td>
-		<td>faucibus.Morbi.vehicula@non.ca</td>
-		<td>1-661-248-5024</td>
-		<td>Oct 18, 2016</td>
-	</tr>
-	<tr>
-		<td>Cade Holman</td>
-		<td>nascetur.ridiculus@vulputatedui.co.uk</td>
-		<td>1-162-976-4535</td>
-		<td>Apr 1, 2015</td>
-	</tr>
-	<tr>
-		<td>Rudyard Mayer</td>
-		<td>adipiscing@convallis.org</td>
-		<td>1-728-466-6663</td>
-		<td>Nov 16, 2016</td>
-	</tr>
-	<tr>
-		<td>Alexander Roberson</td>
-		<td>quis.massa.Mauris@egestasa.ca</td>
-		<td>1-247-767-3540</td>
-		<td>Nov 10, 2016</td>
-	</tr>
-	<tr>
-		<td>Calvin Golden</td>
-		<td>velit.Cras.lorem@mollis.org</td>
-		<td>1-760-667-4590</td>
-		<td>Feb 27, 2016</td>
-	</tr>
-	<tr>
-		<td>Mason Pugh</td>
-		<td>sed.dolor@luctuslobortisClass.com</td>
-		<td>1-766-402-6701</td>
-		<td>Jan 12, 2017</td>
-	</tr>
-	<tr>
-		<td>Nissim Booth</td>
-		<td>dignissim.pharetra@magnisdis.com</td>
-		<td>1-130-931-4827</td>
-		<td>Dec 9, 2015</td>
-	</tr>
-	<tr>
-		<td>Phillip Poole</td>
-		<td>luctus.et@ullamcorper.net</td>
-		<td>1-830-428-6433</td>
-		<td>Aug 4, 2016</td>
-	</tr>
-	<tr>
-		<td>Gareth Pollard</td>
-		<td>Mauris@nonummy.org</td>
-		<td>1-632-814-2661</td>
-		<td>Jan 9, 2017</td>
-	</tr>
-	<tr>
-		<td>Jacob Horne</td>
-		<td>scelerisque.neque@tellusAenean.edu</td>
-		<td>1-529-104-7213</td>
-		<td>Jan 24, 2016</td>
-	</tr>
-	<tr>
-		<td>Igor Decker</td>
-		<td>velit.in@libero.com</td>
-		<td>1-221-669-5726</td>
-		<td>Aug 29, 2015</td>
-	</tr>
-	<tr>
-		<td>Nicholas Carver</td>
-		<td>rutrum.non@rhoncusNullamvelit.net</td>
-		<td>1-519-668-4195</td>
-		<td>Mar 10, 2016</td>
-	</tr>
-	<tr>
-		<td>Colby Griffith</td>
-		<td>ipsum@per.co.uk</td>
-		<td>1-562-764-0884</td>
-		<td>Nov 30, 2016</td>
-	</tr>
-	<tr>
-		<td>Travis Head</td>
-		<td>Donec.est.mauris@magnamalesuadavel.co.uk</td>
-		<td>1-220-349-5963</td>
-		<td>Mar 11, 2016</td>
-	</tr>
-	<tr>
-		<td>Mannix Savage</td>
-		<td>adipiscing.lobortis@maurisMorbi.net</td>
-		<td>1-636-137-1798</td>
-		<td>Sep 26, 2015</td>
-	</tr>
-	<tr>
-		<td>Bernard Collier</td>
-		<td>vehicula.Pellentesque@laoreetipsum.ca</td>
-		<td>1-383-465-5772</td>
-		<td>Jan 14, 2016</td>
-	</tr>
-	<tr>
-		<td>Beck Vance</td>
-		<td>lacinia.orci.consectetuer@nulla.co.uk</td>
-		<td>1-792-259-9851</td>
-		<td>Feb 17, 2017</td>
-	</tr>
-	<tr>
-		<td>Macaulay Murray</td>
-		<td>vulputate.posuere@purusactellus.net</td>
-		<td>1-779-142-8309</td>
-		<td>Nov 9, 2016</td>
-	</tr>
-	<tr>
-		<td>Chadwick Bennett</td>
-		<td>eu.placerat@porttitoreros.net</td>
-		<td>1-640-170-8919</td>
-		<td>Nov 19, 2015</td>
-	</tr>
-	<tr>
-		<td>Benedict Joyce</td>
-		<td>ornare.egestas@Phasellusnulla.com</td>
-		<td>1-982-607-6613</td>
-		<td>Apr 28, 2016</td>
-	</tr>
-	<tr>
-		<td>Colin Rowe</td>
-		<td>dignissim@id.ca</td>
-		<td>1-225-773-8292</td>
-		<td>Mar 25, 2016</td>
-	</tr>
-	<tr>
-		<td>Brandon French</td>
-		<td>est@Proinsed.ca</td>
-		<td>1-407-645-0660</td>
-		<td>May 26, 2015</td>
-	</tr>
-	<tr>
-		<td>Neil West</td>
-		<td>ac.mattis@blanditcongue.net</td>
-		<td>1-251-843-1655</td>
-		<td>Jul 16, 2015</td>
-	</tr>
-	<tr>
-		<td>Thomas West</td>
-		<td>a.mi.fringilla@velest.com</td>
-		<td>1-786-660-6130</td>
-		<td>Feb 21, 2016</td>
-	</tr>
-	<tr>
-		<td>Lucas Bernard</td>
-		<td>nisl@ipsum.net</td>
-		<td>1-899-356-0342</td>
-		<td>Jan 23, 2016</td>
-	</tr>
-	<tr>
-		<td>Ali Reilly</td>
-		<td>montes@sapienNuncpulvinar.org</td>
-		<td>1-853-128-2109</td>
-		<td>Nov 19, 2015</td>
-	</tr>
-	<tr>
-		<td>Theodore Palmer</td>
-		<td>ac@lacusAliquam.com</td>
-		<td>1-157-854-9417</td>
-		<td>Mar 14, 2016</td>
-	</tr>
-	<tr>
-		<td>Wesley Moore</td>
-		<td>arcu.Nunc@cursus.co.uk</td>
-		<td>1-280-601-8635</td>
-		<td>Aug 7, 2016</td>
-	</tr>
-	<tr>
-		<td>Victor Cleveland</td>
-		<td>Mauris@idblandit.com</td>
-		<td>1-348-493-1317</td>
-		<td>Feb 1, 2017</td>
-	</tr>
-	<tr>
-		<td>Mason Frye</td>
-		<td>Donec.est.Nunc@molestieorci.ca</td>
-		<td>1-553-372-6872</td>
-		<td>Dec 14, 2016</td>
-	</tr>
-	<tr>
-		<td>Garth Glover</td>
-		<td>quis.pede.Suspendisse@euismod.com</td>
-		<td>1-674-742-2550</td>
-		<td>Aug 4, 2015</td>
-	</tr>
-	<tr>
-		<td>Oren Lawson</td>
-		<td>sed@Donecelementumlorem.net</td>
-		<td>1-918-545-3934</td>
-		<td>Nov 16, 2016</td>
-	</tr>
-	<tr>
-		<td>Ivor Thomas</td>
-		<td>arcu.Aliquam.ultrices@felis.com</td>
-		<td>1-618-175-6929</td>
-		<td>Aug 13, 2015</td>
-	</tr>
-	<tr>
-		<td>Kelly Workman</td>
-		<td>ligula@egetipsumDonec.co.uk</td>
-		<td>1-883-616-6383</td>
-		<td>Dec 23, 2016</td>
-	</tr>
-	<tr>
-		<td>Lance Bonner</td>
-		<td>a@tinciduntaliquamarcu.co.uk</td>
-		<td>1-365-745-4938</td>
-		<td>Nov 23, 2015</td>
-	</tr>
-	<tr>
-		<td>Thane Oneill</td>
-		<td>ullamcorper@mi.org</td>
-		<td>1-858-232-8568</td>
-		<td>Jan 17, 2016</td>
-	</tr>
-	<tr>
-		<td>Curran Whitehead</td>
-		<td>parturient.montes.nascetur@cursusluctus.edu</td>
-		<td>1-238-516-8560</td>
-		<td>May 4, 2016</td>
-	</tr>
-	<tr>
-		<td>Barry Foreman</td>
-		<td>justo@temporbibendumDonec.net</td>
-		<td>1-597-900-1913</td>
-		<td>Sep 25, 2016</td>
-	</tr>
-	<tr>
-		<td>Garth Blake</td>
-		<td>ipsum.Suspendisse@venenatisvel.net</td>
-		<td>1-843-574-0482</td>
-		<td>May 31, 2015</td>
-	</tr>
-	<tr>
-		<td>Christopher Ballard</td>
-		<td>vestibulum@semut.net</td>
-		<td>1-586-347-9206</td>
-		<td>Mar 8, 2017</td>
-	</tr>
-	<tr>
-		<td>Gareth Horne</td>
-		<td>senectus.et@eget.com</td>
-		<td>1-934-604-0841</td>
-		<td>Jan 10, 2016</td>
-	</tr>
-	<tr>
-		<td>Murphy Gould</td>
-		<td>augue@Curabiturvellectus.org</td>
-		<td>1-258-113-9485</td>
-		<td>Sep 4, 2016</td>
-	</tr>
-	<tr>
-		<td>Zephania Obrien</td>
-		<td>eu.ligula@pellentesque.ca</td>
-		<td>1-565-322-4592</td>
-		<td>Jun 30, 2015</td>
-	</tr>
-	<tr>
-		<td>Sebastian Davis</td>
-		<td>dictum.augue@dui.edu</td>
-		<td>1-596-269-3513</td>
-		<td>Jun 18, 2015</td>
-	</tr>
-	<tr>
-		<td>Deacon Rodriquez</td>
-		<td>enim.commodo@semegestas.ca</td>
-		<td>1-752-436-8434</td>
-		<td>Aug 25, 2015</td>
-	</tr>
-	<tr>
-		<td>Palmer Vaughan</td>
-		<td>condimentum.eget@cursusinhendrerit.org</td>
-		<td>1-365-105-7118</td>
-		<td>Sep 30, 2016</td>
-	</tr>
-	<tr>
-		<td>Garrett Phelps</td>
-		<td>Donec@placeratorci.edu</td>
-		<td>1-911-608-5554</td>
-		<td>Nov 23, 2015</td>
-	</tr>
-	<tr>
-		<td>Vincent Barron</td>
-		<td>tellus@convallisestvitae.co.uk</td>
-		<td>1-373-781-8939</td>
-		<td>Feb 19, 2017</td>
-	</tr>
-	<tr>
-		<td>Shad Hubbard</td>
-		<td>tortor.at.risus@purusmaurisa.com</td>
-		<td>1-563-162-7634</td>
-		<td>Jul 7, 2016</td>
-	</tr>
-	<tr>
-		<td>Todd Vazquez</td>
-		<td>malesuada.fringilla.est@facilisis.org</td>
-		<td>1-647-784-5955</td>
-		<td>Jul 18, 2015</td>
-	</tr>
-	<tr>
-		<td>Cade Mullins</td>
-		<td>sem.ut.cursus@sapienmolestie.com</td>
-		<td>1-262-815-5463</td>
-		<td>Apr 1, 2016</td>
-	</tr>
-	<tr>
-		<td>Cullen Gay</td>
-		<td>in.cursus@utcursus.net</td>
-		<td>1-447-832-2739</td>
-		<td>Sep 29, 2015</td>
-	</tr>
-	<tr>
-		<td>Chase Chambers</td>
-		<td>ipsum@magnaSed.com</td>
-		<td>1-151-663-4654</td>
-		<td>Aug 5, 2016</td>
-	</tr>
-	<tr>
-		<td>Hakeem Hammond</td>
-		<td>aptent.taciti@sit.ca</td>
-		<td>1-449-378-9773</td>
-		<td>May 16, 2016</td>
-	</tr>
-	<tr>
-		<td>Justin Stout</td>
-		<td>nascetur.ridiculus.mus@eu.edu</td>
-		<td>1-687-820-7974</td>
-		<td>Nov 23, 2015</td>
-	</tr>
-	<tr>
-		<td>Hakeem Larson</td>
-		<td>ultricies.dignissim@nonvestibulumnec.ca</td>
-		<td>1-510-600-8899</td>
-		<td>Aug 17, 2015</td>
-	</tr>
-	<tr>
-		<td>Peter Anderson</td>
-		<td>bibendum@Curabitur.org</td>
-		<td>1-250-764-1300</td>
-		<td>Jun 18, 2016</td>
-	</tr>
-	<tr>
-		<td>Marvin Preston</td>
-		<td>Maecenas@arcuimperdiet.co.uk</td>
-		<td>1-766-120-0796</td>
-		<td>Nov 27, 2015</td>
-	</tr>
-	<tr>
-		<td>Zachary Poole</td>
-		<td>dictum@ligulatortor.org</td>
-		<td>1-603-891-3134</td>
-		<td>Sep 21, 2015</td>
-	</tr>
-	<tr>
-		<td>Lawrence Berger</td>
-		<td>dolor.Quisque.tincidunt@nonsapienmolestie.com</td>
-		<td>1-261-614-8636</td>
-		<td>Jan 1, 2016</td>
-	</tr>
-	<tr>
-		<td>Carson Black</td>
-		<td>luctus.et@Pellentesqueutipsum.com</td>
-		<td>1-170-639-6825</td>
-		<td>Sep 9, 2015</td>
-	</tr>
-	<tr>
-		<td>Grady Ferguson</td>
-		<td>nonummy@magna.ca</td>
-		<td>1-445-965-4679</td>
-		<td>Aug 23, 2016</td>
-	</tr>
-	<tr>
-		<td>Stuart Johnston</td>
-		<td>placerat@Aliquam.ca</td>
-		<td>1-888-201-8554</td>
-		<td>Jun 16, 2015</td>
-	</tr>
-	<tr>
-		<td>Hoyt Thompson</td>
-		<td>cursus.vestibulum@InfaucibusMorbi.ca</td>
-		<td>1-787-909-6344</td>
-		<td>Nov 8, 2016</td>
-	</tr>
-	<tr>
-		<td>Carter George</td>
-		<td>aliquet@liberoProinsed.co.uk</td>
-		<td>1-108-298-1209</td>
-		<td>Sep 20, 2015</td>
-	</tr>
-	<tr>
-		<td>Hashim Roberson</td>
-		<td>aliquam.enim.nec@enim.ca</td>
-		<td>1-662-166-3319</td>
-		<td>Jun 26, 2015</td>
-	</tr>
-	<tr>
-		<td>Cruz Collier</td>
-		<td>Integer.mollis@metusIn.org</td>
-		<td>1-277-210-6159</td>
-		<td>Feb 2, 2017</td>
-	</tr>
-	<tr>
-		<td>Nigel Collier</td>
-		<td>metus@pharetraut.net</td>
-		<td>1-501-647-3500</td>
-		<td>Nov 20, 2015</td>
-	</tr>
-	<tr>
-		<td>Abel Hendricks</td>
-		<td>nec@Pellentesque.com</td>
-		<td>1-661-985-0463</td>
-		<td>Dec 19, 2015</td>
-	</tr>
-	<tr>
-		<td>Fulton Espinoza</td>
-		<td>luctus.et@sitametornare.org</td>
-		<td>1-396-412-6389</td>
-		<td>Mar 25, 2017</td>
-	</tr>
-	<tr>
-		<td>Otto Ramos</td>
-		<td>pellentesque.tellus@aliquameu.net</td>
-		<td>1-249-633-9976</td>
-		<td>Dec 21, 2016</td>
-	</tr>
-	<tr>
-		<td>Griffin Joyce</td>
-		<td>a.sollicitudin.orci@volutpatornare.net</td>
-		<td>1-321-798-8569</td>
-		<td>Oct 5, 2016</td>
-	</tr>
-	<tr>
-		<td>Alden Buckner</td>
-		<td>id.sapien.Cras@scelerisque.net</td>
-		<td>1-360-375-8997</td>
-		<td>Apr 16, 2016</td>
-	</tr>
-	<tr>
-		<td>Reese Hudson</td>
-		<td>lobortis.augue.scelerisque@velitduisemper.ca</td>
-		<td>1-218-544-5876</td>
-		<td>Nov 29, 2016</td>
-	</tr>
-	<tr>
-		<td>Reed Ramsey</td>
-		<td>arcu@acipsum.edu</td>
-		<td>1-624-968-2863</td>
-		<td>Dec 1, 2015</td>
-	</tr>
-	<tr>
-		<td>Arthur Blackwell</td>
-		<td>sodales.elit.erat@vehiculaetrutrum.ca</td>
-		<td>1-837-635-8180</td>
-		<td>Mar 21, 2017</td>
-	</tr>
-	<tr>
-		<td>Ivan Vasquez</td>
-		<td>eu.lacus.Quisque@Nunc.org</td>
-		<td>1-626-851-7695</td>
-		<td>Feb 23, 2016</td>
-	</tr>
-</table>
-
-<!--		Start Pagination -->
-			<div class='pagination-container' >
-				<nav>
-				  <ul class="pagination">
-            
-            <li data-page="prev" >
-								     <span> < <span class="sr-only">(current)</span></span>
-								    </li>
-				   <!--	Here the JS Function Will Add the Rows -->
-        <li data-page="next" id="prev">
-								       <span> > <span class="sr-only">(current)</span></span>
-								    </li>
-				  </ul>
-				</nav>
-			</div>
-
-</div> <!-- 		End of Container -->
 
 
 
-<!--  Developed By Yasser Mas -->
+        <meta name="GENERATOR" content="Microsoft SharePoint" />
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Expires" content="0" />
+        <SharePoint:RobotsMetaTag runat="server"></SharePoint:RobotsMetaTag>
+        <SharePoint:PageTitle runat="server"><asp:ContentPlaceHolder id="PlaceHolderPageTitle" runat="server"><SharePoint:ProjectProperty Property="Title" runat="server">
+				
 
 
-<script>
-          getPagination('#table-id');
-					//getPagination('.table-class');
-					//getPagination('table');
 
-		  /*					PAGINATION 
-		  - on change max rows select options fade out all rows gt option value mx = 5
-		  - append pagination list as per numbers of rows / max rows option (20row/5= 4pages )
-		  - each pagination li on click -> fade out all tr gt max rows * li num and (5*pagenum 2 = 10 rows)
-		  - fade out all tr lt max rows * li num - max rows ((5*pagenum 2 = 10) - 5)
-		  - fade in all tr between (maxRows*PageNum) and (maxRows*pageNum)- MaxRows 
-		  */
-		 
-	function getPagination (table){
+                </SharePoint:ProjectProperty></asp:ContentPlaceHolder></SharePoint:PageTitle>
+        <SharePoint:StartScript runat="server"></SharePoint:StartScript>
+        <SharePoint:CssLink runat="server" Version="15"></SharePoint:CssLink>
+        <SharePoint:CacheManifestLink runat="server"></SharePoint:CacheManifestLink>
+        <SharePoint:PageRenderMode runat="server" RenderModeType="Standard"></SharePoint:PageRenderMode>
+        <SharePoint:ScriptLink language="javascript" name="core.js" OnDemand="true" runat="server" Localizable="false"></SharePoint:ScriptLink>
+        <SharePoint:ScriptLink language="javascript" name="menu.js" OnDemand="true" runat="server" Localizable="false"></SharePoint:ScriptLink>
+        <SharePoint:ScriptLink language="javascript" name="callout.js" OnDemand="true" runat="server"
+            Localizable="false"></SharePoint:ScriptLink>
+        <SharePoint:ScriptLink language="javascript" name="sharing.js" OnDemand="true" runat="server"
+            Localizable="false"></SharePoint:ScriptLink>
+        <SharePoint:ScriptLink language="javascript" name="suitelinks.js" OnDemand="true" runat="server"
+            Localizable="false"></SharePoint:ScriptLink>
+        <SharePoint:CustomJSUrl runat="server"></SharePoint:CustomJSUrl>
+        <SharePoint:SoapDiscoveryLink runat="server"></SharePoint:SoapDiscoveryLink>
+        <SharePoint:AjaxDelta id="DeltaPlaceHolderAdditionalPageHead" Container="false" runat="server">
+            <asp:ContentPlaceHolder id="PlaceHolderAdditionalPageHead" runat="server">
+            </asp:ContentPlaceHolder>
+            <SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true"></SharePoint:DelegateControl>
+            <asp:ContentPlaceHolder id="PlaceHolderBodyAreaClass" runat="server">
+            </asp:ContentPlaceHolder>
+        </SharePoint:AjaxDelta>
+        <SharePoint:CssRegistration Name="Themable/corev15.css" runat="server"></SharePoint:CssRegistration>
 
-        		var lastPage = 1 ; 
 
-		  $('#maxRows').on('change',function(evt){
-		  	//$('.paginationprev').html('');						// reset pagination 
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dubai-font@1.0.1/dubai-font/css/dubai-font.css" />
+        <SharePoint:CssRegistration
+            name="&lt;% $SPUrl:~SiteCollection/Style Library/DCASBranding/css/font-awesome.min.css %&gt;" runat="server"
+            after="SharepointCssFile" />
+        <SharePoint:CssRegistration name="&lt;% $SPUrl:~SiteCollection/Style Library/DCASBranding/css/icomoon.css %&gt;"
+            runat="server" after="SharepointCssFile" />
+        <SharePoint:CssRegistration
+            name="&lt;% $SPUrl:~SiteCollection/Style Library/DCASBranding/css/owl.theme.default.min.css %&gt;"
+            runat="server" after="SharepointCssFile" />
+        <SharePoint:CssRegistration
+            name="&lt;% $SPUrl:~SiteCollection/Style Library/DCASBranding/css/owl.carousel.css %&gt;" runat="server"
+            after="SharepointCssFile" />
+        <SharePoint:CssRegistration
+            name="&lt;% $SPUrl:~SiteCollection/Style Library/DCASBranding/css/jquery.mCustomScrollbar.css %&gt;"
+            runat="server" after="SharepointCssFile" />
+        <SharePoint:CssRegistration
+            name="&lt;% $SPUrl:~SiteCollection/Style Library/~language/DCASBranding/css/style.css %&gt;" runat="server"
+            after="SharepointCssFile" />
+             <SharePoint:CssRegistration
+            name="&lt;% $SPUrl:~SiteCollection/Style Library/~language/DCASBranding/css/responsive.css %&gt;" runat="server"
+            after="SharepointCssFile" />
+
+        <SharePoint:CssRegistration
+            name="&lt;% $SPUrl:~SiteCollection/Style Library/~language/DCASBranding/css/slider.css %&gt;" runat="server"
+            after="SharepointCssFile" />
+        <SharePoint:CssRegistration name="&lt;% $SPUrl:~SiteCollection/Style Library/DCASBranding/css/custom.css %&gt;"
+            runat="server" after="SharepointCssFile" />
+        <SharePoint:CssRegistration
+            name="&lt;% $SPUrl:~SiteCollection/Style Library/DCASBranding/css/bs-datepicker.css %&gt;" runat="server"
+            after="SharepointCssFile" />
+        <SharePoint:CssRegistration
+            name="&lt;% $SPUrl:~SiteCollection/Style Library/DCASBranding/assets/common/css/animate.css %&gt;"
+            runat="server" after="SharepointCssFile" />
 
 
-		lastPage = 1 ; 
-         $('.pagination').find("li").slice(1, -1).remove();
-		  	var trnum = 0 ;									// reset tr counter 
-		  	var maxRows = parseInt($(this).val());			// get Max Rows from select option
+        <SharePoint:CssRegistration
+            name="&lt;% $SPUrl:~SiteCollection/Style Library/DCASBranding/css/bootstrap-datetimepicker.min.css %&gt;"
+            runat="server" after="SharepointCssFile" />
+        <SharePoint:CssRegistration
+            name="&lt;% $SPUrl:~SiteCollection/Style Library/DCASBranding/css/jquery-ui.css %&gt;" runat="server"
+            after="SharepointCssFile" />
+        <SharePoint:CssRegistration
+            name="&lt;% $SPUrl:~SiteCollection/Style Library/DCASBranding/css/responsive.css %&gt;" runat="server"
+            after="SharepointCssFile" />
 
-		  	if(maxRows == 5000 ){
 
-		  		$('.pagination').hide();
-		  	}else {
-		  		
-		  		$('.pagination').show();
-		  	}
 
-		  	var totalRows = $(table+' tbody tr').length;		// numbers of rows 
-			 $(table+' tr:gt(0)').each(function(){			// each TR in  table and not the header
-			 	trnum++;									// Start Counter 
-			 	if (trnum > maxRows ){						// if tr number gt maxRows
-			 		
-			 		$(this).hide();							// fade it out 
-			 	}if (trnum <= maxRows ){$(this).show();}// else fade in Important in case if it ..
-			 });											//  was fade out to fade it in 
-			 if (totalRows > maxRows){						// if tr total rows gt max rows option
-			 	var pagenum = Math.ceil(totalRows/maxRows);	// ceil total(rows/maxrows) to get ..  
-			 												//	numbers of pages 
-			 	for (var i = 1; i <= pagenum ;){			// for each page append pagination li 
-			 	$('.pagination #prev').before('<li data-page="'+i+'">\
-								      <span>'+ i++ +'<span class="sr-only">(current)</span></span>\
-								    </li>').show();
-			 	}											// end for i 
-			} 												// end if row count > max rows
-			$('.pagination [data-page="1"]').addClass('active'); // add active class to the first li 
-			$('.pagination li').on('click',function(evt){		// on click each page
-				evt.stopImmediatePropagation();
-				evt.preventDefault();
-				var pageNum = $(this).attr('data-page');	// get it's number
+        <script src="/Style Library/DCASBranding/js/jquery.js">//<![CDATA[
 
-				var maxRows = parseInt($('#maxRows').val());			// get Max Rows from select option
+        //]]></script>
+        
 
-				if(pageNum == "prev" ){
-					if(lastPage == 1 ){return;}
-					pageNum  = --lastPage ; 
-				}
-				if(pageNum == "next" ){
-					if(lastPage == ($('.pagination li').length -2) ){return;}
-					pageNum  = ++lastPage ; 
-				}
+        <script src="/Style Library/DCASBranding/js/modernizr.js">//<![CDATA[
 
-				lastPage = pageNum ;
-				var trIndex = 0 ;							// reset tr counter
-				$('.pagination li').removeClass('active');	// remove active class from all li 
-				$('.pagination [data-page="'+lastPage+'"]').addClass('active');// add active class to the clicked 
-				// $(this).addClass('active');					// add active class to the clicked 
-				 $(table+' tr:gt(0)').each(function(){		// each tr in table not the header
-				 	trIndex++;								// tr index counter 
-				 	// if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
-				 	if (trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
-				 		$(this).hide();		
-				 	}else {$(this).show();} 				//else fade in 
-				 }); 										// end of for each tr in table
-					});										// end of on click pagination list
+        //]]></script>
 
-		}).val(5).change();
+        <script src="/Style Library/DCASBranding/js/jquery.plugin.js">//<![CDATA[
 
-												// end of on select change 
-		 
-    
-  
-								// END OF PAGINATION 
-	}	
+        //]]></script>
+
+
+        <script src="/Style Library/DCASBranding/js/jquery.realperson.js">//<![CDATA[
+
+        //]]></script>
+
+        <script src="/Style Library/DCASBranding/js/customCode.js">//<![CDATA[
+
+        //]]></script>
+
+				<script src="/Style Library/DCASBranding/js/heading.js">//<![CDATA[
+
+				//]]></script>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js">//<![CDATA[
+
+        //]]></script>
+
+
+
+        <script src="/Style Library/DCASBranding/js/bootstrap.min.js">//<![CDATA[                
+
+        //]]></script>
+
+        <script src="/Style Library/DCASBranding/js/bootstrap-datetimepicker.js">//<![CDATA[                
+
+        //]]></script>
+
+        <script src="/Style Library/DCASBranding/js/jquery-ui.js">//<![CDATA[                
+
+        //]]></script>
+
+
+        <script src="/Style Library/DCASBranding/js/qrcode.min.js">//<![CDATA[               
+
+        //]]></script>
+        <script src="/Style Library/DCASBranding/js/jquery.animateSlider.js">//<![CDATA[//]]></script>
+        <script src="/Style Library/DCASBranding/js/owl.carousel.min.js">//<![CDATA[                
+
+        //]]></script>
+        <script src="/Style Library/DCASBranding/js/jquery.mCustomScrollbar.js">//<![CDATA[
+
+        //]]></script>
+
+        <script src="/Style Library/DCASBranding/js/jquery.bootstrap-responsive-tabs.min.js">//<![CDATA[
+
+        //]]></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNOnHHk7oHxOiC6wzGMO7d5H8pe5711VI">//<![CDATA[
+        //]]></script>
+
+        <script src="/Style Library/DCASBranding/js/site.js">//<![CDATA[
+
+                //]]></script>
+
+        <script src="http://f1.as.readspeaker.com/script/8068/ReadSpeaker.js?pids=embhl" type="text/javascript">//<![CDATA[
+
+        //]]>
+        </script>
+
+        <link rel="stylesheet" type="text/css"
+            href="https://happinessmeter.dubai.gov.ae/HappinessMeter2/source/jquery.fancybox.css?v=2.1.5"
+            media="screen" />
+        <!--<script type="text/javascript" src="https://happinessmeter.dubai.gov.ae/HappinessMeter2/source/jquery-1.10.1.min.js"></script>-->
+        <script type="text/javascript"
+            src="https://happinessmeter.dubai.gov.ae/HappinessMeter2/source/jquery.fancybox.js?v=2.1.5"></script>
+
+
+
+        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fc9383e1ee05f1b">//<![CDATA[
+
+        //]]>
+        </script>
+
+        <script src="/Style Library/DCASBranding/assets/common/js/jquery.scrollify.js"></script>
+        <script src="/Style Library/DCASBranding/assets/jquery.qrcode.min.js"></script>
+
+    </head>
+
+    <body onhashchange="if (typeof(_spBodyOnHashChange) != 'undefined') _spBodyOnHashChange();">
+        <SharePoint:SPClientIDGenerator runat="server"
+            ServerControlID="DeltaPlaceHolderMain;DeltaPlaceHolderPageTitleInTitleArea;DeltaPlaceHolderUtilityContent" />
+        <SharePoint:ImageLink runat="server" />
+        <SharePoint:SharePointForm
+            onsubmit="if (typeof(_spFormOnSubmitWrapper) != 'undefined') {return _spFormOnSubmitWrapper();} else {return true;}"
+            runat="server">
+
+            <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePageMethods="false"
+                EnablePartialRendering="true" EnableScriptGlobalization="false" EnableScriptLocalization="true"></asp:ToolkitScriptManager>
+            <SharePoint:AjaxDelta id="DeltaSPWebPartManager" runat="server">
+                <WebPartPages:SPWebPartManager runat="server">
+                </WebPartPages:SPWebPartManager>
+            </SharePoint:AjaxDelta>
+
+            <script>//<![CDATA[
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-86413253-1', 'auto');
+                ga('send', 'pageview');
+
+
+        //]]></script>
+
+            <script type="text/javascript">//<![CDATA[
+                $(document).ready(function () {
+                    if (window.location.href.indexOf("ar-sa") > -1) {
+                        $("#foo a").attr('href', '/_layouts/15/DCASServices/PostData.aspx');
+                    }
+                    else {
+                        $("#foo a").attr('href', '/_layouts/15/DCASServices/PostData.aspx');
+                    }
+                });
+
+                $(document).ready(function () {
+                    $('.fancybox').fancybox();
+                });
+
+
+        //]]></script>
+
+
+
+
+
+<!--
+            <div id="TurnOnAccessibility" style="display:none" class="s4-notdlg noindex">
+                <a id="linkTurnOnAcc" href="#" class="ms-accessible ms-acc-button"
+                    onclick="SetIsAccessibilityFeatureEnabled(true);UpdateAccessibilityUI();document.getElementById('linkTurnOffAcc').focus();return false;">
+                    <SharePoint:EncodedLiteral runat="server" text="&lt;%$Resources:wss,master_turnonaccessibility%&gt;"
+                        EncodeMethod="HtmlEncode" __designer:Preview="Turn on more accessible mode" __designer:Values="&lt;P N=&#39;Text&#39; Bound=&#39;True&#39; T=&#39;Resources:wss,master_turnonaccessibility&#39; /&gt;&lt;P N=&#39;ID&#39; T=&#39;ctl00&#39; /&gt;&lt;P N=&#39;Page&#39; ID=&#39;1&#39; /&gt;&lt;P N=&#39;TemplateControl&#39; ID=&#39;2&#39; /&gt;&lt;P N=&#39;AppRelativeTemplateSourceDirectory&#39; R=&#39;-1&#39; /&gt;"></SharePoint:EncodedLiteral>
+                </a>
+            </div>
+            <div id="TurnOffAccessibility" style="display:none" class="s4-notdlg noindex">
+                <a id="linkTurnOffAcc" href="#" class="ms-accessible ms-acc-button"
+                    onclick="SetIsAccessibilityFeatureEnabled(false);UpdateAccessibilityUI();document.getElementById('linkTurnOnAcc').focus();return false;">
+                    <SharePoint:EncodedLiteral runat="server"
+                        text="&lt;%$Resources:wss,master_turnoffaccessibility%&gt;" EncodeMethod="HtmlEncode" __designer:Preview="Turn off more accessible mode" __designer:Values="&lt;P N=&#39;Text&#39; Bound=&#39;True&#39; T=&#39;Resources:wss,master_turnoffaccessibility&#39; /&gt;&lt;P N=&#39;ID&#39; T=&#39;ctl01&#39; /&gt;&lt;P N=&#39;Page&#39; ID=&#39;1&#39; /&gt;&lt;P N=&#39;TemplateControl&#39; ID=&#39;2&#39; /&gt;&lt;P N=&#39;AppRelativeTemplateSourceDirectory&#39; R=&#39;-1&#39; /&gt;">
+                    </SharePoint:EncodedLiteral>
+                </a>
+            </div> -->
+						<div id="top"></div>
+
+            <div id="ms-designer-ribbon" style="display:none">
+                <PublishingRibbon:PublishingRibbon runat="server"/>
+
+            </div>
+
+            <div id="s4-workspace">
+                <div id="s4-bodyContainer">
+                    <main class="wrapper">
+
+
+                        <div id="happinessIcon"><a class="happy-meter-btn fancybox fancybox.iframe"
+                                href="/_layouts/15/DCASServices/PostData.aspx?type=application"><img
+                                    src="/Style Library/DCASBranding/img/icon-happymeter.png" border="0" alt="" /></a>
+                        </div>
+                        <!--<div id="foo"><a href="#" class="happy-meter-btn"><img src="/Style Library/DCASBranding/img/icon-happymeter.png" alt="Happy Meter" /></a></div>-->
+
+                        <a href="#top" class="goto-top"><em class="fa fa-angle-double-up"></em></a>
+
+                        <a href="javascript:;" class="chat-btn"><em class="fa fa-comments-o"></em></a>
+
+
+                        <cusCB:Chatbox runat="server" ID="cusCBChatbox">
+                        </cusCB:Chatbox>
+
+
+
+                        <header class="main-header">
+
+                            <section class="mh--top">
+                                <div class="container">
+
+                                    <div class="mht---left">
+                                        <div class="logo-dubai">
+                                            <a href="http://www.dubai.ae/" target="_blank">
+                                                <img src="/Style Library/DCASBranding/img/dubai_en.png" alt="Dubai" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="mht---right">
+                                        <div class="emergency-code">
+                                            <span class="icon">
+                                                <em class="fa fa-phone">
+                                                </em>
+                                            </span>
+                                            <span class="text">Emergency
+
+                                            </span>
+                                            <span class="number">998
+
+                                            </span>
+                                        </div>
+                                        <nav class="mht-nav">
+                                            <ul>
+                                                <li class="mht-dropdown"> 
+												<cusS:Share runat="server" ID="cusSShare">
+                                                    </cusS:Share> </li>
+                                                <li class="mht-dropdown hide-mobile">
+
+                                                   <cusA:Accss runat="server" ID="cusSAccss">
+                                                    </cusA:Accss >
+                                                </li>
+                                                <li>
+
+													<cusLogin:LoginSnippet runat="server" ID="cusSLogin"></cusLogin:LoginSnippet>
+
+													
+                                                </li>
+
+                                            </ul>
+                                        </nav>
+                                    </div>
+
+                                </div>
+                            </section>
+
+                            <section class="mh--middle">
+                                <div class="container">
+
+                                    <div class="logo-gov">
+                                        <a href="http://www.dubai.ae/" target="_blank">
+                                            <img src="/Style Library/DCASBranding/img/logo-government.png"
+                                                alt="Government of Dubai" />
+                                        </a>
+                                    </div>
+                                    <div class="logos-right">
+                                        <a href="/" class="logo-zayed">
+                                            <img src="/Style Library/DCASBranding/img/logo-zayed.png"
+                                                alt="Zayed bin Sultan Al Nahyan" />
+                                        </a>
+                                        <dir class="logo-dcas">
+                                            <div data-name="SiteLogo" class="logo-dcas">
+
+
+                                                <SharePoint:AjaxDelta runat="server" BlockElement="True">
+
+                                                    <SharePoint:SPSimpleSiteLink runat="server" CssClass=""
+                                                        ID="x00774429580243f3bdb188b78555416e"><SharePoint:SiteLogoImage name="onetidHeadbnnr0" runat="server"
+                                                            CssClass="" ID="xadb5c353b6e84c2ea1c5debe248e3e80"
+                                                            LogoImageUrl="/_layouts/15/images/siteIcon.png">
+												
+
+
+
+
+                                                        </SharePoint:SiteLogoImage></SharePoint:SPSimpleSiteLink>
+
+                                                </SharePoint:AjaxDelta>
+
+                                            </div>
+                                        </dir>
+                                    </div>
+
+                                </div>
+                            </section>
+
+                            <section class="mh--bottom">
+                                <div class="container">
+
+                                    <cusMM:MainMenu runat="server" ID="cusMMMainMenu">
+                                    </cusMM:MainMenu>
+
+
+                                </div>
+                            </section>
+                        </header>
+
+                        <section>
+
+
+                            <SharePoint:AjaxDelta ID="DeltaPlaceHolderMain" IsMainContent="true" runat="server">
+                                <asp:ContentPlaceHolder ID="PlaceHolderMain" runat="server">
+									<div class="DefaultContentBlock"
+                                        style="border:medium black solid; background:yellow; color:black; margin:20px; padding:10px;">
+                                        This div, which you should delete, represents the content area that your Page
+                                        Layouts and pages will fill. Design your Master Page around this content
+                                        placeholder.
 
 
 
@@ -779,23 +428,267 @@ cursor: pointer;
 
 
 
-$(function(){
-	// Just to append id number for each row  
-					$('table tr:eq(0)').prepend('<th> ID </th>')
-
-					var id = 0;
-
-					$('table tr:gt(0)').each(function(){	
-						id++
-						$(this).prepend('<td>'+id+'</td>');
-					});
-})
-
-//  Developed By Yasser Mas 
-// yasser.mas2@gmail.com
-
-</script>
 
 
-</body>
-</html>
+
+                                    </div>
+                                </asp:ContentPlaceHolder>
+                            </SharePoint:AjaxDelta>
+
+                        </section>
+
+                        <section class="before-footer">
+                            <div class="container">
+
+                                <div class="col-md-1 footer-handle-button">
+                                    <em class="fa fa-caret-down"></em>
+                                </div>
+
+
+                                <cusP:Partners runat="server" ID="cusPPartners">
+                                </cusP:Partners>
+
+
+
+                                <cusPubCon:PublicationandContactbox runat="server"
+                                    ID="cusPubConPublicationandContactbox">
+                                </cusPubCon:PublicationandContactbox>
+
+                            </div>
+                        </section>
+
+                        <footer class="main-footer">
+                            <div class="container">
+
+                                <!--footer menu webpart start-->
+
+                                <cusFM:FooterMenu runat="server" ID="cusFMFooterMenu">
+                                </cusFM:FooterMenu>
+                                <!--footer menu webpart end-->
+
+                                <section class="footer-hidden">
+
+                                    <nav class="social-nav">
+                                        <ul>
+                                            <li class="facebook"><a href="https://www.facebook.com/DubaiAmbulance/"
+                                                    target="_blank"><em class="fa fa-facebook"></em></a></li>
+                                            <li class="twiiter"><a href="https://twitter.com/search?q=dubai_Ambulance"
+                                                    target="_blank"><em class="fa fa-twitter"></em></a></li>
+                                            <li class="instagram"><a href="https://www.instagram.com/dubai_ambulance/"
+                                                    target="_blank"><em class="fa fa-instagram"></em></a></li>
+                                            <li class="linkedin"><a
+                                                    href="https://www.linkedin.com/company/dubai-corporation-for-ambulance-services"
+                                                    target="_blank"><em class="fa fa-linkedin"></em></a></li>
+                                            <li class="youtube"><a href="https://www.youtube.com/user/dcasambulance"
+                                                    target="_blank"><em class="fa fa-youtube"></em></a></li>
+                                            <li class="google-plus"><a
+                                                    href="https://plus.google.com/104663025933004623334"
+                                                    target="_blank"><em class="fa fa-google-plus"></em></a></li>
+                                        </ul>
+                                    </nav>
+
+
+                                    <cusF:Footer runat="server" ID="cusFFooter">
+                                    </cusF:Footer>
+
+                                </section>
+                            </div>
+                        </footer>
+                        <section class="partners-section">
+                            <div class="container">
+                                <!--- This is E-GOV Web Part -->
+                                <cusEGov:EGov runat="server" ID="cusEGovEGov"></cusEGov:EGov>
+                                <!--<section class="dcas-partners2">
+				        
+				          <div id="dcas-partners2" class="owl-carousel owl-theme">
+				            <div class="item"><a href=""><img src="/Style Library/DCASBranding/img/partners/HomeExtLinkAsk.png" alt=""></a></div>
+				            <div class="item"><a href=""><img src="/Style Library/DCASBranding/img/partners/HomeExtLinkComplain.png" alt=""></a></div>
+				            <div class="item"><a href=""><img src="/Style Library/DCASBranding/img/partners/HomeExtLinkSuggest.png" alt=""></a></div>
+				            <div class="item"><a href=""><img src="/Style Library/DCASBranding/img/partners/HomeExtLinkSurvey.png" alt=""></a></div>
+				            <div class="item"><a href=""><img src="/Style Library/DCASBranding/img/partners/HomeExtLinkAsk.png" alt=""></a></div>
+				            <div class="item"><a href=""><img src="/Style Library/DCASBranding/img/partners/HomeExtLinkComplain.png" alt=""></a></div>
+				            <div class="item"><a href=""><img src="/Style Library/DCASBranding/img/partners/HomeExtLinkSuggest.png" alt=""></a></div>
+				            <div class="item"><a href=""><img src="/Style Library/DCASBranding/img/partners/HomeExtLinkSurvey.png" alt=""></a></div>
+				            <div class="item"><a href=""><img src="/Style Library/DCASBranding/img/partners/HomeExtLinkAsk.png" alt=""></a></div>
+				            <div class="item"><a href=""><img src="/Style Library/DCASBranding/img/partners/HomeExtLinkComplain.png" alt=""></a></div>
+				            <div class="item"><a href=""><img src="/Style Library/DCASBranding/img/partners/HomeExtLinkSuggest.png" alt=""></a></div>
+				            <div class="item"><a href=""><img src="/Style Library/DCASBranding/img/partners/HomeExtLinkSurvey.png" alt=""></a></div>
+				          </div>
+				        </section> -->
+
+                            </div>
+                        </section>
+                        <section class="copyright">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <p class="col-md-7">
+                                                <span>DUBAI CORPORATION FOR AMBULANCE SERVICES</span>
+                                                <span>Last updated On 22 Feb 2018</span>
+                                                <span>© 2012-2018 DCAS™ - ALL RIGHTS RESERVED</span>
+                                            </p>
+                                            <div class="col-md-5">
+																							<a title="Download Adobe Reader " class="dcas-doc" href="https://get2.adobe.com/reader/" target="_blank"> 
+																								<img src="/Style Library/DCASBranding/img/AdobeReaderIcon.png" alt="Download Adobe Reader"> 
+																								<span><small>Download Adobe Reader</small></span> 
+																							</a> 
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1 bottom-logoes">
+                                        <a href="http://www.dubai.ae/">
+                                            <img src="/Style Library/DCASBranding/img/DubaiEgovLogo_W.png"
+                                                alt="Government of Dubai" />
+                                        </a>
+                                        <a href="http://www.dubai.ae/">
+                                            <img src="/Style Library/DCASBranding/img/DubaiAELogo_en.png"
+                                                alt="Dubai.ae" />
+                                        </a>
+                                        <a href="https://www.expo2020dubai.com/">
+                                            <img src="/Style Library/DCASBranding/img/Expo2020Logo.png"
+                                                alt="Expo 2020" />
+                                        </a>
+                                        <a href="http://www.dubai.ae/">
+                                            <img src="/Style Library/DCASBranding/img/DubaiLogo.png" alt="Dubai" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+
+                    <div data-name="ContentPlaceHolderMain">
+                    </div>
+                </div>
+            </div>
+            <!-- start: Floating Widgets -->
+            <section class="floating-widgets">
+                <div class="fw--right tab-content">
+                    <div role="tabpanel" class="tab-pane" id="tab-polls">
+                        <div class="polls-box wrap">
+                            <!-- Poll User Control Starts -->
+                            <cusPoll:Poll runat="server" id="PollId"></cusPoll:Poll>
+                            <!-- Poll User Control Ends -->
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="tab-newsletter">
+
+                        <!--Newsletter Cus Start-->
+                        <cusNL:NewsLetter runat="server" id="NewsLetterId"></cusNL:NewsLetter>
+                        <!--Newsletter Cus End-->
+
+                    </div>
+                    <!-- <div role="tabpanel" class="tab-pane" id="faqs">
+                    
+                </div> -->
+
+											<div role="tabpanel" class="tab-pane" id="tab-chat">
+												<section class="chat-box">
+													<h2 class="heading-h2">Chat Now!</h2>
+													<input type="text" class="form-control form-group" placeholder="Name">
+													<input type="text" class="form-control form-group" placeholder="Email">
+													<textarea name="" id="" class="form-control form-group" rows="4" placeholder="Message"></textarea>
+													<input type="submit" class="btn btn-primary btn-full">
+												</section>
+											</div>
+                </div>
+                <div class="fw--left material-button-anim">
+                    <ul id="options">
+                        <!-- <li><a href="#chat" title="Chat" data-toggle="tab"><em class="icon-chat"></em></a></li> -->
+                        <li class="polls option"><a class="tab-link option1" href="#tab-polls" title="Polls"
+                                data-toggle="tab"><em class="icon-poll"></em> <span>Polls</span></a></li>
+                        <li class="newsletter  option"><a class="tab-link  option2" href="#tab-newsletter"
+                                title="Newsletter" data-toggle="tab"><em
+                                    class="fa fa-envelope-open-o"></em><span>Newsletter</span></a></li>
+                        <li class="faqs  option"><a class="option3" href="#faqsModal" title="FAQs"
+                                data-target="#faqsModal" data-toggle="modal"><em
+                                    class="fa fa-question-circle-o"></em><span>FAQs</span></a></li>
+                        <li class="chat-btn option"><a class="tab-link option4" href="#tab-chat" title="Chat Now!"
+                                data-toggle="tab"><em class="icon-chat"></em><span>Chat Now!</span></a></li>
+																<li class="goto-top option"><a class="option5" id="goto-top" href="#top"><em class="fa fa-angle-double-up"></em><span>Goto Top</span></a></li>
+                        <!-- <li class="goto-top option"><a class="option5" id="goto-top" href="#top"><em -->
+                                    <!-- class="fa fa-angle-double-up"></em><span>Goto Top</span></a></li> -->
+                        <!-- <li><a href="#events" title="Events" data-toggle="tab"><em class="icon-calendar"></em></a></li> -->
+                    </ul>
+                    <button class="material-button material-button-toggle" type="button">
+                        <span class="fa fa-align-justify" aria-hidden="true"></span>
+
+                    </button>
+                </div>
+
+            </section>
+            <!-- end: Floating Widgets -->
+
+
+            <script>
+                $(document).ready(function () {
+                    $('.material-button-toggle').on("click", function () {
+                        $(this).toggleClass('open');
+                        $('.option').toggleClass('scale-on');
+                    });
+                });
+            </script>
+            <!-- FAQ User Control Starts -->
+            <cusFAQ:Faq runat="server" ID="cusFFAQ">
+            </cusFAQ:Faq>
+
+
+            <!-- FAQ User Control Ends -->
+
+            <!--  <script>
+    $(document).ready(function () {
+        $('.material-button-toggle').on("click", function () {
+            $(this).toggleClass('open');Newsletter
+            $('.option').toggleClass('scale-on');
+        });
+    });
+    </script>-->
+            <SharePoint:SPSecurityTrimmedControl runat="server" Permissions="ManageWeb"><script type="text/javascript">//<![CDATA[
+                    $(window).on("load", function () {
+                        $('#ms-designer-ribbon').attr('style', 'display : block');
+                    });
+
+            //]]></script></SharePoint:SPSecurityTrimmedControl>
+
+            <SharePoint:AjaxDelta id="DeltaFormDigest" BlockElement="true" runat="server">
+                <asp:ContentPlaceHolder id="PlaceHolderFormDigest" runat="server">
+					<SharePoint:formdigest runat="server" />
+                </asp:ContentPlaceHolder>
+            </SharePoint:AjaxDelta>
+        </SharePoint:SharePointForm>
+        <SharePoint:AjaxDelta id="DeltaPlaceHolderUtilityContent" runat="server">
+            <asp:ContentPlaceHolder id="PlaceHolderUtilityContent" runat="server" />
+        </SharePoint:AjaxDelta>
+        <asp:ContentPlaceHolder id="PlaceHolderTitleAreaClass" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderTitleBreadcrumb" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderGlobalNavigationSiteMap" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderGlobalNavigation" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderSearchArea" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderLeftNavBar" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderHorizontalNav" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderTopNavBar" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderLeftNavBarDataSource" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderCalendarNavigator" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderLeftActions" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderLeftNavBarTop" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderSiteName" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderPageTitleInTitleArea" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderPageDescription" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderPageImage" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderTitleLeftBorder" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderMiniConsole" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderTitleRightMargin" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderTitleAreaSeparator" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderNavSpacer" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderLeftNavBarBorder" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderBodyLeftBorder" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderBodyRightMargin" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="WSSDesignConsole" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="SPNavigation" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderQuickLaunchTop" Visible="False" runat="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderQuickLaunchBottom" Visible="False" runat="server" />
+    </body>
+</SharePoint:SPHtmlTag>
