@@ -1,5 +1,5 @@
 <?php 
-
+error_reporting(0);
 include 'DBConfig.php';
     
                         $photoName =  $_POST['imageNameUpload'];

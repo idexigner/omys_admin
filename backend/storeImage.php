@@ -1,5 +1,5 @@
 <?php
-    
+    error_reporting(0);
     $imgName= $_POST['imageNameUpload2'];
     $img = $_POST['image'];
     $folderPath = "../../omys_backend/uploads/images/";

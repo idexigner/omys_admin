@@ -1,5 +1,5 @@
 <?php  
- //pagination.php  
+error_reporting(0);
  include 'DBConfig.php';
 
 // $protocol = $_SERVER['HTTPS'] == 'on' ? 'https' : 'http';

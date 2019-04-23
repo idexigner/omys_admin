@@ -853,21 +853,23 @@ function blogin() {
         .then((response) => response.json())
         .then((responseJson) => {
             if (responseJson === "Wrong Details") {
-                alert(responseJson);
+                alert("Wring one");
                 window.location.href = "/omys_admin/index.php";
             }
             else {
+                console.log(responseJson[0]);
+                // alert(responseJson[0]);
+                alert(responseJson);
+                // alert("farazedit"+ responseJson[0].role);
+                localStorage.setItem("role", responseJson.role);
+                localStorage.setItem("user", responseJson.u_id);
+                localStorage.setItem("username", responseJson.name);
 
                 
-                // alert("farazedit"+ responseJson[0].role);
-                localStorage.setItem("role", responseJson[0].role);
-                localStorage.setItem("user", responseJson[0].u_id);
-                localStorage.setItem("username", responseJson[0].name);
-
-                logStatus('in',responseJson[0].u_id,responseJson[0].name);
+                logStatus('in',responseJson.u_id,responseJson.name);
                 window.location.href = "/omys_admin/dashboard.php";
             }
-            
+            // alert(responseJson);
 
         })
         .catch((error) => {

@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
  
 echo "<script type='text/javascript'>console.log('bahir');</script>";
 
