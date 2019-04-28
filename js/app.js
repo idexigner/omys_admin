@@ -853,13 +853,13 @@ function blogin() {
         .then((response) => response.json())
         .then((responseJson) => {
             if (responseJson === "Wrong Details") {
-                alert("Wring one");
+                alert("Wrong Details");
                 window.location.href = "/omys_admin/index.php";
             }
             else {
-                console.log(responseJson[0]);
+                // console.log(responseJson[0]);
                 // alert(responseJson[0]);
-                alert(responseJson);
+                // alert(responseJson);
                 // alert("farazedit"+ responseJson[0].role);
                 localStorage.setItem("role", responseJson.role);
                 localStorage.setItem("user", responseJson.u_id);
