@@ -21,6 +21,10 @@
                             <a href="createStaff.php">
                                 <i class="fas fa-chart-bar"></i>Create Staff</a>
                         </li>
+                        <li id="createAddId2">
+                            <a href="createAdd.php">
+                                <i class="fas fa-chart-bar"></i>Create Add</a>
+                        </li>
 
                         <li>
                         <a onclick="logout()" href="index.php">

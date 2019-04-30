@@ -732,7 +732,9 @@ function createUserStudent() {
     }
 
 
-    var user_id = localStorage.getItem('user');
+    // var user_id = localStorage.getItem('user');
+
+    var user_id = accessCookie("user");
 
 
     if (checkRequired) {
@@ -861,9 +863,16 @@ function blogin() {
                 // alert(responseJson[0]);
                 // alert(responseJson);
                 // alert("farazedit"+ responseJson[0].role);
-                localStorage.setItem("role", responseJson.role);
-                localStorage.setItem("user", responseJson.u_id);
-                localStorage.setItem("username", responseJson.name);
+                createCookie("role",responseJson.role,1);
+                createCookie("user",responseJson.u_id,1);
+                createCookie("username",responseJson.name,1);
+
+
+
+
+                // localStorage.setItem("role", responseJson.role);
+                // localStorage.setItem("user", responseJson.u_id);
+                // localStorage.setItem("username", responseJson.name);
 
                 
                 logStatus('in',responseJson.u_id,responseJson.name);
@@ -1631,8 +1640,6 @@ function updateStudentUser() {
 
                 // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
                 window.location.href = "/omys_admin/viewUser.php";
-
-
                 // console.log(responseJson);
             })
             .catch((error) => {
@@ -1640,14 +1647,8 @@ function updateStudentUser() {
                 window.location.href = "/omys_admin/viewUser.php";
                 // console.error(error);
             });
-
     }
-
-
-
 }
-
-
 
 function deleteStudentUser() {
     // var purchaseIdd = localStorage.getItem('purchaseIdJavascript');
@@ -1661,22 +1662,16 @@ function deleteStudentUser() {
         method: 'POST',
         body: JSON.stringify({
             s_id: s_id,
-
         }),
         headers: new Headers({
             'Content-Type': 'application/json',
         })
-
     })
         .then((response) => response.json())
         .then((responseJson) => {
-
             alert("Successfully Deleted");
-
             // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
             window.location.href = "/omys_admin/viewUser.php";
-
-
             // console.log(responseJson);
         })
         .catch((error) => {
@@ -1685,8 +1680,6 @@ function deleteStudentUser() {
             // console.error(error);
         });
 }
-
-
 
 
 // function exportTableToExcel(tableID, filename){
@@ -1784,6 +1777,16 @@ $(document).ready(function () {
 });
 
 
+$(document).ready(function () {
+    $("#searchInputAdd").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#tableAdd tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+});
+
+
 
 function createStaff() {
 
@@ -1844,6 +1847,8 @@ function createStaff() {
 
 
 }
+
+
 
 
 
@@ -2016,6 +2021,266 @@ function updateStaff() {
 
 
 function deleteStaff() {
+    // var purchaseIdd = localStorage.getItem('purchaseIdJavascript');
+    // var p_id='2';
+    var updateU_id = document.getElementById('uid').value;
+
+    //alert(s_id);
+
+
+    fetch(Api + 'backend/bdeleteStaffJava.php', {
+        method: 'POST',
+        body: JSON.stringify({
+            updateU_id: updateU_id,
+
+        }),
+        headers: new Headers({
+            'Content-Type': 'application/json',
+        })
+
+    })
+        .then((response) => response.json())
+        .then((responseJson) => {
+
+            alert("Successfully Deleted");
+
+            // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
+            window.location.href = "/omys_admin/createStaff.php";
+
+
+            // console.log(responseJson);
+        })
+        .catch((error) => {
+            alert("Not Deleted");
+            window.location.href = "/omys_admin/createStaff.php";
+            // console.error(error);
+        });
+}
+
+
+
+
+
+function createAdd() {
+
+
+    var title = document.getElementById("addTitle").value;
+    var discount = document.getElementById("addDiscount").value;
+    var address = document.getElementById("addAddress").value;
+    var expire = document.getElementById("dateExpire").value;
+    var sCatDrop = document.getElementById("sCat");
+    var sCatDropValue = sCatDrop.options[sCatDrop.selectedIndex].value;
+
+    var min = 1000, max = 100000000;
+    var randomNum = Math.floor(Math.random() * (max - min + 1) + min);
+    var imgName = title + randomNum;
+
+
+    if (document.getElementById("imageAddUpload").value !== '') {
+        alert("Inside if ");
+        document.getElementById("imageAddNameUpload").value = imgName;
+        document.getElementById("uploadAddImageIdForm").submit();
+    }
+    else {
+        imgName = '';
+    }
+
+    fetch(Api + 'backend/bcreateAddJava.php', {
+        method: 'POST',
+        body: JSON.stringify({
+            title: title,
+            discount: discount,
+            address: address,
+            expire: expire,
+            sCatDropValue: sCatDropValue,
+            imgName: imgName
+        }),
+        headers: new Headers({
+            'Content-Type': 'application/json',
+        })
+
+    })
+        .then((response) => response.json())
+        .then((responseJson) => {
+
+            alert("Successfully Inserted");
+            // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
+            window.location.href = "/omys_admin/createAdd.php";
+
+
+            // console.log(responseJson);
+        })
+        .catch((error) => {
+            console.error(error);
+            alert("Not Inserted s");
+            window.location.href = "/omys_admin/createAdd.php";
+
+        });
+
+
+
+
+}
+
+
+function addTableLoad() {
+    fetch(Api + 'backend/bshowAddTable.php', {
+        method: 'GET',
+        headers: new Headers({
+            'content-type': 'application/json',
+            'Accept': 'application/json',
+        })
+    })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            console.log(responseJson);
+            // alluserdata = responseJson;
+            responseJson.map((tr) => {
+
+                document.getElementById("addTable").innerHTML += showAddTable(tr);
+
+            })
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
+function showAddTable(data) {
+
+    return `
+            <tr onClick="loadAddMod(${data.a_id})">
+               <td>${data.a_id}</td>
+               <td>${data.title}</td>
+               <td>${data.category}</td>
+               <td>${data.discount}</td>
+               <td>${data.address}</td>
+               <td>${data.expire}</td>
+              
+               
+           </tr>
+           
+           `;
+}
+
+
+
+function loadAddMod(data) {
+    
+    $('#addModal').modal('show');
+   
+    var a_id = data;
+  
+    fetch(Api + 'backend/baddStaff.php', {
+        method: 'POST',
+        body: JSON.stringify({
+            id: a_id,
+            // pass: pass,
+            // fullname: fullname,
+        }),
+        headers: new Headers({
+            'Content-Type': 'application/json',
+        })
+
+    })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            var obj = responseJson[0];
+            document.getElementById("addid").value = obj.a_id;
+
+            document.getElementById("uaddTitle").value = obj.title;
+            document.getElementById("uaddDiscount").value = obj.discount;
+            document.getElementById("uaddAddress").value = obj.address;
+            document.getElementById("udateExpire").value = obj.expire;
+
+
+            var category = obj.category;
+
+
+            var arrayCat = ['Food','LifeStyle','Health','E-Stores','Services','Home-Decor'];
+
+            // var dayUnit=obj.areaUnit;
+            var indexCat = arrayCat.indexOf(category);
+
+            document.getElementById("usCat").selectedIndex = indexCat;
+
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+
+
+
+
+    function newFunction() {
+        return JSON.parse;
+    }
+}
+
+
+
+function updateAdd() {
+    console.log("reached update");
+
+
+    // var purchaseIdd = localStorage.getItem('purchaseIdJavascript');
+    // var p_id='2';
+    var updateU_id = document.getElementById('uid').value;
+    var uname = document.getElementById("uname").value;
+    var ukhundi = document.getElementById("ukhundi").value;
+    var ucontact = document.getElementById("ucontact").value;
+    var uusername = document.getElementById("uusername").value;
+    var upass = document.getElementById("upass").value;
+
+
+
+    var urole = document.getElementById("urole");
+    var uroleValue = urole.options[urole.selectedIndex].value;
+
+    console.log(updateU_id + "   " + uname + "   " + ukhundi + "   " + ucontact + "   " + uusername + "   " + upass + "   " + uroleValue);
+
+    fetch(Api + 'backend/bupdateStaffJava.php', {
+        method: 'POST',
+        body: JSON.stringify({
+            updateU_id: updateU_id,
+            uname: uname,
+            ukhundi: ukhundi,
+            ucontact: ucontact,
+            uusername: uusername,
+            upass: upass,
+            uroleValue: uroleValue
+
+        }),
+        headers: new Headers({
+            'Content-Type': 'application/json',
+        })
+
+    })
+        .then((response) => response.json())
+        .then((responseJson) => {
+
+            alert("Successfully Updated");
+
+            // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
+            window.location.href = "/omys_admin/createStaff.php";
+
+
+            // console.log(responseJson);
+        })
+        .catch((error) => {
+            alert("Not Updated");
+            window.location.href = "/omys_admin/createStaff.php";
+            // console.error(error);
+        });
+
+
+
+}
+
+
+
+function deleteAdd() {
     // var purchaseIdd = localStorage.getItem('purchaseIdJavascript');
     // var p_id='2';
     var updateU_id = document.getElementById('uid').value;
@@ -2253,20 +2518,43 @@ function skhundiListChange(){
 
 function logout(){
 
-    logStatus('out',localStorage.getItem("user"),localStorage.getItem("username"))
+    logStatus('out',accessCookie("user"),accessCookie("username"));
 
     
     alert("Thank you For using Census System");
-    localStorage.setItem("role", '');
+    createCookie("role","",1);
+    // localStorage.setItem("role", '');
     window.location.href  = "/omys_admin/index.php";
     
 
 }
+function createCookie(cookieName,cookieValue,daysToExpire)
+{
+          var date = new Date();
+          date.setTime(date.getTime()+(daysToExpire*24*60*60*1000));
+          document.cookie = cookieName + "=" + cookieValue + "; expires=" + date.toGMTString();
+}
 
+function accessCookie(cookieName)
+{
+    var name = cookieName + "=";
+    var allCookieArray = document.cookie.split(';');
+    for(var i=0; i<allCookieArray.length; i++)
+    {
+    var temp = allCookieArray[i].trim();
+    if (temp.indexOf(name)==0)
+    return temp.substring(name.length,temp.length);
+    }
+    return "";
+}
 function onLoadFunction(page) {
-    var role = localStorage.getItem("role");
-    //   alert(role);
+    // var role = localStorage.getItem("role");
+
+    var role = accessCookie("role");
+
     if(role!=="Staff" && role!=="Admin" && role!=="worker"){
+        console.log("inside login");
+        console.log(role);
         alert("Please Login First");
         window.location.href  = "/omys_admin/index.php";
 
@@ -2274,19 +2562,28 @@ function onLoadFunction(page) {
     if (role === "worker") {
         document.getElementById("createStaffId").style.display = 'none';
         document.getElementById("createStaffId2").style.display = 'none';
-        // document.getElementById("ReportId").style.display = 'none';
-        // document.getElementById("ReportId2").style.display = 'none';
+        
         document.getElementById("viewUserId").style.display = 'none';
         document.getElementById("viewUserId2").style.display = 'none';
+
+        document.getElementById("createAddId").style.display = 'none';
+        document.getElementById("createAddId2").style.display = 'none';
+
+        document.getElementById("ReportId").style.display = 'none';
+        document.getElementById("ReportId2").style.display = 'none';
     }
 
     if (role === "Staff") {
         document.getElementById("createStaffId").style.display = 'none';
         document.getElementById("createStaffId2").style.display = 'none';
-        // document.getElementById("ReportId").style.display = 'none';
-        // document.getElementById("ReportId2").style.display = 'none';
+
+        document.getElementById("createAddId").style.display = 'none';
+        document.getElementById("createAddId2").style.display = 'none';
+
+        document.getElementById("ReportId").style.display = 'none';
+        document.getElementById("ReportId2").style.display = 'none';
     }
-    console.log(role);
+   // console.log(role);
     if (page === 'dashboard') {
         document.getElementById("dashboardId").className = "active has-sub";
         document.getElementById("dashboardId2").className = "active has-sub";
@@ -2314,6 +2611,17 @@ function onLoadFunction(page) {
         document.getElementById("createStaffId").className = "active has-sub";
         document.getElementById("createStaffId2").className = "active has-sub";
         staffTableLoad();
+        }
+        else{
+            alert("You dont have enough rights");
+           window.location.href  = "/omys_admin/dashboard.php";
+        }
+    }
+    else if (page === 'createAdd') {
+        if(role == "Admin"){
+        document.getElementById("createAddId").className = "active has-sub";
+        document.getElementById("createAddId2").className = "active has-sub";
+        addTableLoad();
         }
         else{
             alert("You dont have enough rights");

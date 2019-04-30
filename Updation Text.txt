@@ -1,0 +1,16 @@
+
+Title
+logo
+category
+discount
+location
+
+
+food
+lifestyle
+health
+estores
+services
+home decor
+
+

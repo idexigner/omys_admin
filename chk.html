@@ -1,19 +1,96 @@
-<div class="banner-policy">
-    <div class="inner">
-        <div class="policy policy5">
-            <a rel="noindex nofollow" data-toggle="modal" data-target=".No-fake">
-                <span class="ico-policy">100% original<br>Products</span>
-            </a>
-        </div>
-        <div class="policy policy6">
-            <a rel="noindex nofollow" data-toggle="modal" data-target=".timely-delivery">
-                <span class="ico-policy">Timely<br>Delivery</span>
-            </a>
-        </div>
-        <div class="policy policy7">
-            <a rel="noindex nofollow" data-toggle="modal" data-target=".easy-return">
-                <span class="ico-policy">Easy<br>Return</span>
-            </a>
-        </div>
+<div class="row form-group">
+    <div class="col col-md-3">
+        <label for="text-input" class=" form-control-label">User Id:</label>
     </div>
+    <div class="col-12 col-md-9">
+        <input type="text" id="addid" name="addid" class="form-control" disabled>
+        <!--<small class="form-text text-muted">This is a help text</small>-->
+    </div>
+</div>
+
+
+<div class="row form-group">
+    <div class="col col-md-3">
+        <label for="text-input" class=" form-control-label">Title</label>
+    </div>
+    <div class="col-12 col-md-9">
+        <input type="text" id="uaddTitle" name="uaddTitle" class="form-control">
+        <!--<small class="form-text text-muted">This is a help text</small>-->
+    </div>
+</div>
+
+
+<div class="row form-group">
+    <div class="col col-md-3">
+        <label for="text-input" class=" form-control-label">Khundi</label>
+    </div>
+    <div class="col-12 col-md-9">
+        <input type="text" id="ukhundi" name="ukhundi" class="form-control">
+        <!--<small class="form-text text-muted">This is a help text</small>-->
+    </div>
+</div>
+
+
+
+<div class="row form-group">
+    <div class="col col-md-3">
+        <label for="text-input" class=" form-control-label">Contact</label>
+    </div>
+    <div class="col-12 col-md-9">
+        <input type="text" id="ucontact" name="ucontact" class="form-control">
+        <!--<small class="form-text text-muted">This is a help text</small>-->
+    </div>
+</div>
+
+
+<div class="row form-group">
+    <div class="col col-md-3">
+        <label for="text-input" class=" form-control-label">Username</label>
+    </div>
+    <div class="col-12 col-md-9">
+        <input type="text" id="uusername" name="uusername" class="form-control">
+        <!--<small class="form-text text-muted">This is a help text</small>-->
+    </div>
+</div>
+
+
+<div class="row form-group">
+    <div class="col col-md-3">
+        <label for="text-input" class=" form-control-label">Password</label>
+    </div>
+    <div class="col-12 col-md-9">
+        <input type="text" id="upass" name="upass" class="form-control">
+        <!--<small class="form-text text-muted">This is a help text</small>-->
+    </div>
+</div>
+
+
+
+
+
+<div class="row form-group">
+    <div class="col col-md-3">
+        <label for="text-input" class=" form-control-label">Role</label>
+    </div>
+    <div class="col-12 col-md-9">
+
+        <select name="urole" id="urole" class="form-control">
+
+
+            <option value="Admin">Admin</option>
+            <option value="Staff">Staff</option>
+            <option value="worker">Worker</option>
+
+        </select>
+
+        <!--<small class="form-text text-muted">This is a help text</small>-->
+    </div>
+</div>
+
+
+<!-- updateStudentUser -->
+<div>
+    <button type="button" onclick="deleteStaff();" name="delete" class="btn btn-danger">Delete</button>
+    <button type="button" onclick="updateStaff();" style="float:right;" name="udpate"
+        class="btn btn-primary">Update</button>
 </div>

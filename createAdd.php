@@ -14,7 +14,7 @@ include 'DBConfig.php';
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>Create Add</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -235,7 +235,7 @@ include 'DBConfig.php';
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <strong>Create</strong> Staff
+                                        <strong>Create</strong> Add
                                     </div>
                                     <div class="card-body card-block">
                                         <!-- <form action="backend/bcreateUser.php" id="createUserForm" method="post" enctype="multipart/form-data" class="form-horizontal"> -->
@@ -249,88 +249,91 @@ include 'DBConfig.php';
                                             </div>-->
                                         <div class="row form-group">
                                             <div class="col col-md-3">
-                                                <label for="text-input" class=" form-control-label">Name</label>
+                                                <label for="text-input" class=" form-control-label">Title</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input type="text" id="tname" name="tname" placeholder="Enter Name"
+                                                <input type="text" id="addTitle" name="addTitle" placeholder="Enter Title"
                                                     class="form-control">
 
                                             </div>
                                         </div>
 
-                                        <div class="row form-group">
-                                            <div class="col col-md-3">
-                                                <label for="text-input" class=" form-control-label">Khundi</label>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                                <input type="text" id="tkhundi" name="tkhundi"
-                                                    placeholder="Enter Khundi" class="form-control">
-
-                                            </div>
-                                        </div>
 
                                         <div class="row form-group">
                                             <div class="col col-md-3">
-                                                <label for="text-input" class=" form-control-label">Contact</label>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                                <input type="number" id="tcontact" name="tcontact"
-                                                    placeholder="Enter Contact" class="form-control">
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row form-group">
-                                            <div class="col col-md-3">
-                                                <label for="text-input" class=" form-control-label">Username</label>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                                <input type="text" id="tusername" name="tusername"
-                                                    placeholder="Enter Username" class="form-control">
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row form-group">
-                                            <div class="col col-md-3">
-                                                <label for="text-input" class=" form-control-label">Password</label>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                                <input type="password" id="tpass" name="tpass" placeholder="Enter Name"
-                                                    class="form-control">
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row form-group">
-                                            <div class="col col-md-3">
-                                                <label for="text-input" class=" form-control-label">Role</label>
+                                                <label for="text-input" class=" form-control-label">Category</label>
                                             </div>
                                             <div class="col-12 col-md-9">
 
-                                                <select name="srole" id="srole" class="form-control">
-                                                    <option value="Staff">Role</option>
-                                                    <option value="Admin">Admin</option>
-                                                    <option value="Staff">Staff</option>
-                                                    <option value="worker">Worker</option>
-
-
+                                                <select name="sCat" id="sCat" class="form-control">
+                                                    <option value="Food">Category</option>
+                                                    <option value="Food">Food</option>
+                                                    <option value="LifeStyle">LifeStyle</option>
+                                                    <option value="Health">Health</option>
+                                                    <option value="E-Stores">E-Stores</option>
+                                                    <option value="Services">Services</option>
+                                                    <option value="Home-Decor">Home-Decor</option>
                                                 </select>
-
-                                                <!--<small class="form-text text-muted">This is a help text</small>-->
                                             </div>
+                                        </div>
 
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="text-input" class=" form-control-label">Discount</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" id="addDiscount" name="addDiscount"
+                                                    placeholder="Enter Discount off" class="form-control">
 
+                                            </div>
+                                        </div>
 
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="text-input" class=" form-control-label">Address</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" id="addAddress" name="addAddress"
+                                                    placeholder="Enter Address" class="form-control">
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="text-input" class=" form-control-label">Expires On</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="date" id="dateExpire" name="dateExpire" class="form-control">
+
+                                            </div>
                                         </div>
 
 
+                                        <form action="backend/bphotoAddUpload.php" id="uploadAddImageIdForm" method="post"
+                                            enctype="multipart/form-data" class="form-horizontal">
+                                            <input type="hidden" name="imageAddNameUpload" id="imageAddNameUpload">
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="file-input" class=" form-control-label">Logo Upload</label>
+                                                </div>
+                                                <div class="col-8 col-md-6">
+                                                    <input type="file" id="imageAddUpload" name="imageAddUpload"
+                                                        class="form-control-file ">
+                                                </div>
+                                            </div>
 
+                                        </form>
+
+
+
+
+                                        
                                         <hr>
 
                                     </div>
                                     <div class="card-footer">
-                                        <button type="button" onClick="createStaff()" name="submit"
+                                        <button type="button" onClick="createAdd()" name="submit"
                                             class="btn btn-primary btn-sm">
                                             <i class="fa fa-dot-circle-o"></i> Submits
                                         </button>
@@ -356,7 +359,7 @@ include 'DBConfig.php';
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3> View All Staff</h3>
+                                        <h3> View All Adverisement</h3>
                                     </div>
 
                                     <div class="row form-group">
@@ -364,7 +367,7 @@ include 'DBConfig.php';
                                         <div class="col-4 col-md-12">
 
 
-                                            <input type="text" id="searchInputStaff" placeholder="Search any Text"
+                                            <input type="text" id="searchInputAdd" placeholder="Search any Text"
                                                 class="form-control">
 
                                         </div>
@@ -375,19 +378,18 @@ include 'DBConfig.php';
                             <div class="col-lg-12">
                                 <!-- <div class="table-responsive table--no-card m-b-30"> -->
                                 <div class="table-responsive">
-                                    <table id="tableStaff" class="table table-borderless table-striped table-earning">
+                                    <table id="tableAdd" class="table table-borderless table-striped table-earning">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Khundi</th>
-                                                <th>Contact</th>
-                                                <th>Username</th>
-                                                <th>Password</th>
-                                                <th>Role</th>
+                                                <th>Title</th>
+                                                <th>Category</th>
+                                                <th>Discount</th>
+                                                <th>Address</th>
+                                                <th>Expires On </th>
                                             </tr>
                                         </thead>
-                                        <tbody id="staffTable">
+                                        <tbody id="addTable">
 
 
 
@@ -396,33 +398,10 @@ include 'DBConfig.php';
                                     </table>
 
                                 </div>
-                                <!-- <div class="pagination-container">
-                                    <nav>
-                                        <ul class="pagination"></ul>
-                                    </nav>
-                                </div> -->
-
-
-
-                                <!-- <div class='pagination-container' >
-                                    <nav>
-                                    <ul class="pagination">
                                 
-                                        <li data-page="prev" >
-                                                <span> < <span class="sr-only">(current)</span></span>
-                                                </li>
-                            <!-	Here the JS Function Will Add the Rows ->
-                                                <li data-page="next" id="prev">
-                                                <span> > <span class="sr-only">(current)</span></span>
-                                                </li>
-                                        </ul>
-                                    </nav>
-                                </div>pagineation container -->
-                                <!-- <ul class="pagination pagination-lg pager" id="myPager"></ul> -->
-
                             </div><!-- col-lg-12-->
 
-                            <button onclick="exportTableToExcel('tableStaff')" class="btn btn-success"
+                            <button onclick="exportTableToExcel('tableAdd')" class="btn btn-success"
                                 style="margin:0 0 0 80%">Export to Excel</button>
 
                         </div>
@@ -457,7 +436,7 @@ include 'DBConfig.php';
 
 
     <!-- modal medium -->
-    <div class="modal" style="z-index:100" id="staffModal" tabindex="-1" role="dialog"
+    <div class="modal" style="z-index:100" id="addModal" tabindex="-1" role="dialog"
         aria-labelledby="mediumModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -469,7 +448,7 @@ include 'DBConfig.php';
                 </div>
                 <div class="modal-body">
 
-                    <?php include 'modalStaffForm.php'; ?>
+                    <?php include 'modalAddForm.php'; ?>
 
 
 
@@ -525,7 +504,7 @@ include 'DBConfig.php';
     <script src="js/main.js"></script>
     <script src="js/app.js"></script>
     <script>
-        window.onload = onLoadFunction('createStaff');
+        window.onload = onLoadFunction('createAdd');
     </script>
 
 </body>

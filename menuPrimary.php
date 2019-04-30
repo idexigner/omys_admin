@@ -13,6 +13,7 @@
                                 <i class="fas fa-chart-bar"></i>View User</a>
                         </li>
 
+
                         <li id="ReportId">
                             <a href="reportPrctc.php">
                                 <i class="fas fa-chart-bar"></i>Print Id Card</a>
@@ -22,6 +23,11 @@
                         <li id="createStaffId">
                             <a href="createStaff.php">
                                 <i class="fas fa-chart-bar"></i>Create Staff</a>
+                        </li>
+
+                        <li id="createAddId">
+                            <a href="createAdd.php">
+                                <i class="fas fa-chart-bar"></i>Create Add</a>
                         </li>
                         <li>
                             <a onclick="logout()" href="index.php">

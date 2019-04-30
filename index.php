@@ -117,9 +117,23 @@
 </body>
 
 <script>
-    var role = localStorage.getItem("role");
+function accessCookie(cookieName)
+{
+    var name = cookieName + "=";
+    var allCookieArray = document.cookie.split(';');
+    for(var i=0; i<allCookieArray.length; i++)
+    {
+    var temp = allCookieArray[i].trim();
+    if (temp.indexOf(name)==0)
+    return temp.substring(name.length,temp.length);
+    }
+    return "";
+}
+
+// window.onload=onLoadFunction('index');
+    var role = accessCookie("role");
     //   alert(role);
-    if(role==="Staff" || role==="Admin"){
+    if(role==="Staff" || role==="Admin" || role==="worker"){
         // alert("Please Login First");
         window.location.href  = "/omys_admin/dashboard.php";
 
