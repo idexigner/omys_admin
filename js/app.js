@@ -2195,14 +2195,15 @@ function loadAddMod(data) {
 
 
             var category = obj.category;
-
-
-            var arrayCat = ['Food','LifeStyle','Health','E-Stores','Services','Home-Decor'];
-
-            // var dayUnit=obj.areaUnit;
+            var arrayCat = ['Food','LifeStyle','Health','E-Stores','Services','Home-Decor'];           
             var indexCat = arrayCat.indexOf(category);
-
             document.getElementById("usCat").selectedIndex = indexCat;
+
+            var imgDb = obj.image;
+            document.getElementById("imgFromDbAdvertise").value = imgDb;
+
+            document.getElementById("imageAdvertise").src = Api + "../omys_backend/advertise/" + imgDb + ".jpeg";
+
 
         })
         .catch((error) => {
@@ -2221,35 +2222,51 @@ function loadAddMod(data) {
 
 
 function updateAdd() {
-    console.log("reached update");
+   
+    var updateA_id = document.getElementById('addid').value;
+    var uTitle = document.getElementById("uaddTitle").value;
+    var uDiscount = document.getElementById("uaddDiscount").value;
+    var uAddress = document.getElementById("uaddAddress").value;
+    var uDate = document.getElementById("udateExpire").value;
+    
 
 
-    // var purchaseIdd = localStorage.getItem('purchaseIdJavascript');
-    // var p_id='2';
-    var updateU_id = document.getElementById('uid').value;
-    var uname = document.getElementById("uname").value;
-    var ukhundi = document.getElementById("ukhundi").value;
-    var ucontact = document.getElementById("ucontact").value;
-    var uusername = document.getElementById("uusername").value;
-    var upass = document.getElementById("upass").value;
+    var uCat = document.getElementById("usCat");
+    var uCatValue = uCat.options[urole.selectedIndex].value;
+
+    
+    var min = 1000, max = 100000000;
+    var randomNum = Math.floor(Math.random() * (max - min + 1) + min);
+    var imgName = uTitle + randomNum;
+    
+    var imgAddCheck = document.getElementById("imgFromDbAdvertise").value;
 
 
+    if (imgAddCheck !== '' || imgAddCheck !== null || imgAddCheck !== undefined) {
+        if (document.getElementById("simageUploadAdd").value !== '') {
+            document.getElementById("simageNameUploadAdd").value = imgName;
+            document.getElementById("suploadImageIdFormAdd").submit();
+        }
 
-    var urole = document.getElementById("urole");
-    var uroleValue = urole.options[urole.selectedIndex].value;
+       
+        else {
+            imgName = imgAddCheck;
+        }
 
-    console.log(updateU_id + "   " + uname + "   " + ukhundi + "   " + ucontact + "   " + uusername + "   " + upass + "   " + uroleValue);
+    }
 
-    fetch(Api + 'backend/bupdateStaffJava.php', {
+
+    fetch(Api + 'backend/bupdateAddJava.php', {
         method: 'POST',
         body: JSON.stringify({
-            updateU_id: updateU_id,
-            uname: uname,
-            ukhundi: ukhundi,
-            ucontact: ucontact,
-            uusername: uusername,
-            upass: upass,
-            uroleValue: uroleValue
+            updateA_id: updateA_id,
+            uTitle: uTitle,
+            uDiscount: uDiscount,
+            uAddress: uAddress,
+            uDate: uDate,
+            uCatValue: uCatValue,
+            imgName: imgName
+            
 
         }),
         headers: new Headers({
@@ -2263,14 +2280,14 @@ function updateAdd() {
             alert("Successfully Updated");
 
             // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
-            window.location.href = "/omys_admin/createStaff.php";
+            window.location.href = "/omys_admin/createAdd.php";
 
 
             // console.log(responseJson);
         })
         .catch((error) => {
             alert("Not Updated");
-            window.location.href = "/omys_admin/createStaff.php";
+            window.location.href = "/omys_admin/createAdd.php";
             // console.error(error);
         });
 
@@ -2283,15 +2300,15 @@ function updateAdd() {
 function deleteAdd() {
     // var purchaseIdd = localStorage.getItem('purchaseIdJavascript');
     // var p_id='2';
-    var updateU_id = document.getElementById('uid').value;
+    var updateA_id = document.getElementById('addid').value;
 
     //alert(s_id);
 
 
-    fetch(Api + 'backend/bdeleteStaffJava.php', {
+    fetch(Api + 'backend/bdeleteAddJava.php', {
         method: 'POST',
         body: JSON.stringify({
-            updateU_id: updateU_id,
+            updateA_id: updateA_id,
 
         }),
         headers: new Headers({
@@ -2305,14 +2322,14 @@ function deleteAdd() {
             alert("Successfully Deleted");
 
             // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
-            window.location.href = "/omys_admin/createStaff.php";
+            window.location.href = "/omys_admin/createAdd.php";
 
 
             // console.log(responseJson);
         })
         .catch((error) => {
             alert("Not Deleted");
-            window.location.href = "/omys_admin/createStaff.php";
+            window.location.href = "/omys_admin/createAdd.php";
             // console.error(error);
         });
 }

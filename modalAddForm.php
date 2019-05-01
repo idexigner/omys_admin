@@ -10,15 +10,14 @@
 
 
 <div class="row form-group">
-              <div class="col col-md-3">
-                 <label for="text-input" class=" form-control-label">Logo</label>
-               </div>
-              <div class="col-12 col-md-9">
+    <div class="col col-md-3">
+        <label for="text-input" class=" form-control-label">Logo</label>
+    </div>
+    <div class="col-12 col-md-9">
 
-              <img width="200px" height="200px" id="imageAdvertise">
-              <!-- <input type="text" id="sname" name="sname"  placeholder="Enter Name" class="form-control"> -->
-                                                    <!--<small class="form-text text-muted">This is a help text</small>-->
-                </div>
+    <img width="200px" height="200px" id="imageAdvertise">
+    
+    </div>
 </div>
 
 
@@ -88,6 +87,33 @@
         <!--<small class="form-text text-muted">This is a help text</small>-->
     </div>
 </div>
+
+
+<input type="hidden" id="imgFromDbAdvertise" name="imgFromDbAdvertise">
+
+
+
+<form action="backend/bphotoAddUpload.php" id="suploadImageIdFormAdd" method="post" enctype="multipart/form-data" class="form-horizontal">
+    <input type="hidden" name="imageAddNameUpload" id="simageNameUploadAdd">
+    <div class="row form-group">
+        <div class="col col-md-3">
+            <label for="file-input" class=" form-control-label">Image Upload</label>
+        </div>
+        <div class="col-8 col-md-6">
+            <input type="file" id="simageUploadAdd" name="imageAddUpload"  class="form-control-file ">
+        </div>
+        <!--<div class="col-4 col-md-3"></div>-->
+        <div class="col-4 col-md-3">
+        
+        <button type="button" class="btn btn-secondary" name="captureImage" onclick="scaptureImageCustom();">
+            Capture
+        </button>
+        
+        </div>
+    </div>
+
+</form>
+
 
 
 
