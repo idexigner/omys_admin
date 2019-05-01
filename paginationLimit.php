@@ -46,6 +46,7 @@ else{
             
             $page = '';  
             $output = '';  
+            $role = $_POST["role"];
             if(isset($_POST["page"]))  
             {  
                 $page = $_POST["page"];  
@@ -61,40 +62,68 @@ else{
             //  echo $search;
             //  $start_from = $_POST['start'];
             if($column == 'name'){
-            
+                if($role == "Admin"){
                 $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.name like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
+                }
+                else{
 
-           // $query = "SELECT * FROM census where name like '$search' ORDER BY edit desc,s_id"; 
+                }
+
+           
             }
             else if ($column == 'khundi'){
+                if($role == "Admin"){
+
+                }
+                else{
+
+                }
 
                 $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.khundi like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
-               // $query = "SELECT * FROM census where khundi like '$search' ORDER BY edit desc,s_id"; 
+              
             }
             else if ($column == 'contact'){
 
-                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.contact like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
-                // $query = "SELECT * FROM census where contact like '$search' ORDER BY edit desc,s_id"; 
+                if($role == "Admin"){
+                    $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.contact like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
+                }
+                else{
+                    $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.contact like '$search' WHERE c.print != 'printed' ORDER BY c.edit desc,c.s_id"; 
+                }
             }
             else if ($column == 'fh_name'){
-
-                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.fh_name like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
-
-               // $query = "SELECT * FROM census where fh_name like '$search' ORDER BY edit desc,s_id"; 
+                if($role == "Admin"){
+                    $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.fh_name like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
+                }
+                else{
+                    $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.fh_name like '$search' WHERE c.print != 'printed' ORDER BY c.edit desc,c.s_id"; 
+                }
             }
             else if ($column == 'address'){
 
-                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.address like '$search' ORDER BY c.print desc,c.edit desc,c.s_id";
-                // $query = "SELECT * FROM census where address like '$search' ORDER BY edit desc,s_id"; 
+                if($role == "Admin"){
+                    $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.address like '$search' ORDER BY c.print desc,c.edit desc,c.s_id";
+                }
+                else{
+                    $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.address like '$search' WHERE c.print != 'printed' ORDER BY c.edit desc,c.s_id";
+                }
+
+                
+               
             }
             else if ($column == 'area'){
 
-                $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.area like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
-                // $query = "SELECT * FROM census where area like '$search' ORDER BY edit desc,s_id"; 
+                if($role == "Admin"){
+                    $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.area like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
+                }
+                else{
+                    $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id where c.area like '$search' ORDER BY c.print desc,c.edit desc,c.s_id"; 
+                }
+
+                
+               
             }
-            
-            //  $query = "SELECT * FROM census ORDER BY s_id  LIMIT $start_from, $record_per_page"; 
-            // $query = "SELECT * FROM census ORDER BY s_id DESC LIMIT 1,326";   
+        
 
 }
 // id='tablePhp'

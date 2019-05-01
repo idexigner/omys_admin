@@ -894,7 +894,7 @@ function blogin() {
 function logStatus(status,u_id,u_name){
 
     var d = new Date();
-    d= d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear() + "---" + d.getHours() +":"+ d.getMinutes();
+    d= d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear() + "---" + d.getHours() +":"+ d.getMinutes();
     fetch(Api + 'backend/logStatus.php', {
         method: 'POST',
         body: JSON.stringify({
@@ -2077,7 +2077,6 @@ function createAdd() {
 
 
     if (document.getElementById("imageAddUpload").value !== '') {
-        alert("Inside if ");
         document.getElementById("imageAddNameUpload").value = imgName;
         document.getElementById("uploadAddImageIdForm").submit();
     }
@@ -2232,7 +2231,7 @@ function updateAdd() {
 
 
     var uCat = document.getElementById("usCat");
-    var uCatValue = uCat.options[urole.selectedIndex].value;
+    var uCatValue = uCat.options[uCat.selectedIndex].value;
 
     
     var min = 1000, max = 100000000;
@@ -2570,8 +2569,8 @@ function onLoadFunction(page) {
     var role = accessCookie("role");
 
     if(role!=="Staff" && role!=="Admin" && role!=="worker"){
-        console.log("inside login");
-        console.log(role);
+       
+        // console.log(role);
         alert("Please Login First");
         window.location.href  = "/omys_admin/index.php";
 
@@ -2667,7 +2666,7 @@ $(document).ready(function () {
         $.ajax({
             url: "pagination.php",
             method: "POST",
-            data: { page: page },
+            data: { page: page,role:accessCookie("role") },
             success: function (data) {
                 $('#pagination_data').html(data);
             }
@@ -2692,7 +2691,7 @@ function functionClick(param) {
                 $.ajax({
                     url: "paginationLimit.php",
                     method: "POST",
-                    data: { page: page, start: start, record: end, receive: param },
+                    data: { page: page, start: start, record: end, receive: param,role:accessCookie("role") },
                     success: function (data) {
                         $('#pagination_data').html(data);
                     }
@@ -2717,7 +2716,7 @@ function functionClick(param) {
                 $.ajax({
                     url: "paginationLimit.php",
                     method: "POST",
-                    data: { page: page, column: column, search: search, receive: param },
+                    data: { page: page, column: column, search: search, receive: param,role:accessCookie("role") },
                     success: function (data) {
                         $('#pagination_data').html(data);
                     }

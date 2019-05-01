@@ -19,6 +19,7 @@ else{
  $record_per_page = 250 ;  
  $page = '';  
  $output = '';  
+ $role = $_POST["role"];
  if(isset($_POST["page"]))  
  {  
       $page = $_POST["page"];  
@@ -27,8 +28,15 @@ else{
  {  
       $page = 1;  
  }  
- $start_from = ($page - 1)*$record_per_page;  
- $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id ORDER BY c.print desc, c.edit desc,c.s_id desc LIMIT $start_from, $record_per_page"; 
+ $start_from = ($page - 1)*$record_per_page;
+ $query ='';
+ if($role == "Admin"){
+     $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id ORDER BY c.print desc, c.edit desc,c.s_id desc LIMIT $start_from, $record_per_page"; 
+ }
+ else{
+     $query = "SELECT c.name as student_name, cu.name as staff_name,c.* FROM census as c inner join census_users as cu on c.u_id = cu.u_id WHERE c.print != 'printed' ORDER BY  c.edit desc,c.s_id desc LIMIT $start_from, $record_per_page"; 
+ }
+ 
 
 // $query = "SELECT * FROM census ORDER BY s_id desc LIMIT $start_from, $record_per_page"; 
 

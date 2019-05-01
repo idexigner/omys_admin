@@ -102,14 +102,7 @@
         <div class="col-8 col-md-6">
             <input type="file" id="simageUploadAdd" name="imageAddUpload"  class="form-control-file ">
         </div>
-        <!--<div class="col-4 col-md-3"></div>-->
-        <div class="col-4 col-md-3">
-        
-        <button type="button" class="btn btn-secondary" name="captureImage" onclick="scaptureImageCustom();">
-            Capture
-        </button>
-        
-        </div>
+      
     </div>
 
 </form>
