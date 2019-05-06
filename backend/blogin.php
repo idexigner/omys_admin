@@ -23,6 +23,12 @@ $json = file_get_contents('php://input');
 	// $pre_stmt->execute();
 	// $result = $pre_stmt->get_result();
 
+	if (strpos($username, '<') !== false || strpos($password, '<') !== false || strpos($username, ';') !== false || strpos($password, ';') !== false ) {
+		echo json_encode('goog');	
+		
+	}
+	else{
+
 	$username = strip_tags(mysqli_real_escape_string($con,trim($username)));
 	$password = strip_tags(mysqli_real_escape_string($con,trim($password)));
 
@@ -47,8 +53,9 @@ $json = file_get_contents('php://input');
 	else{
 		echo json_encode('Wrong Details');	
 	}
+}
 
-
+// echo json_encode('last');
 	// $result= $con->query("select * from census_users where username = '$username' and pass = '$password'");
 	
 // $result= $conn->query("SELECT * FROM users where username='$username' and password='$password'");
