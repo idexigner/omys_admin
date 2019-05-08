@@ -383,7 +383,7 @@ include 'DBConfig.php';
                                                 <th>Khundi</th>
                                                 <th>Contact</th>
                                                 <th>Username</th>
-                                                <th>Password</th>
+                                                <th style="display:none">Password</th>
                                                 <th>Role</th>
                                             </tr>
                                         </thead>
@@ -396,30 +396,7 @@ include 'DBConfig.php';
                                     </table>
 
                                 </div>
-                                <!-- <div class="pagination-container">
-                                    <nav>
-                                        <ul class="pagination"></ul>
-                                    </nav>
-                                </div> -->
-
-
-
-                                <!-- <div class='pagination-container' >
-                                    <nav>
-                                    <ul class="pagination">
-                                
-                                        <li data-page="prev" >
-                                                <span> < <span class="sr-only">(current)</span></span>
-                                                </li>
-                            <!-	Here the JS Function Will Add the Rows ->
-                                                <li data-page="next" id="prev">
-                                                <span> > <span class="sr-only">(current)</span></span>
-                                                </li>
-                                        </ul>
-                                    </nav>
-                                </div>pagineation container -->
-                                <!-- <ul class="pagination pagination-lg pager" id="myPager"></ul> -->
-
+                    
                             </div><!-- col-lg-12-->
 
                             <button onclick="exportTableToExcel('tableStaff')" class="btn btn-success"

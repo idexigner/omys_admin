@@ -54,12 +54,35 @@
         </div>
 
 
-        <div class="row form-group">
+        <div class="row form-group" style="display:none">
               <div class="col col-md-3">
                  <label for="text-input" class=" form-control-label">Password</label>
                </div>
               <div class="col-12 col-md-9">
-              <input type="text" id="upass" name="upass"   class="form-control">
+              <input type="text" id="upass" name="upass" class="form-control">
+                                                  
+                </div>
+        </div>
+
+
+
+        <div class="row form-group">
+              <div class="col col-md-3">
+                 <label for="text-input" class=" form-control-label">Enter Old Password</label>
+               </div>
+              <div class="col-12 col-md-9">
+              <input type="text" id="uoldPass" name="uoldPass" class="form-control">
+                                                  
+                </div>
+        </div>
+
+
+        <div class="row form-group">
+              <div class="col col-md-3">
+                 <label for="text-input" class=" form-control-label">Enter New Password</label>
+               </div>
+              <div class="col-12 col-md-9">
+              <input type="text" id="unewPass" name="unewPass" class="form-control">
                                                   
                 </div>
         </div>

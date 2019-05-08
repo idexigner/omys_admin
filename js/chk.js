@@ -804,8 +804,16 @@ function createUserStudent() {
         })
             .then((response) => response.json())
             .then((responseJson) => {
+                if(responseJson == "invalid"){
+                    alert("Invalid Characters");
+                    window.location.href = "/omys_admin/createUser.php";
+                }
+                else{
+                    alert("Successfully Inserted");
+                    window.location.href = "/omys_admin/createUser.php";
 
-                alert("Successfully Inserted");
+                }
+                
                 //     if(imgName!=='')
                 // {
                 //     document.getElementById("imageNameUpload").value=imgName;
@@ -813,7 +821,6 @@ function createUserStudent() {
                 // }
 
                 // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
-                window.location.href = "/omys_admin/createUser.php";
 
 
                 // console.log(responseJson);
@@ -854,27 +861,20 @@ function blogin() {
     })
         .then((response) => response.json())
         .then((responseJson) => {
-            alert(responseJson);
+           
             if (responseJson === "Wrong Details") {
                 alert("Wrong Details");
                 window.location.href = "/omys_admin/index.php";
             }
-            else if(responseJson == "goog"){
-                alert("Goog");
-            }
-            else if(responseJson == "last"){
-                alert("last");
+            else if(responseJson == "invalid"){
+                alert("Invalid Characters");
+                window.location.href = "/omys_admin/index.php";
             }
             else {
-                // console.log(responseJson[0]);
-                // alert(responseJson[0]);
-                // alert(responseJson);
-                // alert("farazedit"+ responseJson[0].role);
+               
                 createCookie("role",responseJson.role,1);
                 createCookie("user",responseJson.u_id,1);
                 createCookie("username",responseJson.name,1);
-
-
 
 
                 // localStorage.setItem("role", responseJson.role);
@@ -885,7 +885,7 @@ function blogin() {
                 logStatus('in',responseJson.u_id,responseJson.name);
                 window.location.href = "/omys_admin/dashboard.php";
             }
-            // alert(responseJson);
+           
 
         })
         .catch((error) => {
@@ -1642,12 +1642,17 @@ function updateStudentUser() {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-
-                alert("Successfully Updated");
-
-                // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
-                window.location.href = "/omys_admin/viewUser.php";
-                // console.log(responseJson);
+                if(responseJson == "invalid"){
+                    alert("Invalid Characters");
+                    window.location.href = "/omys_admin/viewUser.php";
+                }
+                else{
+                    alert("Successfully Updated");
+                    // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
+                    window.location.href = "/omys_admin/viewUser.php";
+                    // console.log(responseJson);
+                }
+                
             })
             .catch((error) => {
                 alert("Not Updated");
@@ -1662,7 +1667,8 @@ function deleteStudentUser() {
     // var p_id='2';
     var s_id = document.getElementById('sid').value;
 
-    //alert(s_id);
+    
+
 
 
     fetch(Api + 'backend/bdeleteUser.php', {
@@ -1835,10 +1841,19 @@ function createStaff() {
         .then((response) => response.json())
         .then((responseJson) => {
 
-            alert("Successfully Inserted");
+            if(responseJson == "invalid"){
+                alert("Invalid Characters");
+                window.location.href = "/omys_admin/createStaff.php";
+            }
+            else{
+                alert("Successfully Inserted");
+                window.location.href = "/omys_admin/createStaff.php";
+            }
+
+            
 
             // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
-            window.location.href = "/omys_admin/createStaff.php";
+            
 
 
             // console.log(responseJson);
@@ -1895,7 +1910,7 @@ function showStaffTable(data) {
                <td>${data.khundi}</td>
                <td>${data.contact}</td>
                <td>${data.username}</td>
-               <td>${data.pass}</td>
+               <td style="display:none">${data.pass}</td>
                <td>${data.role}</td>
               
                
@@ -1979,7 +1994,8 @@ function updateStaff() {
     var ucontact = document.getElementById("ucontact").value;
     var uusername = document.getElementById("uusername").value;
     var upass = document.getElementById("upass").value;
-
+    var upassOld = document.getElementById("uoldPass").value;
+    var upassNew = document.getElementById("unewPass").value;
 
 
     var urole = document.getElementById("urole");
@@ -1996,6 +2012,8 @@ function updateStaff() {
             ucontact: ucontact,
             uusername: uusername,
             upass: upass,
+            upassOld: upassOld,
+            upassNew: upassNew,
             uroleValue: uroleValue
 
         }),
@@ -2006,12 +2024,18 @@ function updateStaff() {
     })
         .then((response) => response.json())
         .then((responseJson) => {
+            if(responseJson == "invalid"){
+                alert("Invalid Characters");
+                window.location.href = "/omys_admin/createStaff.php";
+            }
+            else{
+                alert("Successfully Updated");
 
-            alert("Successfully Updated");
-
-            // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
-            window.location.href = "/omys_admin/createStaff.php";
-
+                // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
+                window.location.href = "/omys_admin/createStaff.php";
+    
+            }
+           
 
             // console.log(responseJson);
         })
@@ -2032,9 +2056,7 @@ function deleteStaff() {
     // var p_id='2';
     var updateU_id = document.getElementById('uid').value;
 
-    //alert(s_id);
-
-
+   
     fetch(Api + 'backend/bdeleteStaffJava.php', {
         method: 'POST',
         body: JSON.stringify({
@@ -2108,10 +2130,16 @@ function createAdd() {
     })
         .then((response) => response.json())
         .then((responseJson) => {
-
-            alert("Successfully Inserted");
+            if(responseJson == "invalid"){
+                alert("Invalid Characters");
+                window.location.href = "/omys_admin/createAdd.php";
+            }
+            else{
+                alert("Successfully Inserted");
+                window.location.href = "/omys_admin/createAdd.php";
+            }
+            
             // var url="/onesource_admin/viewDetails.php?purchaseIdd="+idd;//+"&page="+pageId+"&rec_per_page="+recPerPageId;
-            window.location.href = "/omys_admin/createAdd.php";
 
 
             // console.log(responseJson);
@@ -2307,8 +2335,6 @@ function deleteAdd() {
     // var purchaseIdd = localStorage.getItem('purchaseIdJavascript');
     // var p_id='2';
     var updateA_id = document.getElementById('addid').value;
-
-    //alert(s_id);
 
 
     fetch(Api + 'backend/bdeleteAddJava.php', {

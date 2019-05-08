@@ -9,17 +9,41 @@ include 'DBConfig.php';
 	 // decoding the received JSON and store into $obj variable.
 	 $obj = json_decode($json,true);
 
-    $updateU_id = $obj['updateU_id'];
-    $uname = $obj['uname'];
-    $ukhundi = $obj['ukhundi'];
-    $ucontact = $obj['ucontact'];
-    $uusername = $obj['uusername'];
+    $updateU_id = htmlspecialchars($obj['updateU_id']);
+    $uname = htmlspecialchars($obj['uname']);
+    $ukhundi = htmlspecialchars($obj['ukhundi']);
+    $ucontact = htmlspecialchars($obj['ucontact']);
+    $uusername = htmlspecialchars($obj['uusername']);
     $upass = $obj['upass'];
-    $uroleValue = $obj['uroleValue'];
+    $upassOld = $obj['upassOld'];
+    $upassNew = $obj['upassNew'];
+    $uroleValue = htmlspecialchars($obj['uroleValue']);
+
+    $upassword = '';
+    if(password_verify($upassOld,$upass)) {
+      $upassword = password_hash($upassNew,PASSWORD_BCRYPT,["cost"=>7]);
+   }
+  else{
+   $upassword = $upass;
+  }
 
 
+  $proceed = true;
+  $field = array("$uname","$ukhundi","$ucontact","$uusername","$upass","$uroleValue");
+  $words = array("<",";","like","update","img","error");
+  
+  for($i=0 ; $i<sizeof($field); $i++){
+     for($j=0 ; $j<sizeof($words) ; $j++){
+        if(strpos($field[$i],$words[$j]) !== false){
+           $proceed = false;
+           echo json_encode('invalid');
+           break;break;
+        }
+     }
+  }
 
-   $result= $con->query("update census_users set name='$uname',khundi='$ukhundi',contact='$ucontact',username='$uusername',pass='$upass',role='$uroleValue' where u_id='$updateU_id'");
+  if($proceed){
+   $result= $con->query("update census_users set name='$uname',khundi='$ukhundi',contact='$ucontact',username='$uusername',pass='$upassword',role='$uroleValue' where u_id='$updateU_id'");
 	
     if($result){
 				echo json_encode("Success");
@@ -30,7 +54,7 @@ include 'DBConfig.php';
                 echo "Failed";
 			}
 
-
+      }
 
 ?>
 

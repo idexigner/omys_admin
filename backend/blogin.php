@@ -22,15 +22,33 @@ $json = file_get_contents('php://input');
 	// $pre_stmt->bind_param("s",$username);
 	// $pre_stmt->execute();
 	// $result = $pre_stmt->get_result();
-
-	if (strpos($username, '<') !== false || strpos($password, '<') !== false || strpos($username, ';') !== false || strpos($password, ';') !== false ) {
-		echo json_encode('goog');	
-		
+	$proceed = true;
+	$field = array("$username","$password");
+	$words = array("<",";","like","update","img","error");
+	
+	// 
+	// 
+	for($i=0 ; $i<sizeof($field); $i++){
+		for($j=0 ; $j<sizeof($words) ; $j++){
+			if(strpos($field[$i],$words[$j]) !== false){
+				$proceed = false;
+				echo json_encode('invalid');
+				break;break;
+			}
+		}
 	}
-	else{
+
+	// if (strpos($username, '<') !== false || strpos($password, '<') !== false || strpos($username, ';') !== false || strpos($password, ';') !== false ) {
+	// 	echo json_encode('goog');	
+		
+	// }
+	if($proceed){
 
 	$username = strip_tags(mysqli_real_escape_string($con,trim($username)));
 	$password = strip_tags(mysqli_real_escape_string($con,trim($password)));
+
+	$username = htmlspecialchars($username);
+	$password= htmlspecialchars($password);
 
 	$query = "select * from census_users where username='".$username."'";
 	// $result= $con->query("select * from census_users where username='$username'");
