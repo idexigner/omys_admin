@@ -1137,10 +1137,14 @@ function loadStudentMod(data) {
           
             if (obj.edit == 'edited') {
                 document.getElementById('sedit').checked = true;
+            }else{
+                document.getElementById('sedit').checked = false;
             }
 
             if (obj.print == 'printed') {
                 document.getElementById('sprint').checked = true;
+            }else{
+                document.getElementById('sprint').checked = false;
             }
 
 
@@ -1959,7 +1963,7 @@ function loadStaffMod(data) {
             var role = obj.role;
 
 
-            var arrayRole = ['Admin', 'Staff'];
+            var arrayRole = ['Admin', 'Staff','worker'];
 
             // var dayUnit=obj.areaUnit;
             var indexRole = arrayRole.indexOf(role);

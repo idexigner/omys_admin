@@ -64,7 +64,7 @@ include 'DBConfig.php';
      $print=$obj['print'];
 
     $proceed = true;
-	$field = array("$sname","$updateDateOfBirth","$sgender","$scnic","$skhundi","$sgroup","$somjCard","$sbirthPlace","$somysCard","$semail","$scontact","$swhatsapp","$sresidentialAddress","$sarea","$smaritualStatus","$stu_occupation","$sfatherHusbandName","$sfatherHusbandCnic","$sfatherHusbandContact","$sfatherHusbandOmjCard","$sfather_occupation","$smotherName","$smotherCnic","$smotherContact","$smother_occupation","$sbloodGroup","$sadditionalSkills","$sotherSkill","$sinstituteName","$spresentClass","$futureInterest","$companyName","$officeAddress","$currentDesignation","$sfutureInterestemp","$shobbies","$sprofessionalAchievement","$spersonalAchievement","$ssportInterest","$sifStudent","$sotherReason","$somysMember","$sfatherMember");
+	$field = array("$sname","$updateDateOfBirth","$sgender","$scnic","$skhundi","$sgroup","$somjCard","$sbirthPlace","$somysCard","$semail","$scontact","$swhatsapp","$sresidentialAddress","$sarea","$smaritualStatus","$sfatherHusbandName","$sfatherHusbandCnic","$sfatherHusbandContact","$sfatherHusbandOmjCard","$sfather_occupation","$smotherName","$smotherCnic","$smotherContact","$smother_occupation","$sbloodGroup","$sotherSkill","$sinstituteName","$spresentClass","$futureInterest","$companyName","$officeAddress","$currentDesignation","$sfutureInterestemp","$shobbies","$sprofessionalAchievement","$spersonalAchievement","$ssportInterest","$sifStudent","$sotherReason","$somysMember","$sfatherMember");
 	$words = array("<",";","like","update","img","error");
 	
 	for($i=0 ; $i<sizeof($field); $i++){
