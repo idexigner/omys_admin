@@ -1,5 +1,5 @@
 <?php
-include 'DBConfig.php';
+include 'session.php';
 ?>
 
 <!DOCTYPE html>

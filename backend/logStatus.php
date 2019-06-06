@@ -11,7 +11,11 @@ include 'DBConfig.php';
 	 $date = $obj['date'];
 	 $u_name = $obj['u_name'];
 
-
+session_start();
+	 if($status == "out"){
+		unset($_SESSION['username']);
+		unset($_SESSION['password']);
+	 }
     $result = $con->query("insert into logs (u_id,log_name,date,status) values('$u_id','$u_name','$date','$status')");
 
     if($result){

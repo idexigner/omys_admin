@@ -63,6 +63,10 @@ $json = file_get_contents('php://input');
 		 if(password_verify($password,$password_hash)){
 
 			$tem = $row;
+
+			session_start();
+			$_SESSION['username'] = $username;
+			$_SESSION['password'] = $password;
 		
 			$json = json_encode($tem);
 			echo $json;	
