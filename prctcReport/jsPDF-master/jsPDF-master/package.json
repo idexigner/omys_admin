@@ -20,7 +20,7 @@
     "url": "https://github.com/MrRio/jsPDF.git"
   },
   "dependencies": {
-    "canvg": "1.5.3",
+    "canvg": "4.0.1",
     "cf-blob.js": "0.0.1",
     "file-saver": "2.0.0",
     "html2canvas": "1.0.0-alpha.12",
@@ -62,7 +62,7 @@
     "uglify-js": "3.4.9"
   },
   "resolutions": {
-    "canvg": "1.5.3"
+    "canvg": "4.0.1"
   },
   "scripts": {
     "start": "ws",
